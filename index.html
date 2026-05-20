@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>日本語 Study — Genki I</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div id="petals"></div>
+
+<!-- Topbar -->
+<div id="topbar">
+  <span class="logo-mark">🌸</span>
+  <div class="logo-text">
+    <div class="logo-title">日本語 Study</div>
+    <div class="logo-sub">Genki I · MDC Japanese 2</div>
+  </div>
+  <nav>
+    <button class="nav-btn active" data-page="home">🌸 Home</button>
+    <button class="nav-btn" data-page="lessons">📚 Lessons</button>
+    <button class="nav-btn" data-page="kanji">🖊 Kanji</button>
+    <button class="nav-btn" data-page="quiz">🌟 Quiz</button>
+    <button class="nav-btn" data-page="flashcards">🃏 Cards</button>
+    <button class="nav-btn" data-page="journal">📓 Journal</button>
+    <button class="nav-btn" data-page="resources">🔗 Resources</button>
+  </nav>
+</div>
+
+<!-- ════════ HOME ════════ -->
+<div id="page-home" class="page visible">
+  <div class="page-title">おかえり！ Welcome back 🌸</div>
+  <div class="page-sub">Your Japanese study hub — Genki I · MDC Japanese 2</div>
+
+  <div class="card-grid-3">
+    <div class="card stat-card">
+      <div class="stat-icon">🃏</div>
+      <div class="stat-val" id="home-words">0/0</div>
+      <div class="stat-label">Cards Known</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-val" id="home-lessons">0/5</div>
+      <div class="stat-label">Lessons Studied</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-icon">🖊</div>
+      <div class="stat-val" id="home-kanji-count">0</div>
+      <div class="stat-label">Kanji Learned</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:22px;">
+    <div style="font-weight:700;margin-bottom:10px;">Vocabulary Progress</div>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="home-progress-bar" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="home-progress-label">0 of 0 cards marked known</div>
+  </div>
+
+  <!-- Today's kanji preview -->
+  <div class="card" style="margin-bottom:22px;">
+    <div style="font-weight:700;margin-bottom:14px;">Today's Kanji — <span id="home-kanji-date"></span></div>
+    <div id="home-kanji-preview" class="home-kanji-strip"></div>
+    <a class="btn btn-soft" style="display:inline-block;margin-top:14px;text-decoration:none;" onclick="nav('kanji')">Study today's kanji →</a>
+  </div>
+
+  <div style="font-weight:700;font-size:16px;margin-bottom:13px;">Lesson Overview</div>
+  <div class="card-grid-2" id="home-lessons-grid"></div>
+</div>
+
+<!-- ════════ LESSONS ════════ -->
+<div id="page-lessons" class="page">
+  <div class="page-title">📚 Lessons</div>
+  <div class="page-sub">Genki I Chapter breakdown — select a lesson to explore</div>
+
+  <div class="chip-row" id="lesson-chips"></div>
+
+  <div class="card" id="lesson-detail">
+    <div class="lesson-header">
+      <div>
+        <div class="lesson-num-label" id="ld-num"></div>
+        <div class="lesson-title-large" id="ld-title"></div>
+        <div class="lesson-sub-label" id="ld-sub"></div>
+      </div>
+      <button class="btn btn-primary" id="ld-mark-btn" onclick="markLessonDone()">Mark Complete</button>
+    </div>
+    <div id="ld-topics" style="margin-bottom:16px;"></div>
+
+    <div class="sub-tabs">
+      <button class="sub-tab active" data-tab="grammar">Grammar</button>
+      <button class="sub-tab" data-tab="vocab">Vocab</button>
+      <button class="sub-tab" data-tab="kanji-tab">Kanji</button>
+    </div>
+
+    <div class="sub-tab-content visible" id="tab-grammar"></div>
+    <div class="sub-tab-content" id="tab-vocab"></div>
+    <div class="sub-tab-content" id="tab-kanji-tab"></div>
+  </div>
+</div>
+
+<!-- ════════ KANJI ════════ -->
+<div id="page-kanji" class="page">
+  <div class="page-title">🖊 Daily Kanji</div>
+  <div class="page-sub">5 new kanji every day — ordered by JLPT/frequency · <span id="kanji-date-label"></span></div>
+
+  <!-- Today's 5 -->
+  <div id="kanji-today-grid" class="kanji-today-grid"></div>
+
+  <!-- Selected kanji detail -->
+  <div class="card" id="kanji-detail-card" style="margin-bottom:22px;display:none;">
+    <div class="kanji-hero">
+      <div class="kanji-hero-char" id="kd-char"></div>
+      <div class="kanji-hero-read" id="kd-read"></div>
+      <div class="kanji-hero-mean" id="kd-mean"></div>
+      <span class="pill muted" id="kd-jlpt"></span>
+      <span class="pill muted" id="kd-stroke"></span>
+      <div class="kanji-ex-box">
+        <div class="kanji-ex-label">Example words</div>
+        <div id="kd-examples"></div>
+      </div>
+    </div>
+    <div class="kanji-practice-section">
+      <div style="font-weight:700;font-size:14px;margin-bottom:10px;">✍️ Practice — type the reading</div>
+      <input type="text" id="kanji-input" placeholder="Type the on'yomi or kun'yomi reading…"/>
+      <div style="display:flex;gap:10px;margin-top:10px;">
+        <button class="btn btn-primary" onclick="checkKanji()">Check</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('kanji-input').value='';document.getElementById('kanji-feedback').innerHTML='';">Clear</button>
+        <button class="btn btn-soft" onclick="markKanjiLearned()" id="kanji-learn-btn">Mark as Learned</button>
+      </div>
+      <div id="kanji-feedback" style="margin-top:12px;"></div>
+    </div>
+  </div>
+
+  <!-- All-time learned -->
+  <div style="font-weight:700;font-size:16px;margin-bottom:12px;">Kanji Bank — All Days</div>
+  <div class="kanji-bank-controls">
+    <input type="text" id="kanji-search" placeholder="Search kanji, reading, or meaning…" style="max-width:280px;" oninput="filterKanjiBank()"/>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;" id="kanji-jlpt-filters"></div>
+  </div>
+  <div class="kanji-grid" id="kanji-bank-grid"></div>
+</div>
+
+<!-- ════════ QUIZ ════════ -->
+<div id="page-quiz" class="page">
+  <div class="page-title">🌟 Quiz</div>
+  <div class="page-sub">Test your Genki knowledge — one chapter at a time</div>
+
+  <div class="chip-row" id="quiz-chips"></div>
+
+  <div class="card" id="quiz-card">
+    <div class="quiz-bar-wrap">
+      <div class="progress-wrap" style="flex:1;">
+        <div class="progress-bar" id="quiz-bar" style="width:0%"></div>
+      </div>
+      <span class="pill" id="quiz-score-pill">Score: 0</span>
+    </div>
+    <div class="quiz-q-num" id="quiz-q-num">Question 1 of 4</div>
+    <div class="quiz-q" id="quiz-question"></div>
+    <div class="choice-list" id="quiz-choices"></div>
+    <div class="btn-row" style="display:none;" id="quiz-next-row">
+      <button class="btn btn-primary" onclick="quizNext()">Next →</button>
+    </div>
+  </div>
+
+  <div class="card quiz-result" id="quiz-result" style="display:none;">
+    <div class="quiz-result-icon" id="qr-icon"></div>
+    <div class="quiz-result-score" id="qr-score"></div>
+    <div class="quiz-result-msg" id="qr-msg"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="quizRestart()">Try Again</button>
+      <button class="btn btn-soft" id="quiz-next-lesson-btn" onclick="quizNextLesson()">Next Lesson →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ FLASHCARDS ════════ -->
+<div id="page-flashcards" class="page">
+  <div class="page-title">🃏 Flashcards</div>
+  <div class="page-sub">Tap the card to flip — mark what you know to build your progress</div>
+
+  <div class="chip-row" id="fc-chips"></div>
+  <div class="fc-stats" id="fc-stats"></div>
+
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <span class="fc-tag-badge pill" id="fc-tag"></span>
+    <span class="fc-known-badge" id="fc-known-badge" style="display:none;">🌸</span>
+    <div id="fc-content" class="fc-front"></div>
+    <div class="fc-hint" id="fc-hint">tap to reveal</div>
+  </div>
+
+  <div class="fc-controls">
+    <button class="btn btn-ghost" onclick="fcMove(-1)" id="fc-prev">← Prev</button>
+    <button class="btn btn-ghost" onclick="fcAgain()">Review again</button>
+    <button class="btn btn-primary" onclick="fcKnow()">✓ I know this</button>
+    <button class="btn btn-ghost" onclick="fcMove(1)" id="fc-next">Next →</button>
+  </div>
+</div>
+
+<!-- ════════ JOURNAL ════════ -->
+<div id="page-journal" class="page">
+  <div class="page-title">📓 Study Journal</div>
+  <div class="page-sub">Track your wins, struggles, and growth — in your own words</div>
+
+  <div class="card journal-form">
+    <div style="font-weight:700;font-size:15px;margin-bottom:12px;">New Entry</div>
+    <div class="mood-row" id="mood-row">
+      <button class="mood-btn active" data-mood="😊">😊</button>
+      <button class="mood-btn" data-mood="😤">😤</button>
+      <button class="mood-btn" data-mood="😴">😴</button>
+      <button class="mood-btn" data-mood="🤔">🤔</button>
+      <button class="mood-btn" data-mood="🌸">🌸</button>
+      <button class="mood-btn" data-mood="💪">💪</button>
+    </div>
+    <textarea id="journal-input" rows="4" placeholder="What did you study today? New grammar that clicked? Vocab you keep forgetting? Wins to celebrate?"></textarea>
+    <button class="btn btn-primary" style="margin-top:12px;" onclick="addJournalEntry()">Add Entry</button>
+  </div>
+
+  <div id="journal-entries">
+    <div class="empty-state">No entries yet — write your first one above! 🌸</div>
+  </div>
+</div>
+
+<!-- ════════ RESOURCES ════════ -->
+<div id="page-resources" class="page">
+  <div class="page-title">🔗 Resources</div>
+  <div class="page-sub">Everything you need — Jo-Mako's materials, tools, and study links</div>
+
+  <!-- Jo-Mako section -->
+  <div style="font-weight:700;font-size:16px;margin-bottom:12px;">📊 Jo-Mako's Spreadsheets</div>
+  <div class="resource-grid" id="jomako-links"></div>
+
+  <!-- Tools -->
+  <div style="font-weight:700;font-size:16px;margin:28px 0 12px;">🛠 Study Tools</div>
+  <div class="resource-grid" id="tool-links"></div>
+
+  <!-- Genki -->
+  <div style="font-weight:700;font-size:16px;margin:28px 0 12px;">📖 Genki Companions</div>
+  <div class="resource-grid" id="genki-links"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
