@@ -105,7 +105,10 @@
 <!-- ════════ KANJI ════════ -->
 <div id="page-kanji" class="page">
   <div class="page-title">🖊 Daily Kanji</div>
-  <div class="page-sub">5 new kanji every day — ordered by JLPT/frequency · <span id="kanji-date-label"></span></div>
+  <div class="page-sub">5 new kanji every day — live from Jo-Mako's sheet · <span id="kanji-date-label"></span></div>
+
+  <div id="kanji-loading" style="display:flex;align-items:center;gap:12px;padding:20px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--muted);">⏳ Loading kanji from Jo-Mako's spreadsheet…</div>
+  <div id="kanji-load-error" style="display:none;padding:16px 20px;background:var(--red-bg);color:var(--red-text);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:16px;">⚠️ Could not load kanji. Make sure your sheet is set to <strong>Anyone with the link can view</strong>, then reload the page.</div>
 
   <!-- Today's 5 -->
   <div id="kanji-today-grid" class="kanji-today-grid"></div>
