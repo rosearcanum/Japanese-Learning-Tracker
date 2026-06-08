@@ -569,6 +569,7 @@ let state={
   kanjiLearned:new Set(),selectedKanjiIdx:null,kanjiJlptFilter:"All",
   journalEntries:[],selectedMood:"😊",
   studiedDays:new Set(),
+  grammarDone:{},
   anki:{today:"",again:"",mature:"",new:"",total:"",days:""},
 };
 
@@ -579,6 +580,7 @@ try{
   if(s.kanjiLearned)state.kanjiLearned=new Set(s.kanjiLearned);
   if(s.journalEntries)state.journalEntries=s.journalEntries;
   if(s.studiedDays)state.studiedDays=new Set(s.studiedDays);
+  if(s.grammarDone)state.grammarDone=s.grammarDone;
   if(s.anki)state.anki=s.anki;
 }catch(e){}
 
@@ -587,7 +589,7 @@ function save(){
     localStorage.setItem("jp-study-v2",JSON.stringify({
       lessonsDone:state.lessonsDone,fcKnown:[...state.fcKnown],
       kanjiLearned:[...state.kanjiLearned],journalEntries:state.journalEntries,
-      studiedDays:[...state.studiedDays],anki:state.anki,
+      studiedDays:[...state.studiedDays],grammarDone:state.grammarDone,anki:state.anki,
     }));
   }catch(e){}
 }
@@ -598,6 +600,7 @@ function nav(page){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("visible"));
   document.getElementById("page-"+page).classList.add("visible");
   if(page==="home")renderHome();
+  if(page==="grammar")renderGrammar();
   if(page==="stats"){loadAnkiInputs();renderStats();}
   if(page==="journal")renderJournal();
   if(page==="resources")renderResources();
@@ -1021,6 +1024,139 @@ function renderResources(){
   document.getElementById("genki-links").innerHTML=mk(RESOURCES.genki);
 }
 
+// ─── GRAMMAR PAGE ─────────────────────────────────────────────────────────────
+let grammarLesson=1;
+
+function renderGrammarChips(){
+  const lessons=Object.keys(GRAMMAR).map(Number).sort((a,b)=>a-b);
+  document.getElementById("grammar-lesson-chips").innerHTML=lessons.map(n=>
+    `<button class="chip ${n===grammarLesson?"active":""}" onclick="selectGrammarLesson(${n})">L${n}</button>`).join("");
+}
+
+function selectGrammarLesson(n){
+  grammarLesson=n;
+  renderGrammarChips();
+  renderGrammar();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderGrammar(){
+  const data=GRAMMAR[grammarLesson];
+  if(!data){document.getElementById("grammar-points").innerHTML="";return;}
+  document.getElementById("grammar-intro").innerHTML=`
+    <div style="font-weight:700;font-size:15px;margin-bottom:8px;">Lesson ${grammarLesson} — Overview</div>
+    <div class="grammar-intro-text">${data.intro}</div>`;
+
+  document.getElementById("grammar-points").innerHTML=data.points.map((p,pi)=>{
+    const done=state.grammarDone&&state.grammarDone[p.id];
+    return`
+    <div class="gp-card">
+      <div class="gp-header" onclick="toggleGP(${pi})" id="gp-header-${pi}">
+        <div>
+          <div class="gp-title">${p.title} ${done?'<span class="gp-progress-badge">✓ practiced</span>':''}</div>
+          <div class="gp-summary">${p.summary}</div>
+        </div>
+        <span class="gp-toggle" id="gp-toggle-${pi}">+</span>
+      </div>
+      <div class="gp-body" id="gp-body-${pi}">
+        ${p.sections.map(s=>`<div class="gp-section"><div class="gp-section-h">${s.h}</div><div class="gp-section-t">${s.t}</div></div>`).join("")}
+        <div class="gp-examples">
+          <div class="gp-section-h">Examples</div>
+          ${p.examples.map(e=>`<div class="gp-example"><div class="gp-example-jp">${e.jp}</div><div class="gp-example-en">${e.en}</div></div>`).join("")}
+        </div>
+        ${p.notes&&p.notes.length?`<div class="gp-notes"><div class="gp-notes-title">⚠️ Key notes</div>${p.notes.map(n=>`<div class="gp-note">${n}</div>`).join("")}</div>`:""}
+        <div class="gp-practice">
+          <div class="gp-practice-title">✏️ Practice (${p.practice.length} questions)</div>
+          ${p.practice.map((q,qi)=>renderPracticeQ(p.id,pi,qi,q)).join("")}
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function renderPracticeQ(pointId,pi,qi,q){
+  const id=`prac-${grammarLesson}-${pi}-${qi}`;
+  const typeLabel={mc:"Multiple Choice",fill:"Fill in the blank",translate:"Translation",order:"Word order"}[q.type]||"Practice";
+  let inner="";
+  if(q.type==="mc"){
+    inner=`<div class="practice-choices">${q.choices.map((c,ci)=>
+      `<button class="practice-choice" id="${id}-c${ci}" onclick="answerMC('${id}',${ci},${q.a},'${pointId}')">${c}</button>`).join("")}</div>`;
+  }else{
+    inner=`<div class="practice-input-row">
+      <input type="text" id="${id}-input" placeholder="Type your answer…"/>
+      <button class="btn btn-primary" onclick="answerText('${id}','${pointId}')">Check</button>
+    </div>`;
+  }
+  return`
+    <div class="practice-q" id="${id}">
+      <div class="practice-q-type">${typeLabel}</div>
+      <div class="practice-q-text">${q.q}</div>
+      ${inner}
+      <div class="practice-explain" id="${id}-explain"></div>
+    </div>`;
+}
+
+// store correct data for text questions on the fly
+function getPracticeQ(pointId,qi){
+  const data=GRAMMAR[grammarLesson];
+  for(const p of data.points){if(p.id===pointId)return p.practice[qi];}
+  return null;
+}
+
+function toggleGP(pi){
+  const body=document.getElementById("gp-body-"+pi);
+  const tog=document.getElementById("gp-toggle-"+pi);
+  const hdr=document.getElementById("gp-header-"+pi);
+  const open=body.classList.contains("open");
+  body.classList.toggle("open",!open);
+  tog.classList.toggle("open",!open);
+  tog.textContent=open?"+":"×";
+  hdr.classList.toggle("open",!open);
+}
+
+function answerMC(id,chosen,correct,pointId){
+  // disable all
+  let ci=0;
+  while(document.getElementById(id+"-c"+ci)){
+    const btn=document.getElementById(id+"-c"+ci);
+    btn.disabled=true;
+    if(ci===correct)btn.classList.add("correct");
+    if(ci===chosen&&chosen!==correct)btn.classList.add("wrong");
+    ci++;
+  }
+  const qi=parseInt(id.split("-")[3]);
+  const q=getPracticeQ(pointId,qi);
+  const ex=document.getElementById(id+"-explain");
+  ex.classList.add("show",chosen===correct?"correct":"wrong");
+  ex.textContent=(chosen===correct?"✓ Correct! ":"✗ Not quite. ")+(q&&q.ex?q.ex:"");
+  markGrammarPracticed(pointId);
+}
+
+function normalizeJP(s){
+  return (s||"").trim().replace(/[。、\s]/g,"").toLowerCase();
+}
+
+function answerText(id,pointId){
+  const qi=parseInt(id.split("-")[3]);
+  const q=getPracticeQ(pointId,qi);
+  if(!q)return;
+  const input=document.getElementById(id+"-input").value;
+  const norm=normalizeJP(input);
+  const accepts=[q.answer,...(q.accept||[])].map(normalizeJP);
+  const ok=accepts.some(a=>a&&norm===a);
+  const ex=document.getElementById(id+"-explain");
+  ex.className="practice-explain show "+(ok?"correct":"wrong");
+  ex.innerHTML=(ok?"✓ Correct! ":`✗ Not quite. The answer is <b>${q.answer}</b>. `)+(q.ex?q.ex:"");
+  markGrammarPracticed(pointId);
+}
+
+function markGrammarPracticed(pointId){
+  if(!state.grammarDone)state.grammarDone={};
+  state.grammarDone[pointId]=true;
+  state.studiedDays.add(todayKey());
+  save();
+}
+
 // ─── PETALS ───────────────────────────────────────────────────────────────────
 function spawnPetals(){
   const c=document.getElementById("petals");
@@ -1035,6 +1171,8 @@ function spawnPetals(){
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 renderHome();
 renderLessons();
+renderGrammarChips();
+renderGrammar();
 renderQuizChips();
 renderQuiz();
 renderFCChips();

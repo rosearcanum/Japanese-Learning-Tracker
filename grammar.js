@@ -1,0 +1,707 @@
+/* ══════════════════════════════════════════════════════════════════
+   日本語 Study App — grammar.js
+   Original in-depth grammar lessons for Genki I, Lessons 1–6.
+   Written from scratch — explanations, examples, and practice.
+   Each grammar point:
+     { id, title, summary, sections[], examples[], notes[], practice[] }
+   Practice types: 'mc' (multiple choice), 'fill', 'translate', 'order'
+══════════════════════════════════════════════════════════════════ */
+
+const GRAMMAR = {
+
+// ════════════════════════════════ LESSON 1 ════════════════════════════════
+1: {
+  intro: "Lesson 1 introduces the most fundamental sentence structure in Japanese: how to say 'X is Y' using the topic particle は and the copula です. You'll also learn how to ask questions with か, link nouns with の, and the all-important concept that Japanese frequently drops words that are understood from context.",
+  points: [
+    {
+      id:"1-1", title:"X は Y です — The basic sentence",
+      summary:"The single most important pattern in beginner Japanese. は marks the topic, です acts like 'is/am/are'.",
+      sections:[
+        {h:"How it works", t:"A Japanese sentence of the form 「X は Y です」 means roughly 'As for X, it is Y.' The は (written は but pronounced 'wa' when it's the particle) marks X as the topic — the thing you're talking about. です comes at the very end and functions like the English verb 'to be' (is/am/are). Japanese word order is Topic–Comment, and the verb-like です always comes last."},
+        {h:"Why は is not quite 'subject'", t:"English has a grammatical subject. Japanese has a topic, which is a looser idea: 'the thing under discussion.' は doesn't say X *does* something — it says 'here's what we're talking about, now here's a comment about it.' This is why は is best understood as 'as for ~' rather than a subject marker."},
+        {h:"です is polite", t:"です is the polite present-tense copula. It makes your speech appropriately formal for talking with people you don't know well, teachers, or in public. There's a casual equivalent (だ) you'll meet in Lesson 8, but for now everything ends in です."},
+      ],
+      examples:[
+        {jp:"わたしは がくせいです。", read:"わたしは がくせいです。", en:"I am a student. (As for me, [I'm a] student.)"},
+        {jp:"メアリーさんは アメリカじんです。", read:"メアリーさんは アメリカじんです。", en:"Mary is American."},
+        {jp:"たけしさんは にほんじんです。", read:"たけしさんは にほんじんです。", en:"Takeshi is Japanese."},
+        {jp:"せんせいは にほんじんです。", read:"せんせいは にほんじんです。", en:"The teacher is Japanese."},
+      ],
+      notes:[
+        "は as a particle is ALWAYS pronounced 'wa', never 'ha', even though it's written with the hiragana は.",
+        "There are no articles (a/an/the) in Japanese, and nouns don't change for singular/plural. がくせい can mean 'a student' or 'students' depending on context.",
+        "さん is a polite suffix added to people's names (like Mr./Ms.). Never add さん to your own name.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'I am a student'?", choices:["わたしは がくせいです。","わたしを がくせいです。","がくせいは わたしです。","わたしは がくせいか。"], a:0, ex:"は marks the topic (わたし = I), がくせい (student) is the comment, です closes the sentence."},
+        {type:"mc", q:"The particle は is pronounced…", choices:["ha","wa","ba","pa"], a:1, ex:"When は is used as a particle, it is always pronounced 'wa'."},
+        {type:"fill", q:"Fill in the blank: メアリーさん＿ アメリカじんです。", answer:"は", ex:"は marks Mary as the topic of the sentence."},
+        {type:"translate", q:"Translate to Japanese (use です): 'Takeshi is Japanese.'", answer:"たけしさんは にほんじんです。", accept:["たけしさんはにほんじんです","たけしさんはにほんじんです。"], ex:"Topic (たけしさん) + は + comment (にほんじん) + です."},
+      ],
+    },
+    {
+      id:"1-2", title:"Question sentences with か",
+      summary:"Turn any statement into a yes/no question by adding か to the end. No word-order change needed.",
+      sections:[
+        {h:"How it works", t:"To ask a yes/no question, you simply add the particle か to the end of a statement. Unlike English, you do NOT rearrange the words. 「がくせいです」 (You are a student) becomes 「がくせいですか」 (Are you a student?). In casual writing か often replaces the question mark, though you can write both."},
+        {h:"Question words", t:"For information questions (who, what, etc.), you put the question word where the answer would go, and still end with か. なん/なに = what, だれ = who, いくつ = how many, なんさい = how old. The structure stays Topic は [question word] ですか."},
+        {h:"Answering", t:"Answer はい (yes) or いいえ (no), then often restate. はい、がくせいです。 = Yes, I'm a student. いいえ、がくせいじゃないです。 = No, I'm not a student."},
+      ],
+      examples:[
+        {jp:"たけしさんは がくせいですか。", read:"たけしさんは がくせいですか。", en:"Is Takeshi a student?"},
+        {jp:"メアリーさんは せんせいですか。", read:"メアリーさんは せんせいですか。", en:"Is Mary a teacher?"},
+        {jp:"これは なんですか。", read:"これは なんですか。", en:"What is this?"},
+        {jp:"あのひとは だれですか。", read:"あのひとは だれですか。", en:"Who is that person?"},
+      ],
+      notes:[
+        "Intonation rises at the end of a か question, just like English.",
+        "なに and なん both mean 'what'. Use なん before です and counters (なんですか), なに elsewhere.",
+        "You don't need a question mark when using か, but it's fine to add one.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you turn 「がくせいです」 into a question?", choices:["Rearrange to ですがくせい","Add か → がくせいですか","Add を → がくせいをです","Add は → がくせいはです"], a:1, ex:"Just append か. No reordering in Japanese."},
+        {type:"fill", q:"Complete the question 'What is this?': これは なん＿＿。", answer:"ですか", accept:["ですか","です か"], ex:"これは (this) + なん (what) + ですか."},
+        {type:"mc", q:"Which means 'Who is that person?'", choices:["あのひとは なんですか。","あのひとは だれですか。","だれは あのひとですか。","あのひとを だれですか。"], a:1, ex:"だれ = who; the question word sits where the answer would go."},
+        {type:"translate", q:"Translate: 'Is Mary a teacher?'", answer:"メアリーさんは せんせいですか。", accept:["メアリーさんはせんせいですか","メアリーさんはせんせいですか。"], ex:"Statement + か."},
+      ],
+    },
+    {
+      id:"1-3", title:"The negative: じゃないです / じゃありません",
+      summary:"To say 'X is not Y', replace です with じゃないです (casual-polite) or じゃありません (more formal).",
+      sections:[
+        {h:"How it works", t:"The negative of です is formed by replacing it. 「がくせいです」 (is a student) → 「がくせいじゃないです」 (is not a student). Both じゃないです and じゃありません mean the same thing; じゃありません is slightly more formal. There's also ではありません, an even more formal written form (では is the same じゃ, just less contracted)."},
+        {h:"The three registers", t:"From most casual to most formal: じゃない (casual) < じゃないです / じゃありません (polite) < ではありません (formal/written). At your level, じゃないです is the natural everyday polite choice."},
+      ],
+      examples:[
+        {jp:"わたしは せんせいじゃないです。", read:"わたしは せんせいじゃないです。", en:"I am not a teacher."},
+        {jp:"たけしさんは アメリカじんじゃないです。", read:"たけしさんは アメリカじんじゃないです。", en:"Takeshi is not American."},
+        {jp:"これは わたしの ほんじゃありません。", read:"これは わたしの ほんじゃありません。", en:"This is not my book."},
+      ],
+      notes:[
+        "じゃ is a contraction of では. You'll hear both; じゃ is more conversational.",
+        "Negative answers: いいえ、がくせいじゃないです。 = No, I'm not a student.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'I am not a teacher'?", choices:["わたしは せんせいです。","わたしは せんせいじゃないです。","わたしは せんせいですか。","わたしは せんせいでした。"], a:1, ex:"Replace です with じゃないです to negate."},
+        {type:"fill", q:"Negate this: たけしさんは アメリカじん＿＿＿＿＿。 (use じゃ…)", answer:"じゃないです", accept:["じゃないです","じゃありません"], ex:"Both じゃないです and じゃありません are correct polite negatives."},
+        {type:"translate", q:"Translate: 'This is not my book.' (の = possessive)", answer:"これは わたしの ほんじゃないです。", accept:["これはわたしのほんじゃないです","これはわたしのほんじゃありません","これはわたしのほんじゃないです。"], ex:"これは + わたしの (my) + ほん + じゃないです."},
+      ],
+    },
+    {
+      id:"1-4", title:"Noun の Noun — linking nouns",
+      summary:"の connects two nouns where the first one modifies the second: possession, type, affiliation, and more.",
+      sections:[
+        {h:"How it works", t:"の links two nouns in the order [modifier] の [main noun]. The noun BEFORE の describes or owns the noun AFTER の. わたしの ほん = my book (the book that is mine). にほんごの せんせい = Japanese[-language] teacher (a teacher of Japanese). The main noun always comes second."},
+        {h:"It's more than possession", t:"English 'of' or apostrophe-s only covers some uses. の also expresses: type/category (にほんごの ほん = a Japanese book), affiliation (だいがくの がくせい = a university student), and origin. Think of の as 'the ___ that relates to ___'."},
+        {h:"Chaining", t:"You can chain の: わたしの だいがくの せんせい = my university's teacher / the teacher at my university. Read right-to-left to find the head noun, then work outward."},
+      ],
+      examples:[
+        {jp:"わたしの なまえ", read:"わたしの なまえ", en:"my name"},
+        {jp:"にほんごの せんせい", read:"にほんごの せんせい", en:"Japanese[-language] teacher"},
+        {jp:"だいがくの がくせい", read:"だいがくの がくせい", en:"a college student"},
+        {jp:"メアリーさんの でんわばんごう", read:"メアリーさんの でんわばんごう", en:"Mary's phone number"},
+      ],
+      notes:[
+        "Order matters: にほんごの せんせい (Japanese teacher) ≠ せんせいの にほんご (the teacher's Japanese).",
+        "The head/main noun is always the one AFTER の.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'my name'?", choices:["なまえの わたし","わたしの なまえ","わたしは なまえ","なまえは わたし"], a:1, ex:"[owner] の [thing]: わたし の なまえ."},
+        {type:"mc", q:"What does にほんごの せんせい mean?", choices:["the teacher's Japanese","a Japanese-language teacher","Japan's teacher","teach Japanese"], a:1, ex:"The head noun is せんせい (teacher); にほんご describes what kind."},
+        {type:"fill", q:"Link these: メアリーさん ＿ でんわばんごう (Mary's phone number)", answer:"の", ex:"の connects the owner (Mary) to the thing (phone number)."},
+        {type:"translate", q:"Translate: 'a college student' (college = だいがく)", answer:"だいがくの がくせい", accept:["だいがくのがくせい"], ex:"だいがく の がくせい — affiliation use of の."},
+      ],
+    },
+    {
+      id:"1-5", title:"Dropping words: the topic and 'you'",
+      summary:"Japanese omits anything understood from context — especially the topic and the word for 'you'.",
+      sections:[
+        {h:"How it works", t:"Once a topic is established (or obvious), Japanese drops it. If someone asks 「がくせいですか」 (Are you a student?), you can just answer 「はい、がくせいです」 — no わたしは needed, because it's understood. This is not lazy; it's how natural Japanese works. Over-using わたし sounds stiff and unnatural."},
+        {h:"Avoid あなた", t:"あなた technically means 'you', but Japanese speakers usually avoid it. Instead they use the person's name + さん, their title (せんせい), or simply drop it. Saying あなたは… repeatedly can sound blunt or even rude. Use names."},
+      ],
+      examples:[
+        {jp:"A: がくせいですか。　B: はい、がくせいです。", read:"がくせいですか。 はい、がくせいです。", en:"A: Are you a student? B: Yes, I am (a student)."},
+        {jp:"たけしさんは せんせいですか。", read:"たけしさんは せんせいですか。", en:"Takeshi, are you a teacher? (using name instead of 'you')"},
+      ],
+      notes:[
+        "Dropping the topic is the DEFAULT in conversation once it's clear who/what you mean.",
+        "Use [name]さん or a title instead of あなた when addressing someone.",
+      ],
+      practice:[
+        {type:"mc", q:"Someone asks 「がくせいですか」. The most natural 'Yes, I am' is:", choices:["はい、わたしは がくせいです。","はい、がくせいです。","はい、あなたは がくせいです。","はい、です がくせい。"], a:1, ex:"The topic (わたし) is understood and dropped — just answer がくせいです."},
+        {type:"mc", q:"To address Takeshi as 'you', the most natural choice is:", choices:["あなた","たけしさん","きみ","おまえ"], a:1, ex:"Japanese uses the person's name + さん rather than あなた."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 2 ════════════════════════════════
+2: {
+  intro: "Lesson 2 is about pointing at things and shopping. You'll learn the これ/それ/あれ (ko-so-a-do) demonstrative system, how to attach この/その/あの directly to nouns, location words ここ/そこ/あそこ, the particle も ('also'), and how to handle numbers and prices.",
+  points: [
+    {
+      id:"2-1", title:"これ・それ・あれ・どれ — the ko-so-a-do system",
+      summary:"A four-way demonstrative system based on distance from the speaker and listener.",
+      sections:[
+        {h:"The logic", t:"Japanese demonstratives work on a three-zone system plus a question word: こ (ko) = near the speaker; そ (so) = near the listener; あ (a) = far from both; ど (do) = the question 'which'. これ = this one (by me), それ = that one (by you), あれ = that one (over there, away from us both), どれ = which one?"},
+        {h:"These are pronouns", t:"これ/それ/あれ/どれ stand alone as nouns meaning 'this one / that one / etc.' You use them when the thing itself is obvious and you don't need to name it. これは ほんです = This is a book."},
+      ],
+      examples:[
+        {jp:"これは ほんです。", read:"これは ほんです。", en:"This (near me) is a book."},
+        {jp:"それは わたしの かさです。", read:"それは わたしの かさです。", en:"That (near you) is my umbrella."},
+        {jp:"あれは えきです。", read:"あれは えきです。", en:"That (over there) is the station."},
+        {jp:"どれが メアリーさんの かばんですか。", read:"どれが メアリーさんの かばんですか。", en:"Which one is Mary's bag?"},
+      ],
+      notes:[
+        "Memorize them as a set: こ-そ-あ-ど (ko-so-a-do). This pattern repeats across many word families.",
+        "これ etc. replace a noun. They cannot directly attach to one (you can't say これほん).",
+      ],
+      practice:[
+        {type:"mc", q:"You're holding a pen and want to say 'This is a pen.' Which word?", choices:["これ","それ","あれ","どれ"], a:0, ex:"こ = near the speaker, so これ for something you're holding."},
+        {type:"mc", q:"Something near the LISTENER uses which word?", choices:["これ","それ","あれ","どれ"], a:1, ex:"そ (so) = near the listener → それ."},
+        {type:"fill", q:"___は えきです。 (That over there is the station)", answer:"あれ", ex:"あ = far from both speaker and listener → あれ."},
+        {type:"translate", q:"Translate: 'Which one is Mary's bag?' (bag = かばん, use が)", answer:"どれが メアリーさんの かばんですか。", accept:["どれがメアリーさんのかばんですか","どれがメアリーさんのかばんですか。"], ex:"どれ (which) + が, because question words take が, not は."},
+      ],
+    },
+    {
+      id:"2-2", title:"この・その・あの・どの + Noun",
+      summary:"Unlike これ/それ/あれ, these MUST attach to a noun: この ほん = this book.",
+      sections:[
+        {h:"The difference from これ", t:"これ stands alone ('this one'). この must be followed by a noun ('this ___'). この ほん = this book; その くつ = those shoes (near you); あの ひと = that person (over there); どの かばん = which bag? You cannot say この by itself, and you cannot say これ ほん."},
+        {h:"Same ko-so-a-do logic", t:"The distance meanings are identical to これ/それ/あれ/どれ — only the grammar (attaches to a noun vs. stands alone) is different."},
+      ],
+      examples:[
+        {jp:"この ほんは いくらですか。", read:"この ほんは いくらですか。", en:"How much is this book?"},
+        {jp:"その かさは わたしのです。", read:"その かさは わたしのです。", en:"That umbrella (by you) is mine."},
+        {jp:"あの ひとは せんせいです。", read:"あの ひとは せんせいです。", en:"That person (over there) is a teacher."},
+        {jp:"どの くつが いいですか。", read:"どの くつが いいですか。", en:"Which shoes are good?"},
+      ],
+      notes:[
+        "Rule of thumb: これ/それ/あれ = pronoun ('this one'); この/その/あの = adjective ('this ___ noun').",
+        "わたしの with nothing after it means 'mine' — the noun is dropped but understood.",
+      ],
+      practice:[
+        {type:"mc", q:"Which is correct for 'this book'?", choices:["これ ほん","この ほん","ここ ほん","これは ほん"], a:1, ex:"この attaches directly to a noun: この ほん."},
+        {type:"mc", q:"What's wrong with 「これ ほんです」?", choices:["Nothing","これ can't attach to a noun; use この ほん","It needs を","ほん should come first"], a:1, ex:"これ is a standalone pronoun; to modify ほん you need この."},
+        {type:"fill", q:"___ ひとは せんせいです。 (That person over there)", answer:"あの", ex:"Far from both = あ → あの + noun."},
+        {type:"translate", q:"Translate: 'How much is this book?' (how much = いくら)", answer:"この ほんは いくらですか。", accept:["このほんはいくらですか","このほんはいくらですか。"], ex:"この ほん (this book) + は + いくら + ですか."},
+      ],
+    },
+    {
+      id:"2-3", title:"ここ・そこ・あそこ・どこ — places",
+      summary:"The ko-so-a-do system applied to locations: here, there, over there, where?",
+      sections:[
+        {h:"How it works", t:"For places: ここ = here (where I am), そこ = there (where you are), あそこ = over there (away from us both — note it's あそこ, not あこ), どこ = where? These are nouns and take は/が/を like any noun. トイレは どこですか = Where is the bathroom?"},
+        {h:"Polite variants", t:"There's a more formal set: こちら/そちら/あちら/どちら, which also mean 'this way/that way' and are used for directions and politely for people. For now, ここ/そこ/あそこ/どこ are your everyday words."},
+      ],
+      examples:[
+        {jp:"トイレは どこですか。", read:"トイレは どこですか。", en:"Where is the bathroom?"},
+        {jp:"ぎんこうは あそこです。", read:"ぎんこうは あそこです。", en:"The bank is over there."},
+        {jp:"メアリーさんは ここです。", read:"メアリーさんは ここです。", en:"Mary is here."},
+      ],
+      notes:[
+        "Note the irregular form: it's あそこ (a-so-ko), not あこ.",
+        "どこですか is the standard way to ask where something is.",
+      ],
+      practice:[
+        {type:"mc", q:"Which means 'over there' (far from both)?", choices:["ここ","そこ","あそこ","どこ"], a:2, ex:"あ-zone for places is the irregular あそこ."},
+        {type:"fill", q:"トイレは ___ですか。 (Where is the bathroom?)", answer:"どこ", ex:"どこ = where."},
+        {type:"translate", q:"Translate: 'The bank is over there.' (bank = ぎんこう)", answer:"ぎんこうは あそこです。", accept:["ぎんこうはあそこです","ぎんこうはあそこです。"], ex:"ぎんこう + は + あそこ + です."},
+      ],
+    },
+    {
+      id:"2-4", title:"The particle も — 'also / too'",
+      summary:"も replaces は (or を) to mean 'also'. It signals the comment applies to this item too.",
+      sections:[
+        {h:"How it works", t:"When something shares the same comment as a previously mentioned item, replace its は with も ('also/too'). A: わたしは がくせいです (I'm a student). B: わたしも がくせいです (I'm also a student). Notice も takes the place of は — you don't say わたしはも."},
+        {h:"With negatives", t:"も also works in negative sentences to mean 'not… either'. にくも たべません = I don't eat meat either."},
+      ],
+      examples:[
+        {jp:"わたしも がくせいです。", read:"わたしも がくせいです。", en:"I am also a student."},
+        {jp:"これも わたしのです。", read:"これも わたしのです。", en:"This is also mine."},
+        {jp:"たけしさんも にほんじんです。", read:"たけしさんも にほんじんです。", en:"Takeshi is also Japanese."},
+      ],
+      notes:[
+        "も REPLACES は. Never write はも or もは.",
+        "も attaches to the noun that shares the comment, not necessarily the subject.",
+      ],
+      practice:[
+        {type:"mc", q:"A says 'I'm a student.' B is also a student. How does B respond?", choices:["わたしは がくせいです。","わたしも がくせいです。","わたしはも がくせいです。","わたしを がくせいです。"], a:1, ex:"も replaces は to mean 'also'."},
+        {type:"mc", q:"What's wrong with 「たけしさんはも にほんじんです」?", choices:["Nothing","も replaces は — you can't have both","It needs を","にほんじん is misspelled"], a:1, ex:"Use either は or も, never both together."},
+        {type:"fill", q:"これ___ わたしのです。 (This is also mine)", answer:"も", ex:"も = also, replacing は."},
+      ],
+    },
+    {
+      id:"2-5", title:"Numbers, prices, and いくら",
+      summary:"Counting, reading prices in 円 (yen), and asking 'how much?' with いくら.",
+      sections:[
+        {h:"Big-number structure", t:"Japanese groups large numbers by 万 (10,000), not by thousand like English. So 10,000 = いちまん (1 man), 50,000 = ごまん, 100,000 = じゅうまん (10 man). This trips up English speakers because the comma grouping is different. Prices end in えん (yen): せんえん = 1,000 yen; ごせんえん = 5,000 yen."},
+        {h:"Asking the price", t:"いくら = 'how much'. これは いくらですか = How much is this? The answer: 〜えんです. これは さんぜんえんです = This is 3,000 yen. Watch for sound changes: さんぜん (3,000) and はっぴゃく (800) shift sounds."},
+      ],
+      examples:[
+        {jp:"これは いくらですか。", read:"これは いくらですか。", en:"How much is this?"},
+        {jp:"せんえんです。", read:"せんえんです。", en:"It's 1,000 yen."},
+        {jp:"その かばんは ごせんえんです。", read:"その かばんは ごせんえんです。", en:"That bag is 5,000 yen."},
+      ],
+      notes:[
+        "Japanese counts in units of 万 (10,000). 100,000 is じゅうまん (10 × 10,000), not 'hundred thousand'.",
+        "Sound changes are common: 300 = さんびゃく, 600 = ろっぴゃく, 800 = はっぴゃく.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you ask 'How much is this?'", choices:["これは どこですか。","これは いくらですか。","これは なんですか。","これは だれですか。"], a:1, ex:"いくら = how much."},
+        {type:"mc", q:"In Japanese, 10,000 is one unit called…", choices:["せん","まん","ひゃく","おく"], a:1, ex:"Japanese groups large numbers by 万 (man = 10,000)."},
+        {type:"translate", q:"Translate: 'It's 1,000 yen.'", answer:"せんえんです。", accept:["せんえんです","せんえんです。","1000えんです"], ex:"せん (1,000) + えん (yen) + です."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 3 ════════════════════════════════
+3: {
+  intro: "Lesson 3 brings verbs to life. You'll learn the polite ます-form, the crucial distinction between る-verbs and う-verbs, particles を (object), に (time/destination), へ (direction), and で (place of action), plus how to invite someone with ませんか and suggest with ましょう.",
+  points: [
+    {
+      id:"3-1", title:"Verb classes: る-verbs, う-verbs, irregular",
+      summary:"Every Japanese verb belongs to one of three groups. Knowing the group tells you how to conjugate.",
+      sections:[
+        {h:"Why this matters", t:"Japanese verbs conjugate by group, so before you can change a verb's tense or form you must know which class it belongs to. There are exactly three: る-verbs (Group 2), う-verbs (Group 1), and two irregulars (する, くる)."},
+        {h:"る-verbs (Group 2)", t:"These end in る where the syllable before る is an 'i' or 'e' sound. たべる (taberu, eat), みる (miru, see), ねる (neru, sleep). To make the polite form, drop る and add ます: たべる → たべます."},
+        {h:"う-verbs (Group 1)", t:"These end in any u-sound (う, く, ぐ, す, つ, ぬ, ぶ, む, る). For the polite form, change the final u-sound to its 'i' equivalent and add ます: のむ (nomu) → のみます; かく (kaku) → かきます; はなす → はなします."},
+        {h:"The tricky overlap", t:"Some verbs end in る but are actually う-verbs (e.g. かえる 'to return' → かえります, not かえます). You learn these as exceptions. A る-verb has an i/e sound before る AND conjugates by dropping る; when in doubt, memorize the verb's group as you learn it."},
+        {h:"Irregulars", t:"Only two: する (to do) → します, and くる (to come) → きます. Memorize them directly."},
+      ],
+      examples:[
+        {jp:"たべる → たべます", read:"たべる → たべます", en:"eat (る-verb): drop る, add ます"},
+        {jp:"のむ → のみます", read:"のむ → のみます", en:"drink (う-verb): mu → mi + ます"},
+        {jp:"かく → かきます", read:"かく → かきます", en:"write (う-verb): ku → ki + ます"},
+        {jp:"する → します　／　くる → きます", read:"する → します　／　くる → きます", en:"do / come (irregular)"},
+      ],
+      notes:[
+        "る-verbs: drop る, add ます. う-verbs: final u → i, add ます.",
+        "かえる (return), はいる (enter), はしる (run) LOOK like る-verbs but are う-verbs. Learn them as exceptions.",
+      ],
+      practice:[
+        {type:"mc", q:"What is the polite (ます) form of たべる?", choices:["たべます","たべります","たべるます","たびます"], a:0, ex:"る-verb: drop る, add ます → たべます."},
+        {type:"mc", q:"What is the polite form of のむ (う-verb)?", choices:["のむます","のみます","のります","のめます"], a:1, ex:"う-verb: mu → mi, then add ます → のみます."},
+        {type:"mc", q:"Which verb is irregular?", choices:["たべる","のむ","くる","かく"], a:2, ex:"くる (to come) is one of the two irregular verbs; its polite form is きます."},
+        {type:"fill", q:"Polite form of かく (to write): ____", answer:"かきます", ex:"う-verb: ku → ki + ます."},
+      ],
+    },
+    {
+      id:"3-2", title:"The を particle — direct object",
+      summary:"を marks the direct object — the thing the verb acts on. Pronounced 'o'.",
+      sections:[
+        {h:"How it works", t:"を attaches to the noun that receives the action of the verb. パンを たべます = I eat bread (bread is what gets eaten). コーヒーを のみます = I drink coffee. The pattern is [object] を [verb]. を is written with its own hiragana but pronounced 'o'."},
+        {h:"Object vs topic", t:"Don't confuse を with は. は marks the topic ('as for…'), を marks what the verb directly affects. わたしは パンを たべます = As for me, I eat bread. Here わたし is the topic, パン is the object."},
+      ],
+      examples:[
+        {jp:"パンを たべます。", read:"パンを たべます。", en:"I eat bread."},
+        {jp:"コーヒーを のみます。", read:"コーヒーを のみます。", en:"I drink coffee."},
+        {jp:"テレビを みます。", read:"テレビを みます。", en:"I watch TV."},
+        {jp:"にほんごを はなします。", read:"にほんごを はなします。", en:"I speak Japanese."},
+      ],
+      notes:[
+        "を is pronounced 'o', and is used ONLY as the object particle.",
+        "Pattern: [object] を [verb]. The object comes before the verb.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'I drink coffee'?", choices:["コーヒーは のみます。","コーヒーを のみます。","コーヒーに のみます。","コーヒーが のみます。"], a:1, ex:"を marks コーヒー as the direct object of のみます."},
+        {type:"fill", q:"テレビ＿ みます。 (I watch TV)", answer:"を", ex:"を marks the object (TV) of the verb 'watch'."},
+        {type:"translate", q:"Translate: 'I eat bread.' (bread = パン, eat = たべます)", answer:"パンを たべます。", accept:["パンをたべます","パンをたべます。"], ex:"[object] パン + を + [verb] たべます."},
+      ],
+    },
+    {
+      id:"3-3", title:"Particles に, へ, and で — time, destination, place",
+      summary:"に marks time and destination; へ marks direction; で marks the place where an action happens.",
+      sections:[
+        {h:"に for specific time", t:"に attaches to specific time expressions (clock times, days, dates): しちじに おきます = I get up at 7:00; にちようびに いきます = I go on Sunday. Relative time words (きょう today, あした tomorrow, まいにち every day) do NOT take に."},
+        {h:"に / へ for destination", t:"Both に and へ mark where you're going with motion verbs (いく go, くる come, かえる return). がっこうに いきます or がっこうへ いきます = I go to school. に emphasizes the destination as an endpoint; へ emphasizes direction. They're nearly interchangeable here. へ as a particle is pronounced 'e'."},
+        {h:"で for place of action", t:"で marks WHERE an action takes place (not the destination): としょかんで べんきょうします = I study AT the library. Compare: としょかんに いきます (go TO the library) vs としょかんで よみます (read AT the library). Destination → に/へ; location of activity → で."},
+      ],
+      examples:[
+        {jp:"しちじに おきます。", read:"しちじに おきます。", en:"I get up at 7:00. (specific time → に)"},
+        {jp:"がっこうに いきます。", read:"がっこうに いきます。", en:"I go to school. (destination → に)"},
+        {jp:"うちで テレビを みます。", read:"うちで テレビを みます。", en:"I watch TV at home. (place of action → で)"},
+        {jp:"あした きます。", read:"あした きます。", en:"I'll come tomorrow. (relative time → NO に)"},
+      ],
+      notes:[
+        "No に on relative time words: きょう, あした, まいにち, etc.",
+        "Destination = に/へ (with motion verbs). Place of an action = で.",
+        "へ as a particle is pronounced 'e'.",
+      ],
+      practice:[
+        {type:"mc", q:"Which sentence correctly says 'I study at the library'?", choices:["としょかんに べんきょうします。","としょかんで べんきょうします。","としょかんを べんきょうします。","としょかんは べんきょうします。"], a:1, ex:"で marks the place where an action occurs."},
+        {type:"mc", q:"Which time word does NOT take に?", choices:["しちじ (7:00)","にちようび (Sunday)","あした (tomorrow)","くじ (9:00)"], a:2, ex:"Relative time words like あした don't take に; specific clock times and days do."},
+        {type:"fill", q:"がっこう＿ いきます。 (I go to school — destination)", answer:"に", accept:["に","へ"], ex:"Destination with a motion verb takes に or へ."},
+        {type:"translate", q:"Translate: 'I watch TV at home.' (home = うち, TV = テレビ)", answer:"うちで テレビを みます。", accept:["うちでテレビをみます","うちでテレビをみます。"], ex:"Place of action うち + で, object テレビ + を, verb みます."},
+      ],
+    },
+    {
+      id:"3-4", title:"Negative and the ません form",
+      summary:"Make a polite verb negative by changing ます to ません.",
+      sections:[
+        {h:"How it works", t:"To negate a polite verb, replace ます with ません. たべます (eat) → たべません (don't eat). のみます → のみません. This is the polite present/future negative: 'don't / won't do'."},
+        {h:"With frequency adverbs", t:"Words like あまり (not much) and ぜんぜん (not at all) pair with the negative: コーヒーを あまり のみません = I don't drink coffee much. ぜんぜん たべません = I don't eat (it) at all."},
+      ],
+      examples:[
+        {jp:"あさごはんを たべません。", read:"あさごはんを たべません。", en:"I don't eat breakfast."},
+        {jp:"コーヒーを のみません。", read:"コーヒーを のみません。", en:"I don't drink coffee."},
+        {jp:"ぜんぜん テレビを みません。", read:"ぜんぜん テレビを みません。", en:"I don't watch TV at all."},
+      ],
+      notes:[
+        "ます → ません for negative. The verb stem stays the same.",
+        "あまり and ぜんぜん require a negative verb to complete their meaning.",
+      ],
+      practice:[
+        {type:"mc", q:"What is the negative of たべます?", choices:["たべません","たべませんか","たべました","たべないです"], a:0, ex:"ます → ません gives the polite negative."},
+        {type:"fill", q:"コーヒーを のみ____。 (I don't drink coffee)", answer:"ません", ex:"Replace ます with ません."},
+        {type:"translate", q:"Translate: 'I don't watch TV at all.' (at all = ぜんぜん)", answer:"ぜんぜん テレビを みません。", accept:["ぜんぜんテレビをみません","ぜんぜんテレビをみません。","テレビをぜんぜんみません"], ex:"ぜんぜん pairs with the negative verb みません."},
+      ],
+    },
+    {
+      id:"3-5", title:"Inviting and suggesting: ませんか / ましょう",
+      summary:"ませんか politely invites ('won't you…?'); ましょう suggests doing together ('let's…').",
+      sections:[
+        {h:"ませんか — invitation", t:"Adding か to the negative ません creates a soft invitation: 'Won't you…?' / 'Would you like to…?' えいがを みませんか = Would you like to watch a movie (with me)? It's softer and more polite than a direct request because the negative phrasing leaves room to decline."},
+        {h:"ましょう — let's", t:"ましょう replaces ます to suggest doing something together: 'Let's…'. たべましょう = Let's eat. いっしょに いきましょう = Let's go together. Add か (ましょうか) to mean 'Shall we…?' — offering or checking."},
+      ],
+      examples:[
+        {jp:"えいがを みませんか。", read:"えいがを みませんか。", en:"Would you like to watch a movie (with me)?"},
+        {jp:"いっしょに たべましょう。", read:"いっしょに たべましょう。", en:"Let's eat together."},
+        {jp:"テニスを しましょうか。", read:"テニスを しましょうか。", en:"Shall we play tennis?"},
+      ],
+      notes:[
+        "ませんか = invitation ('won't you…?'). More polite, leaves room to say no.",
+        "ましょう = 'let's…'. ましょうか = 'shall we…?'",
+      ],
+      practice:[
+        {type:"mc", q:"How do you invite someone with 'Won't you watch a movie?'", choices:["えいがを みます。","えいがを みません。","えいがを みませんか。","えいがを みましょう。"], a:2, ex:"ませんか makes a soft invitation."},
+        {type:"mc", q:"Which means 'Let's eat together'?", choices:["たべます","たべましょう","たべませんか","たべません"], a:1, ex:"ましょう = let's (do together)."},
+        {type:"translate", q:"Translate: 'Shall we play tennis?' (tennis = テニス, play = します)", answer:"テニスを しましょうか。", accept:["テニスをしましょうか","テニスをしましょうか。"], ex:"ましょうか = 'shall we…?'"},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 4 ════════════════════════════════
+4: {
+  intro: "Lesson 4 covers existence and location with あります/います, the past tense of both verbs and the copula, position words (うえ, した, なか…), the connector で and the と particle ('with/and'), plus たくさん for quantity.",
+  points: [
+    {
+      id:"4-1", title:"あります and います — existence",
+      summary:"Two verbs for 'there is/exists': あります for inanimate things, います for living things.",
+      sections:[
+        {h:"The core split", t:"Japanese uses two different verbs for existence depending on whether the thing is alive. あります for inanimate objects and plants (books, desks, buildings). います for animate beings that move on their own (people, animals). ねこが います = There is a cat. ほんが あります = There is a book."},
+        {h:"The pattern", t:"The thing that exists is marked with が: [place]に [thing]が あります/います. つくえの うえに ほんが あります = There is a book on the desk. To ask where something is, use [thing]は どこですか or [thing]は どこに ありますか."},
+      ],
+      examples:[
+        {jp:"つくえの うえに ほんが あります。", read:"つくえの うえに ほんが あります。", en:"There is a book on the desk."},
+        {jp:"きょうしつに がくせいが います。", read:"きょうしつに がくせいが います。", en:"There are students in the classroom."},
+        {jp:"ねこは どこに いますか。", read:"ねこは どこに いますか。", en:"Where is the cat?"},
+      ],
+      notes:[
+        "あります = inanimate (things, plants). います = animate (people, animals).",
+        "The existing thing is marked with が; the location with に.",
+        "Fish and insects for sale/food can sometimes take あります, but living animals take います.",
+      ],
+      practice:[
+        {type:"mc", q:"Which verb for 'There is a cat'?", choices:["あります","います","です","します"], a:1, ex:"A cat is alive → います."},
+        {type:"mc", q:"Which verb for 'There is a book'?", choices:["あります","います","いります","おります"], a:0, ex:"A book is inanimate → あります."},
+        {type:"fill", q:"きょうしつに がくせいが ____。 (There are students in the classroom)", answer:"います", ex:"Students are animate → います."},
+        {type:"translate", q:"Translate: 'There is a book on the desk.' (desk = つくえ, on = うえ)", answer:"つくえの うえに ほんが あります。", accept:["つくえのうえにほんがあります","つくえのうえにほんがあります。"], ex:"Location つくえの うえ + に, thing ほん + が, verb あります."},
+      ],
+    },
+    {
+      id:"4-2", title:"Position words: うえ, した, なか, まえ, うしろ…",
+      summary:"Express relative position by linking a noun with の to a position word.",
+      sections:[
+        {h:"How it works", t:"Position words are nouns. To say 'on the desk' you build [reference noun] の [position word]: つくえの うえ = the top of the desk / on the desk. Then add に for location: つくえの うえに. Common ones: うえ (above/on), した (below/under), なか (inside), まえ (front), うしろ (behind), となり (next to), みぎ (right), ひだり (left), あいだ (between)."},
+        {h:"あいだ (between)", t:"For 'between A and B', use AとBの あいだ: ぎんこうと ゆうびんきょくの あいだ = between the bank and the post office."},
+      ],
+      examples:[
+        {jp:"いすの したに ねこが います。", read:"いすの したに ねこが います。", en:"There is a cat under the chair."},
+        {jp:"ぎんこうの となりに ほんやが あります。", read:"ぎんこうの となりに ほんやが あります。", en:"There is a bookstore next to the bank."},
+        {jp:"AとBの あいだ", read:"AとBの あいだ", en:"between A and B"},
+      ],
+      notes:[
+        "Structure: [noun] の [position word] (＋に for location).",
+        "'Between A and B' = A と B の あいだ.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'under the chair'? (chair = いす)", choices:["いすの うえ","いすの した","いすの なか","いすの まえ"], a:1, ex:"した = below/under."},
+        {type:"fill", q:"ぎんこうの ____に ほんやが あります。 (next to the bank)", answer:"となり", ex:"となり = next to."},
+        {type:"translate", q:"Translate the phrase 'between A and B'", answer:"AとBの あいだ", accept:["AとBのあいだ","aとbのあいだ"], ex:"A と B の あいだ — あいだ means 'between'."},
+      ],
+    },
+    {
+      id:"4-3", title:"Past tense: ました / ませんでした / でした",
+      summary:"Verbs: ます→ました (past), ません→ませんでした (past negative). Copula: です→でした.",
+      sections:[
+        {h:"Verb past tense", t:"For polite verbs: ます → ました (did), ません → ませんでした (didn't). きのう えいがを みました = I watched a movie yesterday. べんきょうしませんでした = I didn't study."},
+        {h:"Copula past tense", t:"です → でした (was/were). がくせいでした = (I) was a student. The negative past of です is じゃありませんでした / じゃなかったです = was not."},
+      ],
+      examples:[
+        {jp:"きのう えいがを みました。", read:"きのう えいがを みました。", en:"I watched a movie yesterday."},
+        {jp:"きのう べんきょうしませんでした。", read:"きのう べんきょうしませんでした。", en:"I didn't study yesterday."},
+        {jp:"がくせいでした。", read:"がくせいでした。", en:"(I) was a student."},
+      ],
+      notes:[
+        "Verb past: ました (did) / ませんでした (didn't).",
+        "Copula past: でした (was) / じゃありませんでした (was not).",
+      ],
+      practice:[
+        {type:"mc", q:"Past tense of みます (watch)?", choices:["みました","みませんでした","みましょう","みません"], a:0, ex:"ます → ました for past affirmative."},
+        {type:"mc", q:"'I didn't study yesterday' uses which verb form?", choices:["べんきょうします","べんきょうしました","べんきょうしません","べんきょうしませんでした"], a:3, ex:"Past negative: ません → ませんでした."},
+        {type:"fill", q:"きのう えいがを み____。 (I watched a movie yesterday)", answer:"ました", ex:"Past affirmative ました."},
+        {type:"translate", q:"Translate: '(I) was a student.' (student = がくせい)", answer:"がくせいでした。", accept:["がくせいでした","がくせいでした。"], ex:"です → でした for the past copula."},
+      ],
+    },
+    {
+      id:"4-4", title:"The と particle — 'and' (nouns) & 'with'",
+      summary:"と joins nouns into a complete list ('A and B') and marks the person you do something with.",
+      sections:[
+        {h:"'And' between nouns", t:"と connects nouns as an exhaustive 'and': ほんと ノート = a book and a notebook (just those two). Unlike や (which implies 'among others'), と means the list is complete."},
+        {h:"'With' someone", t:"と also marks accompaniment: ともだちと いきます = I go with a friend. たけしさんと たべます = I eat with Takeshi. Often paired with いっしょに (together): ともだちと いっしょに = together with a friend."},
+      ],
+      examples:[
+        {jp:"ほんと ノートを かいました。", read:"ほんと ノートを かいました。", en:"I bought a book and a notebook."},
+        {jp:"ともだちと えいがを みました。", read:"ともだちと えいがを みました。", en:"I watched a movie with a friend."},
+        {jp:"たけしさんと いっしょに いきます。", read:"たけしさんと いっしょに いきます。", en:"I'll go together with Takeshi."},
+      ],
+      notes:[
+        "と = complete 'and' between nouns (vs や = incomplete list).",
+        "と also = 'with (a person)', often + いっしょに.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'a book and a notebook'?", choices:["ほんも ノート","ほんと ノート","ほんは ノート","ほんを ノート"], a:1, ex:"と joins nouns as 'and'."},
+        {type:"fill", q:"ともだち___ えいがを みました。 (with a friend)", answer:"と", ex:"と marks the person you did the action with."},
+        {type:"translate", q:"Translate: 'I go with Takeshi.' (use と, go = いきます)", answer:"たけしさんと いきます。", accept:["たけしさんといきます","たけしさんといきます。"], ex:"たけしさん + と (with) + いきます."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 5 ════════════════════════════════
+5: {
+  intro: "Lesson 5 introduces adjectives — both い-adjectives and な-adjectives — and how they conjugate for tense and negation. You'll also learn likes/dislikes with 好き/嫌い, the quantity word あまり, comparison with 〜ましょう review, and the very useful 〜が好きです pattern.",
+  points: [
+    {
+      id:"5-1", title:"い-adjectives vs な-adjectives",
+      summary:"Japanese has two adjective types that conjugate differently. Knowing which is which is essential.",
+      sections:[
+        {h:"い-adjectives", t:"These end in い in their dictionary form: たかい (expensive), おいしい (delicious), たのしい (fun), あたらしい (new). They can directly precede a noun: たかい ほん = an expensive book. With です they simply add です: たかいです."},
+        {h:"な-adjectives", t:"These do NOT end in い (or if they do, they're irregular like きれい). Examples: きれい (pretty), しずか (quiet), げんき (healthy), ひま (free). When a な-adjective modifies a noun, you insert な: きれいな はな = a pretty flower; しずかな まち = a quiet town."},
+        {h:"The key test", t:"To attach to a noun: い-adjective attaches directly (たかい ほん); な-adjective needs な (きれいな はな). Beware きれい and きらい — they END in い but are な-adjectives (they need な and conjugate like な-adjectives)."},
+      ],
+      examples:[
+        {jp:"たかい ほん", read:"たかい ほん", en:"an expensive book (い-adj, direct)"},
+        {jp:"きれいな はな", read:"きれいな はな", en:"a pretty flower (な-adj, needs な)"},
+        {jp:"この まちは しずかです。", read:"この まちは しずかです。", en:"This town is quiet."},
+      ],
+      notes:[
+        "い-adj attaches directly to a noun; な-adj inserts な before the noun.",
+        "きれい and きらい look like い-adjectives but are な-adjectives — a common trap.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'a pretty flower'? (pretty = きれい, flower = はな)", choices:["きれい はな","きれいな はな","きれいの はな","きれいい はな"], a:1, ex:"きれい is a な-adjective, so it needs な before the noun."},
+        {type:"mc", q:"Which is an い-adjective?", choices:["きれい","しずか","たかい","げんき"], a:2, ex:"たかい ends in い and conjugates as an い-adjective. きれい/しずか/げんき are な-adjectives."},
+        {type:"fill", q:"しずか__ まち (a quiet town)", answer:"な", ex:"しずか is a な-adjective → needs な."},
+      ],
+    },
+    {
+      id:"5-2", title:"Conjugating い-adjectives",
+      summary:"い-adjectives change their ending for negative and past — they don't rely on です for tense.",
+      sections:[
+        {h:"Present", t:"Affirmative: [adj]です — たかいです (is expensive). Negative: drop い, add くないです — たかくないです (is not expensive). Notice です stays but the adjective itself carries the negation."},
+        {h:"Past", t:"Affirmative past: drop い, add かったです — たかかったです (was expensive). Negative past: drop い, add くなかったです — たかくなかったです (was not expensive). The です never becomes でした for い-adjectives — the tense is built into the adjective."},
+        {h:"The いい exception", t:"いい (good) is irregular. It uses よ- as its base in conjugation: よくないです (not good), よかったです (was good), よくなかったです (was not good). Never いかったです."},
+      ],
+      examples:[
+        {jp:"この ほんは たかいです。", read:"この ほんは たかいです。", en:"This book is expensive."},
+        {jp:"この ほんは たかくないです。", read:"この ほんは たかくないです。", en:"This book is not expensive."},
+        {jp:"りょこうは たのしかったです。", read:"りょこうは たのしかったです。", en:"The trip was fun."},
+        {jp:"てんきは よくなかったです。", read:"てんきは よくなかったです。", en:"The weather was not good."},
+      ],
+      notes:[
+        "い-adj negative: ～くないです. Past: ～かったです. Past negative: ～くなかったです.",
+        "い-adjectives never use でした. Don't say たかいでした.",
+        "いい conjugates from よ-: よかったです, よくないです.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'was fun' from たのしい?", choices:["たのしいでした","たのしかったです","たのしくなかったです","たのしです"], a:1, ex:"い-adj past: drop い, add かったです."},
+        {type:"mc", q:"Negative of たかい (expensive)?", choices:["たかくないです","たかいじゃないです","たかいでした","たかません"], a:0, ex:"い-adj negative: drop い, add くないです."},
+        {type:"mc", q:"'Was good' (from いい) is:", choices:["いかったです","よかったです","いいでした","よくないです"], a:1, ex:"いい is irregular — it conjugates from よ-: よかったです."},
+        {type:"fill", q:"てんきは よく____です。 (the weather was not good)", answer:"なかった", ex:"いい → past negative よくなかったです."},
+      ],
+    },
+    {
+      id:"5-3", title:"Conjugating な-adjectives",
+      summary:"な-adjectives conjugate like nouns — they use です/でした and じゃないです, not い-endings.",
+      sections:[
+        {h:"Present", t:"Affirmative: [adj]です — きれいです (is pretty). Negative: [adj]じゃないです — きれいじゃないです (is not pretty). Exactly like a noun + です."},
+        {h:"Past", t:"Affirmative past: [adj]でした — きれいでした (was pretty). Negative past: じゃなかったです / じゃありませんでした — きれいじゃなかったです (was not pretty). Because な-adjectives behave like nouns, they take でした for the past, unlike い-adjectives."},
+      ],
+      examples:[
+        {jp:"へやは きれいです。", read:"へやは きれいです。", en:"The room is clean."},
+        {jp:"へやは きれいじゃないです。", read:"へやは きれいじゃないです。", en:"The room is not clean."},
+        {jp:"まちは しずかでした。", read:"まちは しずかでした。", en:"The town was quiet."},
+      ],
+      notes:[
+        "な-adjectives conjugate like nouns: です / でした / じゃないです / じゃなかったです.",
+        "Contrast: な-adj past = でした, but い-adj past = かったです.",
+      ],
+      practice:[
+        {type:"mc", q:"'The town was quiet' (しずか = な-adj):", choices:["しずかかったです","しずかでした","しずくなかったです","しずかいでした"], a:1, ex:"な-adjectives use でした for the past, like nouns."},
+        {type:"mc", q:"Negative of きれい (な-adj):", choices:["きれくないです","きれいじゃないです","きれかったです","きれいません"], a:1, ex:"な-adjectives negate with じゃないです, like nouns."},
+        {type:"fill", q:"へやは きれい______。 (the room is not clean)", answer:"じゃないです", accept:["じゃないです","じゃありません"], ex:"な-adjective negative pattern."},
+      ],
+    },
+    {
+      id:"5-4", title:"〜が好きです — likes and dislikes",
+      summary:"好き (like) and 嫌い (dislike) are な-adjectives; the thing liked is marked with が, not を.",
+      sections:[
+        {h:"How it works", t:"In Japanese, 'to like' is expressed with the な-adjective 好き (すき), and the thing you like is marked with が (not を): わたしは すしが すきです = I like sushi. Literally 'as for me, sushi is likeable.' Same with きらい (dislike), だいすき (love), だいきらい (really dislike)."},
+        {h:"Why が, not を", t:"好き is an adjective, not a verb, so there's no direct object to mark with を. The thing liked is the grammatical subject of 'is likeable', hence が. This catches many learners — remember 好き takes が."},
+      ],
+      examples:[
+        {jp:"わたしは すしが すきです。", read:"わたしは すしが すきです。", en:"I like sushi."},
+        {jp:"たけしさんは やさいが きらいです。", read:"たけしさんは やさいが きらいです。", en:"Takeshi dislikes vegetables."},
+        {jp:"おんがくが だいすきです。", read:"おんがくが だいすきです。", en:"I love music."},
+      ],
+      notes:[
+        "好き and 嫌い are な-adjectives and take が for the thing liked/disliked.",
+        "Strength: だいすき (love) > すき (like) > きらい (dislike) > だいきらい (hate).",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'I like sushi'?", choices:["すしを すきです。","すしが すきです。","すしは すきます。","すしに すきです。"], a:1, ex:"好き takes が for the thing liked."},
+        {type:"mc", q:"Why is が used instead of を with 好き?", choices:["好き is a verb","好き is an adjective, so there's no object","を is never used","It's a typo"], a:1, ex:"好き is a な-adjective, not a verb — the liked thing is marked with が."},
+        {type:"translate", q:"Translate: 'I love music.' (music = おんがく, love = だいすき)", answer:"おんがくが だいすきです。", accept:["おんがくがだいすきです","おんがくがだいすきです。","わたしはおんがくがだいすきです"], ex:"おんがく + が + だいすきです."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 6 ════════════════════════════════
+6: {
+  intro: "Lesson 6 is a milestone: the て-form. This single form unlocks requests, permission, prohibition, sequencing actions, and (later) the progressive. You'll learn how to build the て-form from each verb group, then use it for 〜てください, 〜てもいいですか, and 〜てはいけません.",
+  points: [
+    {
+      id:"6-1", title:"The て-form — how to build it",
+      summary:"The te-form is the Swiss-army knife of Japanese verbs. Each verb group forms it differently.",
+      sections:[
+        {h:"Why it matters", t:"The て-form itself isn't a tense — it's a connecting form that many grammar patterns attach to. Mastering how to make it is the single most important conjugation skill in beginning Japanese, because dozens of later structures build on it."},
+        {h:"る-verbs", t:"Easiest: drop る, add て. たべる → たべて; みる → みて; ねる → ねて."},
+        {h:"う-verbs — the sound groups", t:"う-verbs change based on their final syllable: ｜う/つ/る → って (かう→かって, まつ→まって, とる→とって) ｜ ぬ/ぶ/む → んで (しぬ→しんで, あそぶ→あそんで, のむ→のんで) ｜ く → いて (かく→かいて) ｜ ぐ → いで (いそぐ→いそいで) ｜ す → して (はなす→はなして). The famous exception: いく → いって (not いいて)."},
+        {h:"Irregulars", t:"する → して; くる → きて. Memorize directly."},
+      ],
+      examples:[
+        {jp:"たべる → たべて", read:"たべる → たべて", en:"eat (る-verb): drop る, add て"},
+        {jp:"かう → かって", read:"かう → かって", en:"buy (う/つ/る group → って)"},
+        {jp:"のむ → のんで", read:"のむ → のんで", en:"drink (ぬ/ぶ/む group → んで)"},
+        {jp:"かく → かいて　／　いく → いって", read:"かく → かいて　／　いく → いって", en:"write → かいて; go → いって (exception!)"},
+      ],
+      notes:[
+        "る-verbs: drop る + て. Irregulars: して, きて.",
+        "う-verb endings: う/つ/る→って, ぬ/ぶ/む→んで, く→いて, ぐ→いで, す→して.",
+        "Big exception: いく → いって.",
+      ],
+      practice:[
+        {type:"mc", q:"て-form of たべる?", choices:["たべて","たべって","たべで","たべいて"], a:0, ex:"る-verb: drop る, add て."},
+        {type:"mc", q:"て-form of のむ (drink)?", choices:["のみて","のんで","のって","のいて"], a:1, ex:"む belongs to the ぬ/ぶ/む group → んで."},
+        {type:"mc", q:"て-form of かく (write)?", choices:["かくて","かって","かいて","かいで"], a:2, ex:"く → いて."},
+        {type:"mc", q:"What is the て-form of いく (go)?", choices:["いいて","いって","いきて","いくて"], a:1, ex:"いく is the famous exception: いって, not いいて."},
+        {type:"fill", q:"て-form of かう (buy): ____", answer:"かって", ex:"う/つ/る group → って."},
+      ],
+    },
+    {
+      id:"6-2", title:"〜てください — making requests",
+      summary:"Attach ください to the て-form to politely ask someone to do something.",
+      sections:[
+        {h:"How it works", t:"て-form + ください = 'please do ___'. ちょっと まってください = Please wait a moment. みてください = Please look. It's polite and very common — for instructions, asking favors, or giving directions."},
+        {h:"Softening", t:"It's a polite request but still somewhat direct (a soft command). For extra politeness you'll later learn other forms, but 〜てください is your standard go-to at this level."},
+      ],
+      examples:[
+        {jp:"ちょっと まってください。", read:"ちょっと まってください。", en:"Please wait a moment."},
+        {jp:"きょうかしょを よんでください。", read:"きょうかしょを よんでください。", en:"Please read the textbook."},
+        {jp:"なまえを かいてください。", read:"なまえを かいてください。", en:"Please write your name."},
+      ],
+      notes:[
+        "Pattern: [verb て-form] + ください = 'please do ___'.",
+        "Requires a correct て-form, so it's great practice for building て-forms.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'Please wait'? (wait = まつ)", choices:["まちてください","まってください","まつください","まってくたさい"], a:1, ex:"まつ → まって (つ→って), then + ください."},
+        {type:"fill", q:"きょうかしょを よん____ください。 (please read the textbook)", answer:"で", ex:"よむ → よんで (む group), then + ください."},
+        {type:"translate", q:"Translate: 'Please write your name.' (name=なまえ, write=かく)", answer:"なまえを かいてください。", accept:["なまえをかいてください","なまえをかいてください。"], ex:"かく → かいて + ください."},
+      ],
+    },
+    {
+      id:"6-3", title:"〜てもいいです — granting permission",
+      summary:"て-form + もいいです means 'may / it's okay to'. Add か to ask permission.",
+      sections:[
+        {h:"How it works", t:"て-form + もいいです = 'you may ___ / it's okay to ___'. ここに すわってもいいです = You may sit here. To ASK permission, add か: しゃしんを とってもいいですか = May I take a photo?"},
+        {h:"Answering", t:"To grant: はい、いいです or どうぞ (go ahead). To refuse, you often use the prohibition form (next point) or a softer ちょっと…  (it's a bit…)."},
+      ],
+      examples:[
+        {jp:"ここに すわってもいいですか。", read:"ここに すわってもいいですか。", en:"May I sit here?"},
+        {jp:"しゃしんを とってもいいです。", read:"しゃしんを とってもいいです。", en:"You may take photos."},
+        {jp:"トイレに いってもいいですか。", read:"トイレに いってもいいですか。", en:"May I go to the bathroom?"},
+      ],
+      notes:[
+        "て-form + もいいです(か) = permission ('may I…?').",
+        "Grant with どうぞ; soften a refusal with ちょっと….",
+      ],
+      practice:[
+        {type:"mc", q:"How do you ask 'May I sit here?' (sit = すわる)", choices:["すわてもいいですか","すわってもいいですか","すわるもいいですか","すわりもいいですか"], a:1, ex:"すわる → すわって (う/つ/る group), + もいいですか."},
+        {type:"fill", q:"しゃしんを とっ____もいいですか。 (May I take a photo?)", answer:"て", ex:"とる → とって, then もいいですか."},
+        {type:"translate", q:"Translate: 'May I go to the bathroom?' (bathroom=トイレ, go=いく)", answer:"トイレに いってもいいですか。", accept:["トイレにいってもいいですか","トイレにいってもいいですか。"], ex:"いく → いって (exception) + もいいですか."},
+      ],
+    },
+    {
+      id:"6-4", title:"〜てはいけません — prohibition",
+      summary:"て-form + はいけません means 'must not / may not'. The opposite of permission.",
+      sections:[
+        {h:"How it works", t:"て-form + はいけません = 'you must not ___ / ___ is not allowed'. ここで たばこを すってはいけません = You must not smoke here. It's a firm prohibition, used for rules. In casual speech it contracts to 〜ちゃいけない / 〜じゃいけない."},
+        {h:"As an answer", t:"It's the natural negative response to a 〜てもいいですか question: 'May I…?' → いいえ、〜てはいけません ('No, you must not')."},
+      ],
+      examples:[
+        {jp:"ここで たばこを すってはいけません。", read:"ここで たばこを すってはいけません。", en:"You must not smoke here."},
+        {jp:"ここに はいってはいけません。", read:"ここに はいってはいけません。", en:"You must not enter here."},
+        {jp:"しゃしんを とってはいけません。", read:"しゃしんを とってはいけません。", en:"You must not take photos."},
+      ],
+      notes:[
+        "て-form + はいけません = prohibition ('must not').",
+        "It's the firm 'no' answer to 〜てもいいですか.",
+      ],
+      practice:[
+        {type:"mc", q:"How do you say 'You must not smoke here'? (smoke = すう)", choices:["すってはいけません","すいてはいけません","すうてはいけません","すってもいいです"], a:0, ex:"すう → すって (う group) + はいけません."},
+        {type:"mc", q:"〜てはいけません expresses:", choices:["permission","prohibition","invitation","a request"], a:1, ex:"It marks something that must NOT be done."},
+        {type:"translate", q:"Translate: 'You must not enter here.' (enter=はいる, here=ここ, use に)", answer:"ここに はいってはいけません。", accept:["ここにはいってはいけません","ここにはいってはいけません。"], ex:"はいる is a う-verb exception → はいって, then はいけません."},
+      ],
+    },
+    {
+      id:"6-5", title:"〜て、〜 — connecting actions in sequence",
+      summary:"The て-form links verbs/clauses: 'do X, and (then) Y'. It chains a sequence.",
+      sections:[
+        {h:"How it works", t:"Ending a clause in the て-form and continuing means 'and (then)': おきて、シャワーを あびます = I wake up and take a shower. The actions happen in order. Only the FINAL verb shows the tense; the て-form clauses borrow their tense from it."},
+        {h:"Also for reasons / manner", t:"て-form linking can also imply a light cause or manner ('and so'): あさごはんを たべて、がっこうへ いきます = I eat breakfast and (then) go to school. It's the everyday way to connect what would be separate English sentences."},
+      ],
+      examples:[
+        {jp:"あさ おきて、シャワーを あびます。", read:"あさ おきて、シャワーを あびます。", en:"I wake up in the morning and take a shower."},
+        {jp:"あさごはんを たべて、がっこうへ いきます。", read:"あさごはんを たべて、がっこうへ いきます。", en:"I eat breakfast and go to school."},
+        {jp:"ともだちに あって、えいがを みました。", read:"ともだちに あって、えいがを みました。", en:"I met a friend and watched a movie."},
+      ],
+      notes:[
+        "Only the final verb carries the tense; earlier て-form clauses inherit it.",
+        "Order matters — actions are understood to happen in the sequence given.",
+      ],
+      practice:[
+        {type:"mc", q:"'I wake up and take a shower' — how is おきる connected?", choices:["おきます、シャワー…","おきて、シャワーを あびます","おきると、シャワー…","おきてから シャワー"], a:1, ex:"て-form (おきて) links the first action to the next."},
+        {type:"fill", q:"あさごはんを たべ__、がっこうへ いきます。 (eat breakfast and go to school)", answer:"て", ex:"たべる → たべて connects the two actions."},
+        {type:"translate", q:"Translate: 'I met a friend and watched a movie.' (meet=あう, に friend; movie=えいが, past tense)", answer:"ともだちに あって、えいがを みました。", accept:["ともだちにあって、えいがをみました","ともだちにあってえいがをみました","ともだちにあって えいがをみました。"], ex:"あう → あって (う group); only the final verb みました shows past tense."},
+      ],
+    },
+  ],
+},
+
+};

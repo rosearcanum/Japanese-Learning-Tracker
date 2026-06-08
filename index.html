@@ -20,6 +20,7 @@
   <nav>
     <button class="nav-btn active" data-page="home">🌸 Home</button>
     <button class="nav-btn" data-page="lessons">📚 Lessons</button>
+    <button class="nav-btn" data-page="grammar">📖 Grammar</button>
     <button class="nav-btn" data-page="kanji">🖊 Kanji</button>
     <button class="nav-btn" data-page="quiz">🌟 Quiz</button>
     <button class="nav-btn" data-page="flashcards">🃏 Cards</button>
@@ -90,6 +91,15 @@
     <div class="sub-tab-content" id="tab-extra-vocab"></div>
     <div class="sub-tab-content" id="tab-kanji-tab"></div>
   </div>
+</div>
+
+<!-- ════════ GRAMMAR ════════ -->
+<div id="page-grammar" class="page">
+  <div class="page-title">📖 Grammar &amp; Practice</div>
+  <div class="page-sub">In-depth grammar lessons with explanations, examples, and practice — Genki I, Lessons 1–6</div>
+  <div class="chip-row" id="grammar-lesson-chips"></div>
+  <div id="grammar-intro" class="card" style="margin-bottom:20px;"></div>
+  <div id="grammar-points"></div>
 </div>
 
 <!-- ════════ KANJI ════════ -->
@@ -270,6 +280,7 @@
   <div class="resource-grid" id="genki-links"></div>
 </div>
 
+<script src="grammar.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
