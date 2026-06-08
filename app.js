@@ -1028,8 +1028,11 @@ function renderResources(){
 let grammarLesson=1;
 
 function renderGrammarChips(){
-  const lessons=Object.keys(GRAMMAR).map(Number).sort((a,b)=>a-b);
-  document.getElementById("grammar-lesson-chips").innerHTML=lessons.map(n=>
+  const G=window.GRAMMAR||{};
+  const lessons=Object.keys(G).map(Number).sort((a,b)=>a-b);
+  const el=document.getElementById("grammar-lesson-chips");
+  if(!el)return;
+  el.innerHTML=lessons.map(n=>
     `<button class="chip ${n===grammarLesson?"active":""}" onclick="selectGrammarLesson(${n})">L${n}</button>`).join("");
 }
 
@@ -1041,13 +1044,21 @@ function selectGrammarLesson(n){
 }
 
 function renderGrammar(){
-  const data=GRAMMAR[grammarLesson];
-  if(!data){document.getElementById("grammar-points").innerHTML="";return;}
-  document.getElementById("grammar-intro").innerHTML=`
+  const G=window.GRAMMAR||{};
+  const data=G[grammarLesson];
+  const pointsEl=document.getElementById("grammar-points");
+  const introEl=document.getElementById("grammar-intro");
+  if(!pointsEl||!introEl)return;
+  if(!data){
+    introEl.innerHTML=`<div class="grammar-intro-text">Grammar content is loading… if this persists, make sure grammar.js is in the same folder as index.html.</div>`;
+    pointsEl.innerHTML="";
+    return;
+  }
+  introEl.innerHTML=`
     <div style="font-weight:700;font-size:15px;margin-bottom:8px;">Lesson ${grammarLesson} — Overview</div>
     <div class="grammar-intro-text">${data.intro}</div>`;
 
-  document.getElementById("grammar-points").innerHTML=data.points.map((p,pi)=>{
+  pointsEl.innerHTML=data.points.map((p,pi)=>{
     const done=state.grammarDone&&state.grammarDone[p.id];
     return`
     <div class="gp-card">
@@ -1098,7 +1109,8 @@ function renderPracticeQ(pointId,pi,qi,q){
 
 // store correct data for text questions on the fly
 function getPracticeQ(pointId,qi){
-  const data=GRAMMAR[grammarLesson];
+  const data=(window.GRAMMAR||{})[grammarLesson];
+  if(!data)return null;
   for(const p of data.points){if(p.id===pointId)return p.practice[qi];}
   return null;
 }

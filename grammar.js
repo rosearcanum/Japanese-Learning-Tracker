@@ -7,7 +7,7 @@
    Practice types: 'mc' (multiple choice), 'fill', 'translate', 'order'
 ══════════════════════════════════════════════════════════════════ */
 
-const GRAMMAR = {
+window.GRAMMAR = {
 
 // ════════════════════════════════ LESSON 1 ════════════════════════════════
 1: {
