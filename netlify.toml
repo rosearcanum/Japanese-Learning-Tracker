@@ -1,0 +1,9 @@
+# Netlify configuration for the Japanese study site
+[build]
+  publish = "."
+
+# Make the admin panel reachable
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200

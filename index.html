@@ -11,6 +11,11 @@
 
 <div id="petals"></div>
 
+<!-- Retro scrolling banner -->
+<div class="retro-banner">
+  <div class="retro-banner-inner">★ ようこそ！ Welcome to my Japanese study site ★ がんばって！ ★ Now studying: Genki I, Lesson 6 ★ 一歩ずつ — one step at a time ★ 🌸 🌸 🌸 ★</div>
+</div>
+
 <div id="topbar">
   <span class="logo-mark">🌸</span>
   <div class="logo-text">
@@ -20,13 +25,12 @@
   <nav>
     <button class="nav-btn active" data-page="home">🌸 Home</button>
     <button class="nav-btn" data-page="lessons">📚 Lessons</button>
-    <button class="nav-btn" data-page="grammar">📖 Grammar</button>
     <button class="nav-btn" data-page="kanji">🖊 Kanji</button>
     <button class="nav-btn" data-page="quiz">🌟 Quiz</button>
     <button class="nav-btn" data-page="flashcards">🃏 Cards</button>
+    <button class="nav-btn" data-page="blog">📓 Blog</button>
     <button class="nav-btn" data-page="stats">📊 Stats</button>
-    <button class="nav-btn" data-page="journal">📓 Journal</button>
-    <button class="nav-btn" data-page="resources">🔗 Resources</button>
+    <button class="nav-btn" data-page="resources">🔗 Links</button>
   </nav>
 </div>
 
@@ -68,7 +72,7 @@
 <!-- ════════ LESSONS ════════ -->
 <div id="page-lessons" class="page">
   <div class="page-title">📚 Lessons</div>
-  <div class="page-sub">All 12 Genki I chapters — full vocab, grammar, and kanji per lesson</div>
+  <div class="page-sub">All 12 Genki I chapters — vocab, in-depth grammar with practice, and kanji per lesson</div>
   <div class="chip-row" id="lesson-chips"></div>
   <div class="card" id="lesson-detail">
     <div class="lesson-header">
@@ -81,25 +85,23 @@
     </div>
     <div id="ld-topics" style="margin-bottom:16px;"></div>
     <div class="sub-tabs">
-      <button class="sub-tab active" data-tab="grammar">Grammar</button>
+      <button class="sub-tab active" data-tab="grammar">Grammar Summary</button>
+      <button class="sub-tab" data-tab="deep-grammar">📖 In-Depth + Practice</button>
       <button class="sub-tab" data-tab="vocab">Vocab</button>
       <button class="sub-tab" data-tab="extra-vocab">Extra Vocab</button>
       <button class="sub-tab" data-tab="kanji-tab">Kanji</button>
+      <button class="sub-tab" data-tab="notes-tab">📝 My Notes</button>
     </div>
     <div class="sub-tab-content visible" id="tab-grammar"></div>
+    <div class="sub-tab-content" id="tab-deep-grammar">
+      <div id="grammar-intro" class="card" style="margin-bottom:20px;background:var(--pink0);"></div>
+      <div id="grammar-points"></div>
+    </div>
     <div class="sub-tab-content" id="tab-vocab"></div>
     <div class="sub-tab-content" id="tab-extra-vocab"></div>
     <div class="sub-tab-content" id="tab-kanji-tab"></div>
+    <div class="sub-tab-content" id="tab-notes-tab"></div>
   </div>
-</div>
-
-<!-- ════════ GRAMMAR ════════ -->
-<div id="page-grammar" class="page">
-  <div class="page-title">📖 Grammar &amp; Practice</div>
-  <div class="page-sub">In-depth grammar lessons with explanations, examples, and practice — Genki I, Lessons 1–6</div>
-  <div class="chip-row" id="grammar-lesson-chips"></div>
-  <div id="grammar-intro" class="card" style="margin-bottom:20px;"></div>
-  <div id="grammar-points"></div>
 </div>
 
 <!-- ════════ KANJI ════════ -->
@@ -248,12 +250,24 @@
   </div>
 </div>
 
-<!-- ════════ JOURNAL ════════ -->
-<div id="page-journal" class="page">
-  <div class="page-title">📓 Study Journal</div>
-  <div class="page-sub">Track your wins, struggles, and growth — in your own words</div>
+<!-- ════════ BLOG ════════ -->
+<div id="page-blog" class="page">
+  <div class="page-title">📓 Study Blog</div>
+  <div class="page-sub">Progress updates, reflections, and study notes</div>
+  <hr class="glitter-rule"/>
+  <div class="admin-cta">
+    ✎ This is your public blog. To write a new post, go to
+    <a href="admin/" target="_blank">the admin panel »</a>
+    (you'll log in with GitHub). Posts you publish appear here for everyone.
+  </div>
+  <div id="blog-list" class="blog-list">
+    <div class="empty-state">Loading posts… 🌸</div>
+  </div>
+
+  <hr class="glitter-rule"/>
+  <!-- Private quick-journal (localStorage, only on this device) -->
+  <div style="font-weight:700;font-size:15px;margin:18px 0 10px;font-family:var(--retro-font);font-size:24px;color:var(--pink4);">✎ Quick private journal (this device only)</div>
   <div class="card journal-form">
-    <div style="font-weight:700;font-size:15px;margin-bottom:12px;">New Entry</div>
     <div class="mood-row" id="mood-row">
       <button class="mood-btn active" data-mood="😊">😊</button>
       <button class="mood-btn" data-mood="😤">😤</button>
@@ -262,10 +276,10 @@
       <button class="mood-btn" data-mood="🌸">🌸</button>
       <button class="mood-btn" data-mood="💪">💪</button>
     </div>
-    <textarea id="journal-input" rows="4" placeholder="What did you study today? New grammar that clicked? Words you keep forgetting? Wins to celebrate?"></textarea>
-    <button class="btn btn-primary" style="margin-top:12px;" onclick="addJournalEntry()">Add Entry</button>
+    <textarea id="journal-input" rows="3" placeholder="Quick private note — stays on this device, not published…"></textarea>
+    <button class="btn btn-primary" style="margin-top:12px;" onclick="addJournalEntry()">Save private note</button>
   </div>
-  <div id="journal-entries"><div class="empty-state">No entries yet — write your first one above! 🌸</div></div>
+  <div id="journal-entries"><div class="empty-state">No private notes yet 🌸</div></div>
 </div>
 
 <!-- ════════ RESOURCES ════════ -->
@@ -280,7 +294,10 @@
   <div class="resource-grid" id="genki-links"></div>
 </div>
 
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="grammar.js"></script>
+<script src="content-loader.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

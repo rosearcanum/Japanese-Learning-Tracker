@@ -4,6 +4,15 @@
    Kanji: live from Jo-Mako's sheet
 ══════════════════════════════════════════ */
 
+// ── Netlify Identity: redirect to admin after login confirmation ──
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+    }
+  });
+}
+
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 const SHEET_ID  = "1056uW4iIObSuwptN5Xpbg0UbOy9ALvxMUIxQbl6QfUI";
 const KANJI_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Kanji`;
@@ -535,7 +544,27 @@ function buildFlashcards(){
   });
   return cards;
 }
-const FLASHCARDS=buildFlashcards();
+let FLASHCARDS=buildFlashcards();
+
+// Merge custom decks published via admin panel into the flashcard pool
+function mergeCustomDecks(){
+  const base=buildFlashcards();
+  const custom=[];
+  (window.CUSTOM_DECKS||[]).forEach(deck=>{
+    deck.cards.forEach(c=>{
+      custom.push({
+        f:c.front,
+        b:(c.reading?c.reading+" — ":"")+(c.back||""),
+        sub:c.reading||"",
+        t:deck.tag||"Custom",
+        pos:""
+      });
+    });
+  });
+  FLASHCARDS=[...base,...custom];
+  if(typeof renderFCChips==="function")renderFCChips();
+  if(typeof renderFC==="function")renderFC();
+}
 
 // ─── RESOURCES ────────────────────────────────────────────────────────────────
 const RESOURCES={
@@ -600,7 +629,8 @@ function nav(page){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("visible"));
   document.getElementById("page-"+page).classList.add("visible");
   if(page==="home")renderHome();
-  if(page==="grammar")renderGrammar();
+  if(page==="lessons"){renderGrammarChips();renderGrammar();}
+  if(page==="blog"){if(window.renderBlog)window.renderBlog();renderJournal();}
   if(page==="stats"){loadAnkiInputs();renderStats();}
   if(page==="journal")renderJournal();
   if(page==="resources")renderResources();
@@ -659,12 +689,14 @@ function renderLessons(){
 
 function selectLesson(i){
   state.selectedLesson=i;
+  grammarLesson=LESSONS[i].num; // sync deep grammar to this lesson
   document.querySelectorAll("#lesson-chips .chip").forEach((c,j)=>c.classList.toggle("active",j===i));
   document.querySelectorAll(".sub-tab").forEach(t=>t.classList.remove("active"));
   document.querySelectorAll(".sub-tab-content").forEach(t=>t.classList.remove("visible"));
   document.querySelector(".sub-tab[data-tab='grammar']").classList.add("active");
   document.getElementById("tab-grammar").classList.add("visible");
   renderLessonDetail();
+  if(typeof renderGrammar==="function")renderGrammar();
 }
 
 function renderLessonDetail(){
@@ -711,6 +743,14 @@ function renderLessonDetail(){
         </div>`).join("")
       }</div>`
     :`<div style="font-family:'DM Sans',sans-serif;color:var(--muted);font-size:13px;padding:12px 0;">Kanji loading from sheet… go to the Kanji tab to study today's set.</div>`;
+
+  // My Notes tab (loaded from /content/lessons via content-loader)
+  const notesEl=document.getElementById("tab-notes-tab");
+  if(notesEl&&typeof window.renderLessonNotesFor==="function"){
+    notesEl.innerHTML=window.renderLessonNotesFor(l.num);
+  }else if(notesEl){
+    notesEl.innerHTML='<div class="empty-state" style="padding:24px;">Loading notes…</div>';
+  }
 }
 
 function markLessonDone(){
@@ -860,7 +900,8 @@ function quizNextLesson(){selectQuizLesson(Math.min(state.quizLessonIdx+1,11));}
 // ─── FLASHCARDS ───────────────────────────────────────────────────────────────
 function filtered(){return state.fcFilter==="All"?FLASHCARDS:FLASHCARDS.filter(c=>c.t===state.fcFilter);}
 function renderFCChips(){
-  const tags=["All",...LESSONS.map(l=>`L${l.num}`)];
+  const customTags=[...new Set((window.CUSTOM_DECKS||[]).map(d=>d.tag||"Custom"))];
+  const tags=["All",...LESSONS.map(l=>`L${l.num}`),...customTags];
   document.getElementById("fc-chips").innerHTML=tags.map(t=>
     `<button class="chip ${t===state.fcFilter?"active":""}" onclick="setFCFilter('${t}')">${t}</button>`).join("");
 }
@@ -1004,7 +1045,7 @@ function addJournalEntry(){
 }
 function renderJournal(){
   const el=document.getElementById("journal-entries");
-  if(!state.journalEntries.length){el.innerHTML='<div class="empty-state">No entries yet — write your first one above! 🌸</div>';return;}
+  if(!state.journalEntries.length){el.innerHTML='<div class="empty-state">No private notes yet 🌸</div>';return;}
   el.innerHTML=state.journalEntries.map(e=>`
     <div class="card entry-card">
       <div class="entry-header"><span class="entry-date">${e.date}</span><span style="font-size:22px;">${e.mood}</span></div>
@@ -1028,10 +1069,11 @@ function renderResources(){
 let grammarLesson=1;
 
 function renderGrammarChips(){
+  // Grammar now follows the selected lesson; chip row removed.
+  const el=document.getElementById("grammar-lesson-chips");
+  if(!el)return; // element no longer exists in merged layout
   const G=window.GRAMMAR||{};
   const lessons=Object.keys(G).map(Number).sort((a,b)=>a-b);
-  const el=document.getElementById("grammar-lesson-chips");
-  if(!el)return;
   el.innerHTML=lessons.map(n=>
     `<button class="chip ${n===grammarLesson?"active":""}" onclick="selectGrammarLesson(${n})">L${n}</button>`).join("");
 }
@@ -1050,7 +1092,7 @@ function renderGrammar(){
   const introEl=document.getElementById("grammar-intro");
   if(!pointsEl||!introEl)return;
   if(!data){
-    introEl.innerHTML=`<div class="grammar-intro-text">Grammar content is loading… if this persists, make sure grammar.js is in the same folder as index.html.</div>`;
+    introEl.innerHTML=`<div class="grammar-intro-text">📖 In-depth grammar with practice questions is available for Lessons 1–6 so far. Lesson ${grammarLesson}'s detailed write-up is coming soon — for now, see the <b>Grammar Summary</b> tab above for this lesson's key points.</div>`;
     pointsEl.innerHTML="";
     return;
   }
@@ -1193,3 +1235,9 @@ renderJournal();
 renderResources();
 spawnPetals();
 fetchKanji();
+
+// ── Expose cross-file functions globally (so content-loader.js can call them) ──
+window.mergeCustomDecks = mergeCustomDecks;
+window.renderFCChips = renderFCChips;
+window.renderFC = renderFC;
+window.renderLessonDetail = renderLessonDetail;
