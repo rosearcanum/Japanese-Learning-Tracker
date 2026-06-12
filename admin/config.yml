@@ -1,0 +1,77 @@
+# ═══════════════════════════════════════════════════════════════
+#  Decap CMS configuration
+#  This defines what you can edit from the /admin panel.
+#  IMPORTANT: change `backend.repo` to your own GitHub username/repo.
+# ═══════════════════════════════════════════════════════════════
+
+backend:
+  name: git-gateway          # uses Netlify Identity + Git Gateway for login
+  branch: main               # the branch your site is published from
+
+# When testing locally you can run `npx decap-server` and uncomment:
+# local_backend: true
+
+media_folder: "media/uploads"     # where uploaded images are stored in the repo
+public_folder: "/media/uploads"   # how the site refers to them
+
+publish_mode: simple
+
+collections:
+
+  # ─── BLOG POSTS (progress updates + anything else) ───
+  - name: "blog"
+    label: "📓 Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Progress Update", "Study Tips", "Reflection", "Resource Find", "Other"]
+        default: "Progress Update"
+      - { label: "Mood", name: "mood", widget: "select", options: ["😊","😤","😴","🤔","🌸","💪","🎉","📚"], default: "🌸", required: false }
+      - { label: "Banner image", name: "banner", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ─── CUSTOM FLASHCARD DECKS ───
+  - name: "decks"
+    label: "🃏 Flashcard Decks"
+    folder: "content/decks"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} ({{length cards}} cards)"
+    fields:
+      - { label: "Deck title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string", required: false }
+      - { label: "Tag/Label (e.g. L7, Verbs, JLPT-N5)", name: "tag", widget: "string", default: "Custom" }
+      - label: "Cards"
+        name: "cards"
+        widget: "list"
+        summary: "{{fields.front}} → {{fields.back}}"
+        fields:
+          - { label: "Front (Japanese)", name: "front", widget: "string" }
+          - { label: "Reading", name: "reading", widget: "string", required: false }
+          - { label: "Back (meaning)", name: "back", widget: "string" }
+
+  # ─── LESSON / GRAMMAR ADDITIONS ───
+  - name: "lessons"
+    label: "📚 Lesson & Grammar Notes"
+    folder: "content/lessons"
+    create: true
+    slug: "lesson-{{lesson}}-{{slug}}"
+    summary: "L{{lesson}}: {{title}}"
+    fields:
+      - { label: "Lesson number", name: "lesson", widget: "number", value_type: "int", min: 1, max: 23 }
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options: ["Grammar Point", "Vocab Note", "Culture Note", "Practice Set"]
+        default: "Grammar Point"
+      - { label: "Summary", name: "summary", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
