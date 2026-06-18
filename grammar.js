@@ -738,4 +738,546 @@ window.GRAMMAR = {
   ],
 },
 
+// ════════════════════════════════ LESSON 7 ════════════════════════════════
+7: {
+  intro: "Lesson 7 is where Japanese grammar takes a huge leap. You'll learn 〜ている (the progressive/resultant-state form built on the て-form), how to describe appearance and clothing with wearing verbs, and family vocabulary with its two sets of terms — humble for your own family, honorific for others'.",
+  points: [
+    {
+      id:"7-1", title:"〜ています — ongoing actions and resultant states",
+      summary:"て-form + います = 'is doing' OR 'is in a state that resulted from doing'. One form, two different meanings depending on the verb type.",
+      sections:[
+        {h:"The basic meaning: ongoing action", t:"The most obvious use is the progressive: what someone is doing right now. て-form + います describes an action in progress. いま テレビを みています = I am watching TV right now. This is the Japanese equivalent of '-ing': eating, sleeping, studying."},
+        {h:"The deeper meaning: resultant state", t:"ています also describes a STATE that results from a completed action. 「けっこんしています」 doesn't mean 'is currently getting married' — it means 'is married', in the state that results from having gotten married. 「しんでいます」 = is dead. 「しっています」 = knows (is in the state of having learned). The action happened in the past; ています describes where that leaves things now."},
+        {h:"How to tell which meaning applies", t:"Verb type is the guide. Action verbs with natural ongoing duration (watch, eat, study, run) → progressive (is -ing). Change-of-state verbs where the result matters more than the process (marry, die, arrive, know, live somewhere) → resultant state. 「にほんに すんでいます」 = lives in Japan (resultant state of having moved there)."},
+        {h:"Negative and past", t:"Negative: 〜ていません (is not doing / is not in that state). Past progressive: 〜ていました (was doing). 「べんきょうしていませんでした」 = I was not studying."},
+      ],
+      examples:[
+        {jp:"いま、テレビを みています。", read:"いま、テレビを みています。", en:"I am watching TV right now. (progressive)"},
+        {jp:"たけしさんは けっこんしています。", read:"たけしさんは けっこんしています。", en:"Takeshi is married. (resultant state)"},
+        {jp:"にほんに すんでいます。", read:"にほんに すんでいます。", en:"I live in Japan. (resultant state of having moved)"},
+        {jp:"その ことばを しっていますか。", read:"その ことばを しっていますか。", en:"Do you know that word?"},
+      ],
+      notes:[
+        "しっています (knows) / しりません (doesn't know) — NOT しっていません for the negative.",
+        "すんでいます = lives (in a place). Mark the location with に: 〜に すんでいます.",
+        "Change-of-state verbs (marry, die, arrive, know) → ています = resultant state, not progressive.",
+      ],
+      practice:[
+        {type:"mc", q:"What does 「けっこんしています」 mean?", choices:["is getting married","is married (resultant state)","was married","will get married"], a:1, ex:"Change-of-state verb + ています = the result, not the process."},
+        {type:"mc", q:"'I am studying now' (progressive):", choices:["べんきょうします","べんきょうしています","べんきょうしました","べんきょうしていました"], a:1, ex:"て-form + います for ongoing actions."},
+        {type:"fill", q:"'I don't know' — which is correct? しっていません OR しりません?", answer:"しりません", ex:"しる (to know/come-to-know) → negative is しりません, not しっていません."},
+        {type:"translate", q:"Translate: 'What is Mary doing right now?'", answer:"メアリーさんは いま なにを していますか。", accept:["メアリーさんはいまなにをしていますか","メアリーさんはいまなにをしていますか。"], ex:"なにを + して + います + か."},
+        {type:"mc", q:"'I live in Tokyo' uses which pattern?", choices:["とうきょうに いきます","とうきょうに すんでいます","とうきょうで います","とうきょうに すみます"], a:1, ex:"すむ is change-of-state → すんでいます = the resultant state (where you now are)."},
+      ],
+    },
+    {
+      id:"7-2", title:"Wearing verbs + ています — describing appearance",
+      summary:"Japanese has separate verbs for wearing different things. With ています they describe what someone is currently wearing.",
+      sections:[
+        {h:"The wearing verbs", t:"Unlike English's single 'wear', Japanese specifies: きる (きます) for upper body (shirts, jackets, kimono); はく (はきます) for lower body and feet (pants, skirts, shoes, socks); かぶる (かぶります) for the head (hats, caps); かける (かけます) for glasses; する (します) for accessories (ties, rings, necklaces)."},
+        {h:"With ています = currently wearing", t:"All combine with ています to describe what someone is wearing right now (a resultant state — they put it on and are now wearing it). めがねを かけています = is wearing glasses. あおい シャツを きています = is wearing a blue shirt."},
+        {h:"Chaining descriptions", t:"Stack descriptions using the て-form of adjectives. い-adj: たかい → たかくて. な-adj: きれい → きれいで. 「せが たかくて、めがねを かけています」 = is tall and wearing glasses."},
+      ],
+      examples:[
+        {jp:"めがねを かけています。", read:"めがねを かけています。", en:"(She/he) is wearing glasses."},
+        {jp:"あおい シャツを きています。", read:"あおい シャツを きています。", en:"(She/he) is wearing a blue shirt."},
+        {jp:"ぼうしを かぶっています。", read:"ぼうしを かぶっています。", en:"(She/he) is wearing a hat."},
+        {jp:"せが たかくて、かみが みじかいです。", read:"せが たかくて、かみが みじかいです。", en:"(She/he) is tall and has short hair."},
+      ],
+      notes:[
+        "Upper body → きる. Lower body/feet → はく. Head → かぶる. Glasses → かける. Accessories → する.",
+        "い-adj chain: drop い, add くて (たかい → たかくて). な-adj chain: add で (きれい → きれいで).",
+      ],
+      practice:[
+        {type:"mc", q:"Which verb for wearing a shirt?", choices:["はきます","かぶります","きます","かけます"], a:2, ex:"きる = upper body clothing."},
+        {type:"mc", q:"Which verb for wearing shoes?", choices:["きます","はきます","かぶります","します"], a:1, ex:"はく = lower body and feet."},
+        {type:"fill", q:"めがねを ____ています。 (is wearing glasses)", answer:"かけ", ex:"かける → かけて + います."},
+        {type:"translate", q:"'(She) is wearing a hat and glasses.'", answer:"ぼうしを かぶって、めがねを かけています。", accept:["ぼうしをかぶって、めがねをかけています","ぼうしをかぶってめがねをかけています。"], ex:"かぶる → かぶって (te-form) then + かけています."},
+      ],
+    },
+    {
+      id:"7-3", title:"Family vocabulary: own family vs. someone else's",
+      summary:"Use humble terms for your own family and honorific terms when referring to others' family members.",
+      sections:[
+        {h:"Two sets of vocabulary", t:"When talking about YOUR OWN family to others, use plain/humble terms. When asking about or describing SOMEONE ELSE's family, use polite/honorific terms. This is a core politeness distinction in Japanese."},
+        {h:"The key pairs", t:"Own (humble) → Others' (honorific): ちち → おとうさん (father); はは → おかあさん (mother); あに → おにいさん (older brother); あね → おねえさん (older sister); おとうと → おとうとさん (younger brother); いもうと → いもうとさん (younger sister). Honorific forms usually have the お prefix."},
+        {h:"People counters", t:"Counting people: ひとり (1), ふたり (2), then さんにん, よにん, ごにん etc. for 3+. ひとりっこ = only child. きょうだいは ふたりいます = I have two siblings."},
+      ],
+      examples:[
+        {jp:"ちちは いしゃです。", read:"ちちは いしゃです。", en:"My father is a doctor. (own → humble)"},
+        {jp:"おとうさんは おいくつですか。", read:"おとうさんは おいくつですか。", en:"How old is your father? (other's → honorific)"},
+        {jp:"きょうだいは ふたりいます。", read:"きょうだいは ふたりいます。", en:"I have two siblings."},
+      ],
+      notes:[
+        "Use ちち/はは (humble) when talking about YOUR OWN family to others.",
+        "Use おとうさん/おかあさん (honorific) when referring to someone ELSE's family.",
+        "People counter: ひとり, ふたり (irregular), さんにん, よにん…",
+      ],
+      practice:[
+        {type:"mc", q:"Talking about YOUR OWN mother, which word?", choices:["おかあさん","はは","かあさん","おはは"], a:1, ex:"Own family → humble. はは = my mother."},
+        {type:"mc", q:"Asking about a friend's FATHER, which word?", choices:["ちち","おちち","おとうさん","ちちさん"], a:2, ex:"Others' family → honorific. おとうさん = (your) father."},
+        {type:"fill", q:"'I have three siblings': きょうだいは ____います。", answer:"さんにんいます", accept:["さんにん います","さんにんいます","さんにん"], ex:"People counter: ひとり, ふたり, さんにん…"},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 8 ════════════════════════════════
+8: {
+  intro: "Lesson 8 introduces the plain form (also called short form), which is both the casual register of Japanese AND the grammatical building block for dozens of complex patterns. You'll also learn 〜と思います, the probability form でしょう, and the three giving/receiving verbs あげる/くれる/もらう.",
+  points: [
+    {
+      id:"8-1", title:"Plain forms — the foundation of Japanese grammar",
+      summary:"Plain forms are used in casual speech AND as the base for most complex grammar patterns. Every verb, adjective, and noun has four plain forms.",
+      sections:[
+        {h:"Why you need plain forms now", t:"You've been using polite forms (ます/です) so far. Plain forms appear in: (1) casual conversation with friends and family, (2) written Japanese — manga, novels, news, (3) grammar patterns that require a plain form regardless of the sentence's formality level. Learning them now unlocks an enormous amount of real Japanese."},
+        {h:"Plain present of verbs", t:"The plain affirmative present IS the dictionary form: たべる, のむ, する, くる. You already know these. The plain negative: for る-verbs, replace る with ない (たべる → たべない). For う-verbs, change the final u-sound to its a-equivalent and add ない (のむ → のまない; かく → かかない; はなす → はなさない). Irregulars: する → しない; くる → こない. Special case: う-ending verbs — かう → かわない (not かあない)."},
+        {h:"Plain past of verbs", t:"Plain affirmative past: take the て-form and change て→た / で→だ. たべて→たべた; のんで→のんだ; いって→いった. Plain negative past: take the plain negative (ない) and change it to なかった: たべない→たべなかった; のまない→のまなかった."},
+        {h:"Plain forms of adjectives and nouns", t:"い-adjectives: the plain form IS the adjective (たかい = is expensive). Negative: たかくない. Past: たかかった. Past negative: たかくなかった. な-adjectives and nouns use だ for the plain form: しずかだ / がくせいだ. Negative: しずかじゃない. Past: しずかだった. Past negative: しずかじゃなかった."},
+      ],
+      examples:[
+        {jp:"たべる / たべない / たべた / たべなかった", read:"たべる / たべない / たべた / たべなかった", en:"eat / don't eat / ate / didn't eat"},
+        {jp:"のむ / のまない / のんだ / のまなかった", read:"のむ / のまない / のんだ / のまなかった", en:"drink / don't drink / drank / didn't drink"},
+        {jp:"する / しない / した / しなかった", read:"する / しない / した / しなかった", en:"do / don't do / did / didn't do (irregular)"},
+        {jp:"くる / こない / きた / こなかった", read:"くる / こない / きた / こなかった", en:"come / don't come / came / didn't come (irregular)"},
+      ],
+      notes:[
+        "う-verb plain negative: change final -u to -a, add ない. Special: う-verbs ending in う → かう: かわない.",
+        "する → しない (not すない). くる → こない (not くない). Memorize.",
+        "Plain past = て-form with て→た / で→だ.",
+      ],
+      practice:[
+        {type:"mc", q:"Plain negative of たべる?", choices:["たべない","たべぬ","たべません","たべなかった"], a:0, ex:"る-verb plain negative: replace る with ない."},
+        {type:"mc", q:"Plain past of のむ?", choices:["のみた","のんだ","のまた","のむた"], a:1, ex:"のむ → のんで (te-form) → change で to だ = のんだ."},
+        {type:"mc", q:"Plain negative of する?", choices:["すない","しない","せない","さない"], a:1, ex:"する is irregular: plain negative = しない."},
+        {type:"fill", q:"Plain past negative of たべる: たべ____", answer:"なかった", ex:"Plain negative たべない → change ない to なかった."},
+        {type:"translate", q:"Write the four plain forms of かく: present, negative, past, past-negative.", answer:"かく / かかない / かいた / かかなかった", accept:["かく、かかない、かいた、かかなかった","かく かかない かいた かかなかった"], ex:"neg: かか+ない; past: かいた (く→いて→いた); past neg: かかなかった."},
+      ],
+    },
+    {
+      id:"8-2", title:"〜と思います — 'I think that ~'",
+      summary:"Plain form + と思います = my opinion or conjecture. Everything before と must be in plain form.",
+      sections:[
+        {h:"How it works", t:"Plain form clause + と思います = 'I think that ___.' The plain form of any verb, adjective, or noun sentence goes directly before と. おもしろいと思います = I think it's interesting. たかかったと思います = I think it was expensive. あめが ふると思います = I think it will rain."},
+        {h:"Negative version", t:"To say 'I don't think X', negate the EMBEDDED CLAUSE, not おもいます. 「こないと思います」 = I think he won't come. NOT 「くると思いません」 (unnatural). You're saying 'I think [he won't come]', not 'I don't think [he'll come]'."},
+        {h:"な-adjectives and nouns before と", t:"な-adjectives and nouns need だ before と思います: しずかだと思います (I think it's quiet). たけしさんは がくせいだと思います (I think Takeshi is a student)."},
+      ],
+      examples:[
+        {jp:"おもしろいと思います。", read:"おもしろいと思います。", en:"I think it's interesting."},
+        {jp:"あめが ふると思います。", read:"あめが ふると思います。", en:"I think it will rain."},
+        {jp:"こないと思います。", read:"こないと思います。", en:"I think (he) won't come."},
+      ],
+      notes:[
+        "Everything BEFORE と must be in PLAIN form. い-adj, verb: attach directly. な-adj/noun: add だ before と.",
+        "Negate the embedded clause for 'I don't think X': こないと思います NOT くると思いません.",
+      ],
+      practice:[
+        {type:"mc", q:"'I think it's interesting':", choices:["おもしろいですと思います","おもしろいと思います","おもしろと思います","おもしろいと思いません"], a:1, ex:"Plain form おもしろい directly before と."},
+        {type:"mc", q:"'I think he won't come' — best expression:", choices:["くると思いません","こないと思います","くると思わない","こないと思いません"], a:1, ex:"Negate the embedded clause: こない (plain negative) + と思います."},
+        {type:"fill", q:"'I think it was expensive': たかかった____思います。", answer:"と", ex:"Plain past (たかかった) + と + 思います."},
+        {type:"translate", q:"'I think it will rain.' (rain = あめが ふる)", answer:"あめが ふると思います。", accept:["あめがふると思います","あめがふると思います。"], ex:"ふる (plain present) + と思います."},
+      ],
+    },
+    {
+      id:"8-3", title:"Giving and receiving: あげる, くれる, もらう",
+      summary:"Three verbs for give/receive based on the direction of exchange relative to the speaker.",
+      sections:[
+        {h:"Why three verbs", t:"English has 'give' and 'receive'. Japanese tracks social direction more carefully: who is the insider (speaker's group) vs outsider affects the choice of verb."},
+        {h:"あげる — I give to others", t:"The giver is the speaker or their in-group; recipient is outside. わたしは メアリーさんに プレゼントを あげました = I gave Mary a present. Recipient is marked with に."},
+        {h:"くれる — others give to me", t:"The giver is outside; recipient is the speaker or their in-group. メアリーさんは わたしに プレゼントを くれました = Mary gave me a present. Because the recipient is the speaker, わたしに is often dropped."},
+        {h:"もらう — I receive from others", t:"Describes receiving from the recipient's perspective. Giver is marked with に or から. わたしは メアリーさんに プレゼントを もらいました = I received a present from Mary."},
+        {h:"The core rule", t:"Ask: who benefits? Speaker benefits (receives) → くれる or もらう. Speaker gives outward → あげる. くれる ALWAYS has the speaker or their people as the recipient."},
+      ],
+      examples:[
+        {jp:"わたしは ともだちに ほんを あげました。", read:"わたしは ともだちに ほんを あげました。", en:"I gave a book to my friend. (あげる)"},
+        {jp:"ともだちが わたしに ほんを くれました。", read:"ともだちが わたしに ほんを くれました。", en:"My friend gave me a book. (くれる)"},
+        {jp:"わたしは ともだちに ほんを もらいました。", read:"わたしは ともだちに ほんを もらいました。", en:"I received a book from my friend. (もらう)"},
+      ],
+      notes:[
+        "あげる = give (speaker→other). くれる = give (other→speaker). もらう = receive (speaker←other).",
+        "With もらう, the giver is marked with に OR から — both are fine.",
+      ],
+      practice:[
+        {type:"mc", q:"'My friend gave ME a book' — which verb?", choices:["あげました","くれました","もらいました","かしました"], a:1, ex:"くれる: outsider gives to the speaker."},
+        {type:"mc", q:"'I gave my friend a book' — which verb?", choices:["あげました","くれました","もらいました","かりました"], a:0, ex:"あげる: speaker gives outward."},
+        {type:"mc", q:"'I received a book from my friend' — which verb?", choices:["あげました","くれました","もらいました","かしました"], a:2, ex:"もらう: speaker receives."},
+        {type:"fill", q:"ともだちが わたしに プレゼントを __ました。 (friend gave me)", answer:"くれ", ex:"くれる: others give to the speaker."},
+        {type:"translate", q:"'I gave a present to Mary.' (present = プレゼント)", answer:"わたしは メアリーさんに プレゼントを あげました。", accept:["わたしはメアリーさんにプレゼントをあげました","メアリーさんにプレゼントをあげました。"], ex:"あげる: speaker gives outward to に."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 9 ════════════════════════════════
+9: {
+  intro: "Lesson 9 covers past experience (〜たことがあります), want-to (〜たいです), comparisons with より and いちばん, and how to turn adjectives into adverbs. These patterns let you express opinions and desires naturally.",
+  points: [
+    {
+      id:"9-1", title:"〜たことがあります — past experience",
+      summary:"Plain past + ことがあります = 'I have done ~ before'. Focuses on whether an experience exists, not when.",
+      sections:[
+        {h:"How it works", t:"Take the plain past form of a verb and add ことがあります. This expresses a life experience — something you've done at some point in the past, with the focus on whether the experience exists, not when it happened. すしを たべたことがあります = I have eaten sushi (before)."},
+        {h:"Negative: never done", t:"ことがありません = 'I have never ~'. まだ たべたことがありません = I still haven't eaten it yet. This is often more natural than just ことがありません."},
+        {h:"Asking about experience", t:"〜たことがありますか = Have you ever ~? Natural short answers: はい、あります / いいえ、ありません."},
+      ],
+      examples:[
+        {jp:"すしを たべたことがあります。", read:"すしを たべたことがあります。", en:"I have eaten sushi before."},
+        {jp:"にほんに いったことがありません。", read:"にほんに いったことがありません。", en:"I have never been to Japan."},
+        {jp:"かぶきを みたことがありますか。", read:"かぶきを みたことがありますか。", en:"Have you ever seen kabuki?"},
+      ],
+      notes:[
+        "Verb must be in PLAIN PAST form (た/だ): たべた, いった, みた, した, きた.",
+        "Do NOT use time words like 'yesterday' with this pattern — it's about lifetime experience.",
+      ],
+      practice:[
+        {type:"mc", q:"'I have eaten sushi before' — correct form:", choices:["すしを たべることがあります","すしを たべたことがあります","すしを たべていたことがあります","すしを たべたことがありました"], a:1, ex:"Plain PAST (たべた) + ことがあります."},
+        {type:"fill", q:"'I have never been to Japan.': にほんに いった__がありません。", answer:"こと", ex:"Plain past + ことがありません = have never done."},
+        {type:"translate", q:"'Have you ever seen kabuki?' (kabuki = かぶき, see = みる)", answer:"かぶきを みたことがありますか。", accept:["かぶきをみたことがありますか","かぶきをみたことがありますか。"], ex:"みた (plain past) + ことがありますか."},
+      ],
+    },
+    {
+      id:"9-2", title:"〜たいです — want to do",
+      summary:"ます-stem + たいです = want to do. Conjugates like an い-adjective. Only for the speaker's desire.",
+      sections:[
+        {h:"How it works", t:"Drop ます from the polite form to get the ます-stem, then add たいです. たべます → たべ → たべたいです (want to eat). いきます → いき → いきたいです (want to go). The たい ending conjugates like an い-adjective."},
+        {h:"Conjugating たい", t:"Negative: たべたくないです (don't want to eat). Past: たべたかったです (wanted to eat). Past negative: たべたくなかったです (didn't want to eat). This parallels exactly how い-adjectives conjugate."},
+        {h:"Object particle", t:"With たいです, the object can be を OR が. が is especially natural: すしが たべたいです (I want to eat sushi — feel a craving for it specifically). Both are correct."},
+        {h:"Only for the speaker", t:"〜たいです only expresses the SPEAKER's desire in statements. For a third person's desire use 〜たがっています."},
+      ],
+      examples:[
+        {jp:"にほんに いきたいです。", read:"にほんに いきたいです。", en:"I want to go to Japan."},
+        {jp:"なにが たべたいですか。", read:"なにが たべたいですか。", en:"What do you want to eat?"},
+        {jp:"コーヒーは のみたくないです。", read:"コーヒーは のみたくないです。", en:"I don't want to drink coffee."},
+      ],
+      notes:[
+        "ます-stem + たい conjugates like an い-adj: たい/たくない/たかった/たくなかった.",
+        "Object can be を OR が with たい. が is natural for cravings.",
+        "Only for speaker's desire. Third person: 〜たがっています.",
+      ],
+      practice:[
+        {type:"mc", q:"'I want to eat sushi':", choices:["すしを たべます","すしを たべたいです","すしを たべたいます","すしが たべます"], a:1, ex:"ます-stem (たべ) + たいです."},
+        {type:"fill", q:"'I don't want to drink coffee': コーヒーを のみたく____。", answer:"ないです", accept:["ないです","ない"], ex:"たい → たくない (like い-adj negative)."},
+        {type:"mc", q:"'I wanted to go to Japan' (past):", choices:["にほんに いきたいでした","にほんに いきたかったです","にほんに いきたくないです","にほんに いきましたかった"], a:1, ex:"たい past = たかった (い-adj past)."},
+        {type:"translate", q:"'What do you want to eat?' (use なにが)", answer:"なにが たべたいですか。", accept:["なにがたべたいですか","なにがたべたいですか。","なにをたべたいですか。"], ex:"なにが (or なにを) + たべたいですか."},
+      ],
+    },
+    {
+      id:"9-3", title:"Comparisons: より, いちばん, and どちら",
+      summary:"より = 'more than'; いちばん = 'the most'; どちら = 'which one (of two)'.",
+      sections:[
+        {h:"A より B のほうが — A is more ~ than B", t:"The thing being compared favorably comes with のほうが; the thing it's compared against gets より. とうきょうは おおさかより おおきいです = Tokyo is bigger than Osaka. Alternatively: おおさかより とうきょうのほうが おおきいです. Both orders work."},
+        {h:"いちばん — the most", t:"いちばん + adjective = 'the most ~'. Add scope with 〜の中で (among ~). くだものの中で なにが いちばん すきですか = Among fruits, what do you like most?"},
+        {h:"どちら / どれ", t:"Comparing two: AとBと どちらが ~ ですか. Three+: どれが. どちらも = both. どちらも すきです = I like both."},
+      ],
+      examples:[
+        {jp:"とうきょうは おおさかより おおきいです。", read:"とうきょうは おおさかより おおきいです。", en:"Tokyo is bigger than Osaka."},
+        {jp:"くだものの中で りんごが いちばん すきです。", read:"くだものの中で りんごが いちばん すきです。", en:"Among fruits, I like apples the most."},
+        {jp:"コーヒーと おちゃと どちらが すきですか。", read:"コーヒーと おちゃと どちらが すきですか。", en:"Which do you prefer, coffee or tea?"},
+      ],
+      notes:[
+        "より marks the lesser item. のほうが marks the greater item.",
+        "いちばん + adj/verb = the most. Scope: 〜の中で.",
+        "どちら for 2 items; どれ for 3+.",
+      ],
+      practice:[
+        {type:"mc", q:"'Tokyo is bigger than Osaka.' Which particle marks Osaka (the lesser)?", choices:["は","が","より","のほうが"], a:2, ex:"より marks the thing being compared against."},
+        {type:"fill", q:"'I like apples the most among fruits.': くだものの中で りんごが ____すきです。", answer:"いちばん", ex:"いちばん + verb = the most."},
+        {type:"mc", q:"Comparing two options uses:", choices:["どれが","どちらが","どっちは","どのが"], a:1, ex:"どちら for exactly two options."},
+        {type:"translate", q:"'Coffee is more expensive than tea.' (tea = おちゃ, expensive = たかい)", answer:"コーヒーは おちゃより たかいです。", accept:["コーヒーはおちゃよりたかいです","コーヒーはおちゃよりたかいです。","おちゃよりコーヒーのほうがたかいです。"], ex:"より marks the lesser; main clause has the greater item."},
+      ],
+    },
+    {
+      id:"9-4", title:"Adjective → adverb: 〜く and 〜に, and なる",
+      summary:"い-adj → く; な-adj → に. Combined with なる (to become) these are essential patterns.",
+      sections:[
+        {h:"い-adjectives → く", t:"Drop い, add く. はやい → はやく (quickly). This is identical to forming the negative stem — just without ない. Modifies verbs: はやく はしります (runs fast)."},
+        {h:"な-adjectives → に", t:"Add に to the stem. しずか → しずかに (quietly). じょうず → じょうずに (skillfully). じょうずに にほんごを はなします = speaks Japanese skillfully."},
+        {h:"〜く/〜に + なる (to become)", t:"Adverb + なる = to become ~. おおきく なります (becomes big / grows up). じょうずに なりたいです (want to become good at it). This combo is everywhere in Japanese."},
+      ],
+      examples:[
+        {jp:"はやく はしります。", read:"はやく はしります。", en:"I run fast. (はやい → はやく)"},
+        {jp:"しずかに べんきょうします。", read:"しずかに べんきょうします。", en:"I study quietly. (しずか → しずかに)"},
+        {jp:"にほんごが じょうずに なりたいです。", read:"にほんごが じょうずに なりたいです。", en:"I want to become good at Japanese."},
+      ],
+      notes:[
+        "い-adj adverb: drop い, add く (はやい → はやく).",
+        "な-adj adverb: add に (しずか → しずかに).",
+        "〜く/〜に + なる = to become ~ (very common pattern).",
+      ],
+      practice:[
+        {type:"fill", q:"はやい → adverb: ____", answer:"はやく", ex:"Drop い, add く."},
+        {type:"fill", q:"しずか → adverb: ____", answer:"しずかに", ex:"な-adj: add に."},
+        {type:"translate", q:"'I want to become good at Japanese.' (good at = じょうず)", answer:"にほんごが じょうずに なりたいです。", accept:["にほんごがじょうずになりたいです","にほんごをじょうずになりたいです","にほんごがじょうずになりたいです。"], ex:"じょうず → じょうずに + なりたいです."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 10 ════════════════════════════════
+10: {
+  intro: "Lesson 10 is about expressing time relationships between events. You'll learn から (because), 前に (before), てから (after), つもり (plan to), and ために (in order to). These patterns are essential for telling stories and explaining your reasoning.",
+  points: [
+    {
+      id:"10-1", title:"〜から — because (giving reasons)",
+      summary:"Plain form clause + から = 'because ~'. The reason comes FIRST in Japanese, then the result.",
+      sections:[
+        {h:"How it works", t:"から attaches to the end of a clause to mark it as the reason for what follows. Japanese word order: REASON から、RESULT. The opposite of English. ねむいから、ねます = Because I'm sleepy, I'll sleep."},
+        {h:"Plain form before から", t:"In natural speech, the clause before から uses plain form. ねむいから (plain い-adj), がくせいだから (plain noun), たかかったから (plain past adj), たべたから (plain past verb)."},
+        {h:"Answering なぜ/どうして", t:"〜からです is the natural polite answer to 'why' questions. にほんに いきたいからです = Because I want to go to Japan."},
+      ],
+      examples:[
+        {jp:"ねむいから、ねます。", read:"ねむいから、ねます。", en:"Because I'm sleepy, I'll sleep."},
+        {jp:"あめが ふっているから、でかけません。", read:"あめが ふっているから、でかけません。", en:"Because it's raining, I won't go out."},
+        {jp:"にほんが すきだから、にほんごを べんきょうしています。", read:"にほんが すきだから、にほんごを べんきょうしています。", en:"Because I like Japan, I'm studying Japanese."},
+      ],
+      notes:[
+        "Order: [reason] から [result]. Reason FIRST.",
+        "Plain form before から in most contexts.",
+        "Polite answer form: 〜からです.",
+      ],
+      practice:[
+        {type:"mc", q:"'Because I'm sleepy, I'll sleep.' Japanese order:", choices:["ねます、ねむいから","ねむいから、ねます","ねむいので、ねます","ねます、だからねむい"], a:1, ex:"[reason] から、[result]. Reason first."},
+        {type:"fill", q:"'Because I like Japan': にほんが すきだ____", answer:"から", ex:"Reason clause + から."},
+        {type:"translate", q:"'Because it's raining, I won't go out.' (rain = あめが ふる, go out = でかける)", answer:"あめが ふっているから、でかけません。", accept:["あめがふっているから、でかけません","あめがふるから、でかけません","あめがふっているからでかけません。"], ex:"[reason] ふっているから + [result] でかけません."},
+      ],
+    },
+    {
+      id:"10-2", title:"〜前に / 〜てから — before and after",
+      summary:"Dictionary form + 前に = before doing. て-form + から = after doing (emphasizes completion).",
+      sections:[
+        {h:"〜前に — before ~", t:"Dictionary form (plain non-past) + 前に = before doing ~. ねる まえに、はを みがきます = I brush my teeth before going to sleep. The verb before 前に is ALWAYS plain non-past, even in past-tense sentences, because the action is always 'in the future' relative to what precedes it."},
+        {h:"〜てから — after doing", t:"て-form + から = after doing ~ and then doing something else. しゅくだいを してから、テレビを みます = After doing homework, I watch TV. This emphasizes that X is completed before Y begins."},
+        {h:"て vs てから", t:"て chains fluidly (and then). てから emphasizes completion before the next action. おきて、シャワーをあびます (wake up then shower) vs おきてから シャワーをあびます (after fully waking up, THEN shower)."},
+      ],
+      examples:[
+        {jp:"ねる まえに、はを みがきます。", read:"ねる まえに、はを みがきます。", en:"I brush my teeth before going to sleep."},
+        {jp:"しゅくだいを してから、テレビを みます。", read:"しゅくだいを してから、テレビを みます。", en:"After doing homework, I watch TV."},
+        {jp:"にほんに いく まえに、にほんごを べんきょうします。", read:"にほんに いく まえに、にほんごを べんきょうします。", en:"I'll study Japanese before going to Japan."},
+      ],
+      notes:[
+        "〜前に verb: ALWAYS plain non-past (dictionary form), even in past sentences.",
+        "〜てから: emphasizes completing the first action before starting the second.",
+      ],
+      practice:[
+        {type:"mc", q:"'Before sleeping' — which verb form?", choices:["ねて まえに","ねた まえに","ねる まえに","ねます まえに"], a:2, ex:"Dictionary form (non-past) + まえに."},
+        {type:"fill", q:"'After doing homework, I watch TV': しゅくだいを して____、テレビを みます。", answer:"から", ex:"て-form + から = after doing (emphasizes completion)."},
+        {type:"translate", q:"'I'll study Japanese before going to Japan.'", answer:"にほんに いく まえに、にほんごを べんきょうします。", accept:["にほんにいくまえに、にほんごをべんきょうします","にほんにいくまえににほんごをべんきょうします","にほんにいくまえに、にほんごをべんきょうします。"], ex:"いく (dictionary form) + まえに."},
+      ],
+    },
+    {
+      id:"10-3", title:"〜つもりです — plans and intentions",
+      summary:"Dictionary form + つもりです = personal plan or firm intention.",
+      sections:[
+        {h:"How it works", t:"Plain present + つもりです = I intend to / I plan to. にほんに いく つもりです = I plan to go to Japan. Stronger than just using a future ます — it implies personal resolve. Negative: plain negative + つもり: いかない つもりです = I don't plan to go."},
+        {h:"つもり vs よてい", t:"つもり = personal intention/resolve. よてい = externally scheduled plan. 「にほんに いく よていです」 = I have a scheduled trip. 「にほんに いく つもりです」 = I intend to go (personal resolve)."},
+      ],
+      examples:[
+        {jp:"にほんに いく つもりです。", read:"にほんに いく つもりです。", en:"I plan to go to Japan."},
+        {jp:"にほんに いかない つもりです。", read:"にほんに いかない つもりです。", en:"I don't plan to go to Japan."},
+        {jp:"らいねん、しごとを やめる つもりです。", read:"らいねん、しごとを やめる つもりです。", en:"I intend to quit my job next year."},
+      ],
+      notes:[
+        "Dict form + つもり = plan to. Plain negative + つもり = plan NOT to.",
+        "つもり = personal resolve. よてい = scheduled plan.",
+      ],
+      practice:[
+        {type:"mc", q:"'I plan to go to Japan':", choices:["にほんに いきます つもりです","にほんに いく つもりです","にほんに いって つもりです","にほんに いかない つもりです"], a:1, ex:"Dictionary form (いく) + つもりです."},
+        {type:"fill", q:"'I don't plan to go': にほんに いか____ つもりです。", answer:"ない", ex:"Plain negative (いかない) + つもりです."},
+        {type:"translate", q:"'I intend to study Japanese next year.' (next year = らいねん)", answer:"らいねん、にほんごを べんきょうする つもりです。", accept:["らいねん、にほんごをべんきょうするつもりです","らいねんにほんごをべんきょうするつもりです。"], ex:"べんきょうする (dict form) + つもりです."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 11 ════════════════════════════════
+11: {
+  intro: "Lesson 11 introduces the conditional 〜と (for automatic consequences), the potential form (can do), listing reasons with 〜し, and the two そうです patterns (looks like vs. I heard that). These are all extremely common in real Japanese.",
+  points: [
+    {
+      id:"11-1", title:"〜と — if/when (automatic consequence)",
+      summary:"Plain form + と = when X happens, Y automatically follows. Used for facts, directions, and natural consequences.",
+      sections:[
+        {h:"How it works", t:"Plain form + と describes a natural, automatic consequence: whenever X happens, Y happens. Used for: directions (まがると、えきがあります = if you turn, the station is there), natural laws (はるに なると、あたたかくなります = when spring comes, it gets warm), habitual truths (ボタンを おすと、ドアが あきます = when you press the button, the door opens)."},
+        {h:"What makes it different from other conditionals", t:"Japanese has multiple 'if' forms. と is specifically for natural/automatic consequences, directions, and factual sequences. It CANNOT be followed by requests, suggestions, or volitional actions. For those, use たら."},
+        {h:"Great for directions", t:"Step-by-step directions use と constantly: 「まっすぐ いくと、こうさてんが あります。みぎに まがると、えきが みえます。」"},
+      ],
+      examples:[
+        {jp:"みぎに まがると、えきが あります。", read:"みぎに まがると、えきが あります。", en:"If you turn right, the station is there."},
+        {jp:"はるに なると、さくらが さきます。", read:"はるに なると、さくらが さきます。", en:"When spring comes, the cherry blossoms bloom."},
+        {jp:"このボタンを おすと、ドアが あきます。", read:"このボタンを おすと、ドアが あきます。", en:"When you press this button, the door opens."},
+      ],
+      notes:[
+        "と = natural/automatic consequence. NOT for one-time events, requests, or wishes.",
+        "Second clause cannot be a request or suggestion with と — use たら for those.",
+      ],
+      practice:[
+        {type:"mc", q:"Which situation fits 〜と best?", choices:["If you study, please pass","When spring comes, it gets warm","If you go to Japan, eat sushi (request)","If I had money, I'd buy it (one-time)"], a:1, ex:"と = natural automatic consequence. Spring → warmth is factual."},
+        {type:"fill", q:"'If you turn right, the station is there.': みぎに まがる____、えきが あります。", answer:"と", ex:"と for natural consequence."},
+        {type:"translate", q:"'When you press this button, the door opens.' (press = おす, door = ドア, open = あく)", answer:"このボタンを おすと、ドアが あきます。", accept:["このボタンをおすと、ドアがあきます","このボタンをおすとドアがあきます","このボタンをおすと、ドアがあきます。"], ex:"おす (dict form) + と + natural result."},
+      ],
+    },
+    {
+      id:"11-2", title:"Potential form — can do",
+      summary:"The potential form expresses ability or possibility. Forms differently by verb group.",
+      sections:[
+        {h:"Building the potential", t:"る-verbs: replace る with られる (たべる → たべられる). Casual speech often drops ら: たべれる. う-verbs: change final u-sound to e-equivalent and add る (のむ → のめる; かく → かける; はなす → はなせる; まつ → まてる). Irregulars: する → できる; くる → こられる."},
+        {h:"Object particle", t:"With potential verbs, the object often takes が instead of を. にほんごが はなせます (I can speak Japanese). が is especially natural with potential, though を is also correct."},
+        {h:"できる", t:"できる (from する) means 'can do' and is the most versatile potential verb. にほんごが できます = I can do Japanese / I know Japanese. できるだけ = as much as possible."},
+      ],
+      examples:[
+        {jp:"にほんごが はなせます。", read:"にほんごが はなせます。", en:"I can speak Japanese."},
+        {jp:"さしみは たべられません。", read:"さしみは たべられません。", en:"I can't eat sashimi."},
+        {jp:"ピアノが できます。", read:"ピアノが できます。", en:"I can play piano."},
+      ],
+      notes:[
+        "る-verb: replace る with られる. う-verb: u-row → e-row + る.",
+        "する → できる; くる → こられる. Memorize.",
+        "Object often takes が with potential (though を is also correct).",
+      ],
+      practice:[
+        {type:"mc", q:"Potential form of たべる:", choices:["たべれます","たべられます","たべます","たべれる"], a:1, ex:"る-verb: replace る with られる → たべられます."},
+        {type:"mc", q:"Potential form of のむ:", choices:["のまれます","のみます","のめます","のむれます"], a:2, ex:"う-verb: む → め + る → のめる → のめます."},
+        {type:"fill", q:"する → potential form: ____", answer:"できる", accept:["できます","できる"], ex:"する → できる (irregular)."},
+        {type:"translate", q:"'I can speak Japanese.' (use が)", answer:"にほんごが はなせます。", accept:["にほんごがはなせます","にほんごがはなせます。","にほんごをはなせます。"], ex:"はなす → はなせる → はなせます."},
+        {type:"mc", q:"'I can't eat sashimi' (さしみ):", choices:["さしみを たべます","さしみが たべられません","さしみを たべません","さしみが たべません"], a:1, ex:"Potential negative: たべられません."},
+      ],
+    },
+    {
+      id:"11-3", title:"〜し and 〜そうです",
+      summary:"し lists multiple reasons ('and also…'). そうです has two patterns: looks like (observation) vs I heard (hearsay).",
+      sections:[
+        {h:"〜し — listing reasons", t:"し at the end of a clause adds it to a list of reasons. Unlike から (one reason), し implies multiple supporting factors. やすいし、おいしいし、このレストランが すきです = It's cheap, and delicious, and I like this restaurant. The final conclusion clause doesn't need し."},
+        {h:"Pattern 1: [adj stem/verb stem] + そうです — 'looks like'", t:"Built from the adjective/verb STEM. Drop い from い-adj (おいしい → おいし + そうです = おいしそう). Drop だ from な-adj. Use ます-stem of verbs (ふり + そうです = ふりそうです). This is YOUR OWN direct observation."},
+        {h:"Pattern 2: [plain form] + そうです — 'I heard that'", t:"Uses the FULL plain form before そうです. あの えいがは おもしろいそうです = I heard that movie is interesting. This is secondhand/hearsay information. The key difference: おいしそうです (stem + そう = looks delicious from observation) vs おいしいそうです (plain + そう = I heard it's delicious)."},
+      ],
+      examples:[
+        {jp:"このへやは ひろいし、しずかだし、いいです。", read:"このへやは ひろいし、しずかだし、いいです。", en:"This room is spacious and quiet — it's great. (listing reasons with し)"},
+        {jp:"このケーキは おいしそうです。", read:"このケーキは おいしそうです。", en:"This cake looks delicious. (observation — stem + そう)"},
+        {jp:"あの えいがは おもしろいそうです。", read:"あの えいがは おもしろいそうです。", en:"I heard that movie is interesting. (hearsay — plain form + そう)"},
+      ],
+      notes:[
+        "し = 'and also, not only that' — stacks multiple reasons.",
+        "Looks like: ADJ STEM (drop い/だ) + そう. Hearsay: FULL PLAIN FORM + そうです.",
+        "いい → よさそうです (looks good) — irregular stem.",
+      ],
+      practice:[
+        {type:"mc", q:"'This cake looks delicious' (you're looking at it):", choices:["おいしいそうです","おいしそうです","おいしだそうです","おいしくそうです"], a:1, ex:"Observation: drop い from おいしい → おいし + そうです."},
+        {type:"mc", q:"'I heard that movie is interesting' — correct form:", choices:["おもしろそうです","おもしろだそうです","おもしろいそうです","おもしろくそうです"], a:2, ex:"Hearsay: FULL plain form おもしろい + そうです."},
+        {type:"fill", q:"'It looks like it's going to rain.' (ふる, ます-stem = ふり): あめが ふり____。", answer:"そうです", ex:"Verb ます-stem + そうです = observation of imminent action."},
+        {type:"fill", q:"'This room is spacious and quiet and nice.' (use し): このへやは ひろい__、しずかだ__、いいです。", answer:"し、し", accept:["し","し、し","しし"], ex:"Plain form + し for stacking reasons."},
+      ],
+    },
+  ],
+},
+
+// ════════════════════════════════ LESSON 12 ════════════════════════════════
+12: {
+  intro: "Lesson 12 is the final chapter of Genki I. It brings together 〜んです (the explanatory んだ pattern), the conditional 〜たら, the passive voice, and giving/receiving favors with 〜てあげる/くれる/もらう. Mastering this lesson means you're ready for Genki II.",
+  points: [
+    {
+      id:"12-1", title:"〜んです / 〜んだ — explanation and emphasis",
+      summary:"Plain form + んです adds an explanatory or emotional tone: 'the thing is…', 'you see…', 'it's because…'",
+      sections:[
+        {h:"What it does", t:"んです (polite) / んだ (casual) attaches to a plain form clause and signals that you are EXPLAINING something, seeking an explanation, or adding emotional emphasis. Without it, statements can sound flat or abrupt. With it, there's implied context: 'I'm telling you this because it's relevant / because you're wondering.'"},
+        {h:"Seeking explanation: 〜んですか", t:"On questions, んですか invites an explanation and sounds softer than a plain question. 「どうして こなかったんですか」 = How come you didn't come? (softer, more empathetic than 「なぜ きませんでしたか」)."},
+        {h:"Giving explanation: 〜んです", t:"On statements, んです signals 'here's my explanation'. 「かぜを ひいたんです」 = (The thing is) I caught a cold. It's offering the information as relevant context — not just a bare fact."},
+        {h:"How to form it", t:"Plain form + んです. For nouns and な-adjectives, add な before んです: がくせいなんです. い-adjectives and verbs attach directly: たかいんです, たべたんです."},
+      ],
+      examples:[
+        {jp:"どうして こなかったんですか。", read:"どうして こなかったんですか。", en:"How come you didn't come? (softer — seeking explanation)"},
+        {jp:"かぜを ひいたんです。", read:"かぜを ひいたんです。", en:"(The thing is) I caught a cold."},
+        {jp:"あたまが いたいんです。", read:"あたまが いたいんです。", en:"I have a headache, you see."},
+      ],
+      notes:[
+        "Plain form + んです. Noun/な-adj: add な before ん → がくせいなんです.",
+        "〜んですか on a question = you noticed something and want the explanation.",
+        "Very common in real speech — sentences without it can sound blunt in contexts calling for explanation.",
+      ],
+      practice:[
+        {type:"mc", q:"'How come you didn't come?' (soft/explanatory):", choices:["どうして きませんでしたか","どうして こなかったんですか","なぜ きませんか","どうして くるんですか"], a:1, ex:"〜んですか = seeking explanation, softer tone."},
+        {type:"fill", q:"'I caught a cold (you see)': かぜを ひいた____。", answer:"んです", accept:["んです","んだ"], ex:"Plain past + んです = providing explanation."},
+        {type:"mc", q:"For a noun before んです, you need:", choices:["を before ん","な before ん","の before ん","は before ん"], a:1, ex:"Noun/な-adj + な + んです: がくせいなんです."},
+        {type:"translate", q:"'I have a headache, you see.' (headache = あたまが いたい)", answer:"あたまが いたいんです。", accept:["あたまがいたいんです","あたまがいたいんです。","あたまがいたいんだ。"], ex:"い-adj plain (いたい) + んです directly."},
+      ],
+    },
+    {
+      id:"12-2", title:"〜たら — the most flexible conditional",
+      summary:"Plain past + ら = 'if/when X happens/ed'. Works for hypotheticals, one-time events, requests, and wishes — things と cannot handle.",
+      sections:[
+        {h:"How it forms", t:"Take the plain past form (た/だ) and add ら. たべたら = if I eat / after I eat. いったら = if I go. Applies identically to all verb types, adjectives, and nouns."},
+        {h:"What たら can do that と can't", t:"と only works for natural automatic consequences. たら is the most flexible conditional. It allows: hypotheticals (もし おかねが あったら = if I had money), one-time events, requests in the second clause (うちに ついたら、でんわしてください = when you get home, please call me), and wishes. The second clause can be a command, request, or wish — impossible with と."},
+        {h:"Temporal use", t:"たら is also used for 'when X happens, then Y'. 「にほんに いったら、すしを たべました」 = When I went to Japan, I ate sushi. The first event sets the scene for the second."},
+      ],
+      examples:[
+        {jp:"うちに ついたら、でんわしてください。", read:"うちに ついたら、でんわしてください。", en:"When you get home, please call me."},
+        {jp:"もし おかねが あったら、にほんに いきます。", read:"もし おかねが あったら、にほんに いきます。", en:"If I had money, I would go to Japan."},
+        {jp:"にほんに いったら、すしを たべました。", read:"にほんに いったら、すしを たべました。", en:"When I went to Japan, I ate sushi."},
+      ],
+      notes:[
+        "Form: plain past (た/だ) + ら.",
+        "Unlike と, たら CAN have requests/commands/wishes in the second clause.",
+        "もし (if) is optional but adds emphasis to hypotheticals.",
+      ],
+      practice:[
+        {type:"mc", q:"Which conditional can be followed by a request (〜てください)?", choices:["〜と","〜たら","Both","Neither"], a:1, ex:"たら can have requests in the second clause. と cannot."},
+        {type:"fill", q:"'When you get home, please call me.': うちに つい____、でんわしてください。", answer:"たら", ex:"ついた (plain past of つく) + ら = ついたら."},
+        {type:"translate", q:"'If I had money, I would go to Japan.' (use もし)", answer:"もし おかねが あったら、にほんに いきます。", accept:["もしおかねがあったら、にほんにいきます","もしおかねがあったらにほんにいきます","おかねがあったら、にほんにいきます。"], ex:"あった (plain past of ある) + ら = あったら."},
+        {type:"mc", q:"Form of たら conditional:", choices:["plain present + ら","plain past + ら","て-form + ら","ます-stem + ら"], a:1, ex:"Plain past (た/だ) + ら."},
+      ],
+    },
+    {
+      id:"12-3", title:"Passive voice — 〜られます",
+      summary:"The passive form describes being on the receiving end of an action, often with a nuance of inconvenience.",
+      sections:[
+        {h:"Forming the passive", t:"る-verbs: replace る with られる (same form as potential — context distinguishes them). う-verbs: change final u-sound to a-equivalent and add れる (のむ → のまれる; かく → かかれる; はなす → はなされる). Irregulars: する → される; くる → こられる."},
+        {h:"Sentence structure", t:"In passive sentences, the thing affected becomes the subject (は/が). The agent (the doer) is marked with に. 「わたしは せんせいに ほめられました」 = I was praised by the teacher."},
+        {h:"The suffering passive", t:"Japanese passive frequently expresses that something happened TO you and was inconvenient — the 'suffering passive'. 「あめに ふられました」 = I got rained on. 「ともだちに こられて、べんきょうできませんでした」 = My friend came over (on me) and I couldn't study. Distinctly Japanese — no direct English equivalent."},
+      ],
+      examples:[
+        {jp:"わたしは せんせいに ほめられました。", read:"わたしは せんせいに ほめられました。", en:"I was praised by the teacher."},
+        {jp:"わたしは ははに しかられました。", read:"わたしは ははに しかられました。", en:"I was scolded by my mother."},
+        {jp:"さいふを ぬすまれました。", read:"さいふを ぬすまれました。", en:"My wallet was stolen (from me)."},
+      ],
+      notes:[
+        "Passive: る-verb → られる; う-verb → a-row + れる; する → される; くる → こられる.",
+        "Agent (doer) is marked with に. Affected person is the grammatical subject.",
+        "Suffering passive: even neutral events can imply inconvenience to the speaker.",
+      ],
+      practice:[
+        {type:"mc", q:"Passive form of たべる:", choices:["たべれる","たべられる","たべさせる","たべされる"], a:1, ex:"る-verb passive: replace る with られる."},
+        {type:"mc", q:"Passive form of のむ:", choices:["のまれる","のみられる","のめる","のまる"], a:0, ex:"う-verb passive: む → ま + れる = のまれる."},
+        {type:"fill", q:"'I was scolded by my mother.': わたしは ははに しかられ____。", answer:"ました", ex:"しかる → しかられる (passive) → しかられました (past polite)."},
+        {type:"translate", q:"'I was praised by the teacher.' (praise = ほめる)", answer:"わたしは せんせいに ほめられました。", accept:["わたしはせんせいにほめられました","せんせいにほめられました。","せんせいにほめられました"], ex:"せんせい + に + ほめられました (passive past)."},
+      ],
+    },
+    {
+      id:"12-4", title:"〜てあげる / くれる / もらう — doing favors",
+      summary:"Attach the giving/receiving verbs to the て-form to describe doing an action AS a favor. Same direction rules as the object verbs.",
+      sections:[
+        {h:"Extending the giving verbs to actions", t:"The same あげる/くれる/もらう from Lesson 8 attach to the て-form to describe doing an action as a favor. Direction rules are identical: てあげる = I do X for someone (I give the action outward); てくれる = someone does X for me (they give me the action); てもらう = I receive the action / have someone do X for me."},
+        {h:"〜てあげます", t:"て-form + あげます = I do X for (someone). おしえてあげました = I taught them (as a favor for them). Use with care — overuse can sound condescending, as if emphasizing your own generosity."},
+        {h:"〜てくれます", t:"て-form + くれます = someone does X for me. せんせいが おしえてくれました = The teacher taught me (did the favor of teaching). Naturally positive — you're acknowledging a benefit received."},
+        {h:"〜てもらいます and requesting", t:"て-form + もらいます = I have someone do X / receive the action. 〜てもらえますか / 〜てもらえませんか = could I have you do ~? This is often softer and more polite than てください for requests."},
+      ],
+      examples:[
+        {jp:"ともだちに くるまを かしてあげました。", read:"ともだちに くるまを かしてあげました。", en:"I lent my car to a friend (as a favor)."},
+        {jp:"せんせいが かんじを おしえてくれました。", read:"せんせいが かんじを おしえてくれました。", en:"The teacher taught me kanji (as a favor for me)."},
+        {jp:"ともだちに にほんごを おしえてもらいました。", read:"ともだちに にほんごを おしえてもらいました。", en:"I had a friend teach me Japanese."},
+        {jp:"てつだって もらえますか。", read:"てつだって もらえますか。", en:"Could you help me? (softer than 'please help')"},
+      ],
+      notes:[
+        "てあげる = do for someone. てくれる = done for me. てもらう = I receive the action.",
+        "てもらえますか = 'could you please ~?' — a very polite request form.",
+        "Careful with てあげる — can sound patronizing if overused.",
+      ],
+      practice:[
+        {type:"mc", q:"'The teacher taught me (as a favor)' — which pattern?", choices:["せんせいに おしえてあげました","せんせいが おしえてくれました","せんせいを おしえてもらいました","せんせいに おしえてもらいました"], a:1, ex:"てくれる: teacher (outsider) does favor for the speaker."},
+        {type:"mc", q:"'Could you help me?' (polite request using もらう):", choices:["てつだってください","てつだってあげますか","てつだってもらえますか","てつだってくれてください"], a:2, ex:"てもらえますか = 'could I receive the favor of you doing ~?'"},
+        {type:"fill", q:"'I had my friend teach me Japanese.': ともだちに にほんごを おしえて____ました。", answer:"もらい", ex:"てもらう: I receive the favor/action."},
+        {type:"translate", q:"'The teacher taught me kanji.' (using くれる)", answer:"せんせいが かんじを おしえてくれました。", accept:["せんせいがかんじをおしえてくれました","せんせいがかんじをおしえてくれました。"], ex:"てくれる: outsider does something beneficial for the speaker."},
+      ],
+    },
+  ],
+},
+
 };

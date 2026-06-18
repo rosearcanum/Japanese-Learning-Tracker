@@ -1203,16 +1203,17 @@ function renderGrammar(){
   const G=window.GRAMMAR||{};
   const data=G[grammarLesson];
   const pointsEl=document.getElementById("grammar-points");
-  const introEl=document.getElementById("grammar-intro");
+  const introWin=document.getElementById("grammar-intro");
+  const introEl=introWin?introWin.querySelector(".win-body"):introWin;
   if(!pointsEl||!introEl)return;
   if(!data){
     introEl.innerHTML=`<div class="grammar-intro-text">📖 In-depth grammar with practice questions is available for Lessons 1–6 so far. Lesson ${grammarLesson}'s detailed write-up is coming soon — for now, see the <b>Grammar Summary</b> tab above for this lesson's key points.</div>`;
     pointsEl.innerHTML="";
     return;
   }
-  introEl.innerHTML=`
-    <div style="font-weight:700;font-size:15px;margin-bottom:8px;">Lesson ${grammarLesson} — Overview</div>
-    <div class="grammar-intro-text">${data.intro}</div>`;
+  const introTitle=introWin?introWin.querySelector(".win-title span:first-child"):null;
+  if(introTitle)introTitle.textContent=`Lesson ${grammarLesson} — Overview`;
+  introEl.innerHTML=`<div class="grammar-intro-text">${data.intro}</div>`;
 
   pointsEl.innerHTML=data.points.map((p,pi)=>{
     const done=state.grammarDone&&state.grammarDone[p.id];
