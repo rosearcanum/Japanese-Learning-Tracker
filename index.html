@@ -4,21 +4,25 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>日本語 Study — Genki I</title>
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Maru+Gothic:wght@400;500&family=VT323&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <div id="petals"></div>
 
-<!-- ═══ MARQUEE BANNER — edit text here ═══ -->
+<!-- ═══════════════════════════════════════════════
+     MARQUEE BANNER — edit the text right here
+═══════════════════════════════════════════════ -->
 <div class="site-marquee">
   <div class="site-marquee-inner">
     ★ ようこそ！ Welcome to my Japanese study site ★ Currently studying: Genki I Lesson 6 ★ 一歩ずつ — one step at a time ★ がんばって！ ★ ♡ ♡ ♡ ★
   </div>
 </div>
 
-<!-- ═══ TOP NAV ═══ -->
+<!-- ═══════════════════════════════════════════════
+     TOP NAV
+═══════════════════════════════════════════════ -->
 <div id="topbar">
   <span class="logo-mark">🌸</span>
   <div class="logo-text">
@@ -26,101 +30,142 @@
     <div class="logo-sub">Genki I · MDC Japanese 2</div>
   </div>
   <nav>
-    <button class="nav-btn active" data-page="home">🌸 Home</button>
-    <button class="nav-btn" data-page="lessons">📚 Lessons</button>
-    <button class="nav-btn" data-page="kanji">🖊 Kanji</button>
-    <button class="nav-btn" data-page="quiz">🌟 Quiz</button>
-    <button class="nav-btn" data-page="flashcards">🃏 Cards</button>
-    <button class="nav-btn" data-page="blog">📓 Blog</button>
-    <button class="nav-btn" data-page="stats">📊 Stats</button>
-    <button class="nav-btn" data-page="resources">🔗 Links</button>
+    <button class="nav-btn active" data-page="home">Home</button>
+    <button class="nav-btn" data-page="lessons">Lessons</button>
+    <button class="nav-btn" data-page="kanji">Kanji</button>
+    <button class="nav-btn" data-page="quiz">Quiz</button>
+    <button class="nav-btn" data-page="flashcards">Cards</button>
+    <button class="nav-btn" data-page="blog">Blog</button>
+    <button class="nav-btn" data-page="stats">Stats</button>
+    <button class="nav-btn" data-page="resources">Links</button>
   </nav>
 </div>
 
 <!-- ════════════════════════════════════════
-     HOME
+     HOME — sidebar profile + main content
+     This is the layout you picked (Direction A).
+     Edit the sidebar panels below freely —
+     each is just a .panel block.
 ════════════════════════════════════════ -->
 <div id="page-home" class="page visible">
+  <div class="profile-layout">
 
-  <!-- stat counters -->
-  <div class="win-grid-3" style="margin-bottom:12px;">
-    <div class="win stat-win">
-      <div class="win-title"><span>🃏 Cards Known</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-      <div class="win-body"><span class="stat-icon">🃏</span><span class="stat-val" id="home-words">0/0</span><span class="stat-label">flashcards</span></div>
-    </div>
-    <div class="win stat-win">
-      <div class="win-title"><span>✅ Lessons</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-      <div class="win-body"><span class="stat-icon">✅</span><span class="stat-val" id="home-lessons">0/12</span><span class="stat-label">Genki I chapters</span></div>
-    </div>
-    <div class="win stat-win">
-      <div class="win-title"><span>🖊 Kanji</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-      <div class="win-body"><span class="stat-icon">🖊</span><span class="stat-val" id="home-kanji-count">0</span><span class="stat-label">kanji learned</span></div>
-    </div>
-  </div>
+    <!-- ───── SIDEBAR ───── -->
+    <div class="profile-sidebar">
 
-  <!-- vocab progress -->
-  <div class="win" style="margin-bottom:12px;">
-    <div class="win-title"><span>📈 Vocabulary Progress</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
-      <div class="prog-wrap"><div class="prog-bar" id="home-progress-bar" style="width:0%"></div></div>
-      <div class="prog-label" id="home-progress-label">0 of 0 cards marked known</div>
-    </div>
-  </div>
-
-  <!-- today's kanji + lessons side by side -->
-  <div class="win-grid">
-    <div class="win">
-      <div class="win-title"><span>🌸 Today's Kanji — <span id="home-kanji-date"></span></span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-      <div class="win-body">
-        <div id="home-kanji-preview" class="home-kanji-strip"></div>
-        <div style="margin-top:10px;"><button class="btn primary" onclick="nav('kanji')">Study today's kanji →</button></div>
-      </div>
-    </div>
-    <div class="win">
-      <div class="win-title"><span>♪ Now Studying</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-      <div class="win-body">
-        <!-- Edit this section to update your "now playing" status -->
-        <div class="now-widget" style="margin-bottom:8px;">
-          <span class="blink">▶</span>
-          <span>Genki I — Lesson 6 て-form</span>
-        </div>
-        <div style="font-size:11px; color:var(--pink-muted); line-height:1.8;">
-          📚 Textbook: Genki I 3rd edition<br/>
-          🎯 Current goal: Te-form mastery<br/>
-          🃏 Anki streak: check Stats tab<br/>
-          <!-- Add more status lines here freely -->
+      <!-- Avatar / profile card.
+           To use your own photo: replace the emoji below with
+           <img src="media/uploads/your-photo.jpg"/> -->
+      <div class="panel">
+        <div class="panel-body" style="text-align:center;">
+          <div class="avatar-box">🌸</div>
+          <div class="profile-name">marie</div>
+          <div class="profile-tagline">学んでいます — always learning</div>
         </div>
       </div>
+
+      <!-- Quick stats -->
+      <div class="panel">
+        <div class="panel-title">✿ stats</div>
+        <div class="panel-body">
+          <div class="stat-row"><span>cards known</span><span id="sb-words">0/0</span></div>
+          <div class="stat-row"><span>lessons done</span><span id="sb-lessons">0/12</span></div>
+          <div class="stat-row"><span>kanji learned</span><span id="sb-kanji">0</span></div>
+        </div>
+      </div>
+
+      <!-- Mood / now studying -->
+      <div class="panel">
+        <div class="panel-title">♪ now studying</div>
+        <div class="panel-body">
+          <div class="now-widget" style="margin-bottom:8px;width:100%;">
+            <span class="blink">▶</span>
+            <span>Genki I — Lesson 6, て-form</span>
+          </div>
+          <!-- Add or edit status lines freely -->
+          <div style="font-size:11px;color:var(--ink-soft);line-height:1.8;">
+            textbook: Genki I 3rd ed.<br/>
+            goal: て-form mastery<br/>
+            mood: 💪 determined
+          </div>
+        </div>
+      </div>
+
+      <!-- Links / interests, edit freely -->
+      <div class="panel">
+        <div class="panel-title">interests</div>
+        <div class="panel-body">
+          <span class="pill">日本語</span>
+          <span class="pill">kanji</span>
+          <span class="pill green">anki</span>
+          <span class="pill">genki</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ───── MAIN CONTENT ───── -->
+    <div class="profile-main">
+
+      <div class="grid-3">
+        <div class="panel stat-block">
+          <div class="stat-icon">🃏</div>
+          <div class="stat-val" id="home-words">0/0</div>
+          <div class="stat-label">cards known</div>
+        </div>
+        <div class="panel stat-block">
+          <div class="stat-icon">✅</div>
+          <div class="stat-val" id="home-lessons">0/12</div>
+          <div class="stat-label">lessons done</div>
+        </div>
+        <div class="panel stat-block">
+          <div class="stat-icon">🖊</div>
+          <div class="stat-val" id="home-kanji-count">0</div>
+          <div class="stat-label">kanji learned</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">vocabulary progress</div>
+        <div class="panel-body">
+          <div class="prog-wrap"><div class="prog-bar" id="home-progress-bar" style="width:0%"></div></div>
+          <div class="prog-label" id="home-progress-label">0 of 0 cards marked known</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">today's kanji — <span id="home-kanji-date"></span></div>
+        <div class="panel-body">
+          <div id="home-kanji-preview" class="home-kanji-strip"></div>
+          <div class="btn-row"><button class="btn primary" onclick="nav('kanji')">Study today's kanji →</button></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">lesson overview</div>
+        <div class="panel-body">
+          <div class="grid-2" id="home-lessons-grid"></div>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <!-- lesson overview -->
-  <div class="win" style="margin-top:12px;">
-    <div class="win-title"><span>📚 Lesson Overview</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
-      <div class="win-grid" id="home-lessons-grid"></div>
-    </div>
-  </div>
-
 </div>
 
 <!-- ════════════════════════════════════════
      LESSONS
 ════════════════════════════════════════ -->
 <div id="page-lessons" class="page">
-  <div class="win">
-    <div class="win-title"><span>📚 Lessons — All 12 Genki I Chapters</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel">
+    <div class="panel-title">lessons — all 12 genki I chapters</div>
+    <div class="panel-body">
       <div class="chip-row" id="lesson-chips"></div>
     </div>
   </div>
 
-  <div class="win" id="lesson-detail">
-    <div class="win-title">
-      <span id="ld-titlebar">Lesson Detail</span>
-      <span class="win-btns"><span>_</span><span>□</span><span>×</span></span>
-    </div>
-    <div class="win-body">
+  <div class="panel" id="lesson-detail" style="margin-top:10px;">
+    <div class="panel-title" id="ld-titlebar">lesson detail</div>
+    <div class="panel-body">
       <div class="lesson-header">
         <div>
           <div class="lesson-num-label" id="ld-num"></div>
@@ -132,17 +177,17 @@
       <div id="ld-topics" style="margin-bottom:12px;"></div>
       <div class="sub-tabs">
         <button class="sub-tab active" data-tab="grammar">Grammar</button>
-        <button class="sub-tab" data-tab="deep-grammar">📖 In-Depth + Practice</button>
+        <button class="sub-tab" data-tab="deep-grammar">In-Depth + Practice</button>
         <button class="sub-tab" data-tab="vocab">Vocab</button>
         <button class="sub-tab" data-tab="extra-vocab">Extra Vocab</button>
         <button class="sub-tab" data-tab="kanji-tab">Kanji</button>
-        <button class="sub-tab" data-tab="notes-tab">📝 My Notes</button>
+        <button class="sub-tab" data-tab="notes-tab">My Notes</button>
       </div>
       <div class="sub-tab-content visible" id="tab-grammar"></div>
       <div class="sub-tab-content" id="tab-deep-grammar">
-        <div class="win" id="grammar-intro" style="margin-bottom:12px;">
-          <div class="win-title"><span>Overview</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-          <div class="win-body"></div>
+        <div class="panel" id="grammar-intro" style="margin-bottom:12px;">
+          <div class="panel-title">overview</div>
+          <div class="panel-body"></div>
         </div>
         <div id="grammar-points"></div>
       </div>
@@ -158,31 +203,31 @@
      KANJI
 ════════════════════════════════════════ -->
 <div id="page-kanji" class="page">
-  <div class="win">
-    <div class="win-title"><span>🖊 Daily Kanji — <span id="kanji-date-label"></span></span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel">
+    <div class="panel-title">daily kanji — <span id="kanji-date-label"></span></div>
+    <div class="panel-body">
       <div id="kanji-today-grid" class="kanji-today-grid"></div>
     </div>
   </div>
 
-  <div class="win" id="kanji-detail-card" style="display:none;">
-    <div class="win-title"><span id="kd-titlebar">Kanji Detail</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel" id="kanji-detail-card" style="display:none;margin-top:10px;">
+    <div class="panel-title" id="kd-titlebar">kanji detail</div>
+    <div class="panel-body">
       <div class="kanji-hero">
         <div class="kanji-hero-char" id="kd-char"></div>
         <div class="kanji-hero-read" id="kd-read"></div>
         <div class="kanji-hero-mean" id="kd-mean"></div>
         <div style="margin:6px 0;"><span class="pill" id="kd-jlpt"></span> <span class="pill muted" id="kd-stroke"></span></div>
         <div class="kanji-ex-box">
-          <div class="kanji-ex-label">Example words</div>
+          <div class="kanji-ex-label">example words</div>
           <div id="kd-examples"></div>
         </div>
         <div id="kd-story" style="display:none;" class="kanji-story-box"></div>
       </div>
       <div class="kanji-practice-section">
-        <div style="font-weight:bold;font-size:12px;margin-bottom:8px;">✍️ Practice — type the reading</div>
-        <input type="text" id="kanji-input" placeholder="Type the on'yomi or kun'yomi reading…"/>
-        <div class="btn-row" style="margin-top:8px;">
+        <div style="font-weight:500;font-size:12px;margin-bottom:8px;">practice — type the reading</div>
+        <input type="text" id="kanji-input" placeholder="type the on'yomi or kun'yomi reading…"/>
+        <div class="btn-row">
           <button class="btn primary" onclick="checkKanji()">Check</button>
           <button class="btn" onclick="document.getElementById('kanji-input').value='';document.getElementById('kanji-feedback').innerHTML='';">Clear</button>
           <button class="btn soft" id="kanji-learn-btn" onclick="markKanjiLearned()">Mark as Learned</button>
@@ -193,11 +238,11 @@
     </div>
   </div>
 
-  <div class="win">
-    <div class="win-title"><span>🈳 Kanji Bank</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">kanji bank</div>
+    <div class="panel-body">
       <div class="kanji-bank-controls">
-        <input type="text" id="kanji-search" placeholder="Search kanji, reading, or meaning…" style="max-width:240px;" oninput="filterKanjiBank()"/>
+        <input type="text" id="kanji-search" placeholder="search kanji, reading, or meaning…" style="max-width:240px;" oninput="filterKanjiBank()"/>
         <div style="display:flex;gap:4px;flex-wrap:wrap;" id="kanji-jlpt-filters"></div>
       </div>
       <div class="kanji-grid" id="kanji-bank-grid"></div>
@@ -209,14 +254,14 @@
      QUIZ
 ════════════════════════════════════════ -->
 <div id="page-quiz" class="page">
-  <div class="win">
-    <div class="win-title"><span>🌟 Quiz — Select a Lesson</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body"><div class="chip-row" id="quiz-chips"></div></div>
+  <div class="panel">
+    <div class="panel-title">quiz — select a lesson</div>
+    <div class="panel-body"><div class="chip-row" id="quiz-chips"></div></div>
   </div>
 
-  <div class="win" id="quiz-card">
-    <div class="win-title"><span>Question</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel" id="quiz-card" style="margin-top:10px;">
+    <div class="panel-title">question</div>
+    <div class="panel-body">
       <div class="quiz-bar-wrap">
         <div class="prog-wrap" style="flex:1;"><div class="prog-bar" id="quiz-bar" style="width:0%"></div></div>
         <span class="pill" id="quiz-score-pill">Score: 0</span>
@@ -230,9 +275,9 @@
     </div>
   </div>
 
-  <div class="win quiz-result" id="quiz-result" style="display:none;">
-    <div class="win-title"><span>Results</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel quiz-result" id="quiz-result" style="display:none;margin-top:10px;">
+    <div class="panel-title">results</div>
+    <div class="panel-body">
       <div class="quiz-result-icon" id="qr-icon"></div>
       <div class="quiz-result-score" id="qr-score"></div>
       <div class="quiz-result-msg" id="qr-msg"></div>
@@ -248,23 +293,23 @@
      FLASHCARDS
 ════════════════════════════════════════ -->
 <div id="page-flashcards" class="page">
-  <div class="win">
-    <div class="win-title"><span>🃏 Flashcards — Filter by Lesson</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel">
+    <div class="panel-title">flashcards — filter by lesson</div>
+    <div class="panel-body">
       <div class="chip-row" id="fc-chips"></div>
       <div class="fc-stats" id="fc-stats"></div>
     </div>
   </div>
 
-  <div class="win">
-    <div class="win-title"><span>🃏 Card</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">card</div>
     <div class="flashcard" id="flashcard" onclick="flipCard()">
       <span class="fc-tag-badge pill" id="fc-tag"></span>
       <span class="fc-known-badge" id="fc-known-badge" style="display:none;">🌸</span>
       <div id="fc-content" class="fc-front"></div>
       <div class="fc-hint" id="fc-hint">click to reveal</div>
     </div>
-    <div class="win-body" style="background:var(--white);">
+    <div class="panel-body">
       <div class="fc-controls">
         <button class="btn" onclick="fcMove(-1)" id="fc-prev">← Prev</button>
         <button class="btn" onclick="fcAgain()">Review again</button>
@@ -279,11 +324,11 @@
      BLOG
 ════════════════════════════════════════ -->
 <div id="page-blog" class="page">
-  <div class="win">
-    <div class="win-title"><span>📓 Study Blog</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel">
+    <div class="panel-title">study blog</div>
+    <div class="panel-body">
       <div class="admin-cta">
-        ✎ To write a new post, go to <a href="admin/" target="_blank">the admin panel »</a>
+        To write a new post, go to <a href="admin/" target="_blank">the admin panel »</a>
         (log in with GitHub). Posts appear here within ~30 seconds of publishing.
       </div>
       <hr class="glitter-rule"/>
@@ -293,11 +338,9 @@
     </div>
   </div>
 
-  <hr class="glitter-rule"/>
-
-  <div class="win">
-    <div class="win-title"><span>✎ Private Journal (this device only)</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">private journal (this device only)</div>
+    <div class="panel-body">
       <div class="mood-row" id="mood-row">
         <button class="mood-btn active" data-mood="😊">😊</button>
         <button class="mood-btn" data-mood="😤">😤</button>
@@ -306,11 +349,11 @@
         <button class="mood-btn" data-mood="🌸">🌸</button>
         <button class="mood-btn" data-mood="💪">💪</button>
       </div>
-      <textarea id="journal-input" rows="3" placeholder="Quick private note — only saved on this device, not published…"></textarea>
+      <textarea id="journal-input" rows="3" placeholder="quick private note — only saved on this device, not published…"></textarea>
       <div class="btn-row"><button class="btn primary" onclick="addJournalEntry()">Save note</button></div>
     </div>
   </div>
-  <div id="journal-entries"><div class="empty-state">No private notes yet 🌸</div></div>
+  <div id="journal-entries" style="margin-top:10px;"><div class="empty-state">No private notes yet 🌸</div></div>
 </div>
 
 <!-- ════════════════════════════════════════
@@ -318,45 +361,45 @@
 ════════════════════════════════════════ -->
 <div id="page-stats" class="page">
 
-  <div class="win">
-    <div class="win-title"><span>📱 Anki Stats — enter your latest numbers</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
+  <div class="panel">
+    <div class="panel-title">anki stats — enter your latest numbers</div>
+    <div class="panel-body">
       <div class="stats-input-grid">
-        <div class="stats-input-item"><label>Cards today</label><input type="number" id="anki-today" placeholder="e.g. 241" oninput="saveAnki()"/></div>
-        <div class="stats-input-item"><label>Again %</label><input type="number" id="anki-again" placeholder="e.g. 10.79" oninput="saveAnki()"/></div>
-        <div class="stats-input-item"><label>Mature retention %</label><input type="number" id="anki-mature" placeholder="e.g. 89.47" oninput="saveAnki()"/></div>
-        <div class="stats-input-item"><label>New cards left</label><input type="number" id="anki-new" placeholder="e.g. 1309" oninput="saveAnki()"/></div>
-        <div class="stats-input-item"><label>Total cards</label><input type="number" id="anki-total" placeholder="e.g. 1749" oninput="saveAnki()"/></div>
-        <div class="stats-input-item"><label>Days studied this month</label><input type="number" id="anki-days" placeholder="e.g. 16" oninput="saveAnki()"/></div>
+        <div class="stats-input-item"><label>cards today</label><input type="number" id="anki-today" placeholder="e.g. 241" oninput="saveAnki()"/></div>
+        <div class="stats-input-item"><label>again %</label><input type="number" id="anki-again" placeholder="e.g. 10.79" oninput="saveAnki()"/></div>
+        <div class="stats-input-item"><label>mature retention %</label><input type="number" id="anki-mature" placeholder="e.g. 89.47" oninput="saveAnki()"/></div>
+        <div class="stats-input-item"><label>new cards left</label><input type="number" id="anki-new" placeholder="e.g. 1309" oninput="saveAnki()"/></div>
+        <div class="stats-input-item"><label>total cards</label><input type="number" id="anki-total" placeholder="e.g. 1749" oninput="saveAnki()"/></div>
+        <div class="stats-input-item"><label>days studied this month</label><input type="number" id="anki-days" placeholder="e.g. 16" oninput="saveAnki()"/></div>
       </div>
     </div>
   </div>
 
-  <div class="win-grid-3" id="stats-cards"></div>
+  <div class="grid-3" id="stats-cards" style="margin-top:10px;"></div>
 
-  <div class="win">
-    <div class="win-title"><span>📈 14-Day Activity</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body" id="stats-activity"></div>
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">14-day activity</div>
+    <div class="panel-body" id="stats-activity"></div>
   </div>
 
-  <div class="win">
-    <div class="win-title"><span>📊 Progress Overview</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body" id="stats-bars">
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">progress overview</div>
+    <div class="panel-body" id="stats-bars">
       <div id="stats-bars-inner"></div>
     </div>
   </div>
 
-  <div class="win">
-    <div class="win-title"><span>📚 Vocab by Lesson</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body" id="stats-lesson-breakdown"></div>
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">vocab by lesson</div>
+    <div class="panel-body" id="stats-lesson-breakdown"></div>
   </div>
 
-  <div class="win">
-    <div class="win-title"><span>📅 Study Calendar</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body">
-      <div style="font-size:11px;color:var(--pink-muted);margin-bottom:8px;">Click a day to mark it as studied</div>
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">study calendar</div>
+    <div class="panel-body">
+      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:8px;">click a day to mark it as studied</div>
       <div id="study-calendar"></div>
-      <div style="font-size:11px;color:var(--pink-muted);margin-top:8px;" id="streak-label"></div>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:8px;" id="streak-label"></div>
     </div>
   </div>
 
@@ -366,17 +409,17 @@
      RESOURCES
 ════════════════════════════════════════ -->
 <div id="page-resources" class="page">
-  <div class="win">
-    <div class="win-title"><span>📊 Jo-Mako's Spreadsheets</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body"><div class="resource-grid" id="jomako-links"></div></div>
+  <div class="panel">
+    <div class="panel-title">jo-mako's spreadsheets</div>
+    <div class="panel-body"><div class="resource-grid" id="jomako-links"></div></div>
   </div>
-  <div class="win" style="margin-top:12px;">
-    <div class="win-title"><span>🛠 Study Tools</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body"><div class="resource-grid" id="tool-links"></div></div>
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">study tools</div>
+    <div class="panel-body"><div class="resource-grid" id="tool-links"></div></div>
   </div>
-  <div class="win" style="margin-top:12px;">
-    <div class="win-title"><span>📖 Genki Companions</span><span class="win-btns"><span>_</span><span>□</span><span>×</span></span></div>
-    <div class="win-body"><div class="resource-grid" id="genki-links"></div></div>
+  <div class="panel" style="margin-top:10px;">
+    <div class="panel-title">genki companions</div>
+    <div class="panel-body"><div class="resource-grid" id="genki-links"></div></div>
   </div>
 </div>
 
