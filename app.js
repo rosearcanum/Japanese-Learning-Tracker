@@ -101,7 +101,7 @@ async function fetchKanji(){
 }
 function showKanjiLoading(on){
   const el=document.getElementById("kanji-today-grid");
-  if(el&&on)el.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;font-family:'DM Sans',sans-serif;color:var(--muted);">🌸 Loading kanji from Jo-Mako's sheet…</div>`;
+  if(el&&on)el.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;font-size:12px;color:var(--ink-soft);">🌸 Loading kanji from Jo-Mako's sheet…</div>`;
 }
 
 const FALLBACK_KANJI=[
@@ -702,6 +702,10 @@ function renderHome(){
   document.getElementById("home-words").textContent=`${known}/${total}`;
   document.getElementById("home-lessons").textContent=`${lessons}/12`;
   document.getElementById("home-kanji-count").textContent=state.kanjiLearned.size;
+  // sidebar mirrors
+  const sbWords=document.getElementById("sb-words"); if(sbWords)sbWords.textContent=`${known}/${total}`;
+  const sbLessons=document.getElementById("sb-lessons"); if(sbLessons)sbLessons.textContent=`${lessons}/12`;
+  const sbKanji=document.getElementById("sb-kanji"); if(sbKanji)sbKanji.textContent=state.kanjiLearned.size;
   document.getElementById("home-progress-bar").style.width=pct+"%";
   document.getElementById("home-progress-label").textContent=`${known} of ${total} vocab words marked known`;
   document.getElementById("home-kanji-date").textContent=fmtDate(new Date());
@@ -710,17 +714,17 @@ function renderHome(){
     strip.innerHTML=todayKanjiIndices().map(i=>{const k=KANJI_DATA[i];
       return`<div class="home-kanji-chip" onclick="nav('kanji')">${k.char}<div class="chip-read">${(k.kun!=="—"?k.kun:k.on).split("・")[0]}</div></div>`;
     }).join("");
-  }else{strip.innerHTML=`<div style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);">Loading kanji…</div>`;}
+  }else{strip.innerHTML=`<div style="font-size:12px;color:var(--ink-soft);">Loading kanji…</div>`;}
   document.getElementById("home-lessons-grid").innerHTML=LESSONS.map((l,i)=>`
-    <div class="card lesson-overview-card ${state.lessonsDone[i]?"done":""}" onclick="selectLesson(${i});nav('lessons');">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+    <div class="panel lesson-overview-card ${state.lessonsDone[i]?"done":""}" onclick="selectLesson(${i});nav('lessons');">
+      <div class="panel-body" style="display:flex;justify-content:space-between;align-items:flex-start;">
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;">Lesson ${l.num}</div>
-          <div style="font-weight:700;font-size:14px;margin-top:2px;">${l.title}</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);font-style:italic;">${l.sub}</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--pink4);margin-top:4px;">${l.vocab.length} words</div>
+          <div style="font-size:9px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;">Lesson ${l.num}</div>
+          <div style="font-weight:500;font-size:13px;margin-top:2px;">${l.title}</div>
+          <div style="font-size:11px;color:var(--ink-soft);font-style:italic;">${l.sub}</div>
+          <div style="font-size:10px;color:var(--sakura-pink-dk);margin-top:4px;">${l.vocab.length} words</div>
         </div>
-        ${state.lessonsDone[i]?"<span style='font-size:20px;'>🌸</span>":""}
+        ${state.lessonsDone[i]?"<span style='font-size:18px;'>🌸</span>":""}
       </div>
     </div>`).join("");
 }
@@ -772,7 +776,7 @@ function renderLessonDetail(){
   }</div>`;
 
   document.getElementById("tab-extra-vocab").innerHTML=l.extraVocab&&l.extraVocab.length
-    ?`<div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);margin-bottom:10px;">Additional / supplementary vocabulary for this chapter</div>
+    ?`<div style="font-size:11px;color:var(--ink-soft);margin-bottom:10px;">Additional / supplementary vocabulary for this chapter</div>
       <div class="vocab-grid">${l.extraVocab.map(v=>`<div class="vocab-item">
         <div><div class="vocab-jp">${v.jp}</div><div class="vocab-read">${v.read}</div></div>
         <div style="text-align:right;"><div class="vocab-en">${v.en}</div><div class="vocab-pos">${v.pos}</div></div>
@@ -785,11 +789,11 @@ function renderLessonDetail(){
         <div class="lesson-kanji-card" onclick="nav('kanji')">
           <div class="lesson-kanji-char">${k.char}</div>
           <div style="font-weight:700;font-size:12px;">${k.on}</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted);">${k.mean}</div>
+          <div style="font-size:10px;color:var(--ink-soft);">${k.mean}</div>
           <span class="pill ${k.jlpt.toLowerCase()}" style="margin-top:6px;">${k.jlpt}</span>
         </div>`).join("")
       }</div>`
-    :`<div style="font-family:'DM Sans',sans-serif;color:var(--muted);font-size:13px;padding:12px 0;">Kanji loading from sheet… go to the Kanji tab to study today's set.</div>`;
+    :`<div style="color:var(--ink-soft);font-size:12px;padding:12px 0;">Kanji loading from sheet… go to the Kanji tab to study today's set.</div>`;
 
   // My Notes tab (loaded from /content/lessons via content-loader)
   const notesEl=document.getElementById("tab-notes-tab");
@@ -842,7 +846,7 @@ function selectKanji(ki){
   document.getElementById("kd-stroke").textContent=`${k.strokes} strokes`;
   document.getElementById("kd-examples").innerHTML=k.examples.length
     ?k.examples.map(ex=>`<div class="kanji-ex-item"><span class="kanji-ex-jp">${ex[0]}</span>${ex[1]?` <span class="kanji-ex-en">(${ex[1]})`:""} ${ex[2]?`— ${ex[2]}</span>`:""}</div>`).join("")
-    :`<div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);">No examples available</div>`;
+    :`<div style="font-size:11px;color:var(--ink-soft);">No examples available</div>`;
   const storyEl=document.getElementById("kd-story"),storyBtn=document.getElementById("kd-story-btn");
   if(k.story){storyEl.textContent=k.story;storyBtn.style.display="inline-block";}
   else{storyEl.style.display="none";storyBtn.style.display="none";}
@@ -1024,7 +1028,7 @@ function renderStats(){
     {icon:"🌟",val:qh.length?quizAvg+"%":"—",label:"Quiz Average",sub:`${qh.length} quizzes taken`},
     {icon:"📚",val:`${lessonsN}/12`,label:"Lessons Done",sub:"Genki I"},
     {icon:"📖",val:Object.keys(state.grammarDone||{}).length,label:"Grammar Points",sub:"practiced"},
-  ].map(s=>`<div class="card stat-card"><div class="stat-icon">${s.icon}</div><div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div><div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted);margin-top:2px;">${s.sub}</div></div>`).join("");
+  ].map(s=>`<div class="panel stat-block"><div class="stat-icon">${s.icon}</div><div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div><div style="font-size:10px;color:var(--ink-soft);margin-top:2px;">${s.sub}</div></div>`).join("");
 
   // Progress bars
   document.getElementById("stats-bars-inner").innerHTML=[
@@ -1084,7 +1088,7 @@ function renderActivitySparkline(){
     <div class="spark-row">
       ${days.map(x=>{
         const h=Math.max(4,Math.round((x.total/max)*60));
-        const col=x.total>0?"var(--pink3)":(x.studied?"var(--pink1)":"var(--border)");
+        const col=x.total>0?"var(--sakura-pink)":(x.studied?"var(--sakura-pink-lt)":"var(--line-soft)");
         return `<div class="spark-col" title="${x.total} actions">
           <div class="spark-bar" style="height:${h}px;background:${col};"></div>
           <div class="spark-label">${x.label}</div>
@@ -1161,9 +1165,11 @@ function renderJournal(){
   const el=document.getElementById("journal-entries");
   if(!state.journalEntries.length){el.innerHTML='<div class="empty-state">No private notes yet 🌸</div>';return;}
   el.innerHTML=state.journalEntries.map(e=>`
-    <div class="card entry-card">
-      <div class="entry-header"><span class="entry-date">${e.date}</span><span style="font-size:22px;">${e.mood}</span></div>
-      <div class="entry-text">${e.text.replace(/\n/g,"<br>")}</div>
+    <div class="panel entry-card">
+      <div class="panel-body">
+        <div class="entry-header"><span class="entry-date">${e.date}</span><span style="font-size:22px;">${e.mood}</span></div>
+        <div class="entry-text">${e.text.replace(/\n/g,"<br>")}</div>
+      </div>
     </div>`).join("");
 }
 
@@ -1204,15 +1210,15 @@ function renderGrammar(){
   const data=G[grammarLesson];
   const pointsEl=document.getElementById("grammar-points");
   const introWin=document.getElementById("grammar-intro");
-  const introEl=introWin?introWin.querySelector(".win-body"):introWin;
+  const introEl=introWin?introWin.querySelector(".panel-body"):introWin;
   if(!pointsEl||!introEl)return;
   if(!data){
     introEl.innerHTML=`<div class="grammar-intro-text">📖 In-depth grammar with practice questions is available for Lessons 1–6 so far. Lesson ${grammarLesson}'s detailed write-up is coming soon — for now, see the <b>Grammar Summary</b> tab above for this lesson's key points.</div>`;
     pointsEl.innerHTML="";
     return;
   }
-  const introTitle=introWin?introWin.querySelector(".win-title span:first-child"):null;
-  if(introTitle)introTitle.textContent=`Lesson ${grammarLesson} — Overview`;
+  const introTitle=introWin?introWin.querySelector(".panel-title"):null;
+  if(introTitle)introTitle.textContent=`lesson ${grammarLesson} — overview`;
   introEl.innerHTML=`<div class="grammar-intro-text">${data.intro}</div>`;
 
   pointsEl.innerHTML=data.points.map((p,pi)=>{
