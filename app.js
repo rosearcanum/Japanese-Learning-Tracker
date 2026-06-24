@@ -1,7 +1,8 @@
 /* ══════════════════════════════════════════
-   日本語 Study App — app.js  v2
-   Vocab: Marshall Yin / Genki I 3rd ed.
-   Kanji: live from Jo-Mako's sheet
+   日本語 Study App — app.js  v3
+   Vocab: Genki I 3rd ed. official word index (886 words)
+   Kanji: static dataset from Jo-Mako's spreadsheet (3,014 entries)
+         — baked in via kanji-data.js, no live fetch needed
 ══════════════════════════════════════════ */
 
 // ── Netlify Identity: redirect to admin after login confirmation ──
@@ -13,95 +14,28 @@ if (window.netlifyIdentity) {
   });
 }
 
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-const SHEET_ID  = "1056uW4iIObSuwptN5Xpbg0UbOy9ALvxMUIxQbl6QfUI";
-const KANJI_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Kanji`;
-
+// ─── KANJI DATA — loaded from the static kanji-data.js file ──────────────────
 let KANJI_DATA = [];
 
-// ─── CSV / FETCH ──────────────────────────────────────────────────────────────
-function parseCSV(text) {
-  const rows = []; let row = [], field = "", inQ = false;
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i], nx = text[i+1];
-    if (inQ) {
-      if (ch==='"'&&nx==='"'){field+='"';i++;}
-      else if(ch==='"'){inQ=false;}
-      else{field+=ch;}
-    } else {
-      if(ch==='"'){inQ=true;}
-      else if(ch===','){row.push(field.trim());field="";}
-      else if(ch==='\n'||(ch==='\r'&&nx==='\n')){row.push(field.trim());rows.push(row);row=[];field="";if(ch==='\r')i++;}
-      else{field+=ch;}
-    }
-  }
-  if(field||row.length){row.push(field.trim());rows.push(row);}
-  return rows;
-}
-function stripHTML(s){return(s||"").replace(/<[^>]+>/g," ").replace(/\s{2,}/g," ").trim();}
-function parseVocab(str){
-  if(!str)return[];
-  // Real format: "日 【にち】 meaning, meaning<br><br>次の語 【かな】 meaning"
-  const entries=str.split(/<br\s*\/?>\s*<br\s*\/?>|<br\s*\/?>/i)
-    .map(e=>e.replace(/<[^>]+>/g,"").trim())
-    .filter(Boolean).slice(0,4);
-  return entries.map(e=>{
-    const m=e.match(/^(.+?)\s*【(.+?)】\s*(.+)$/);
-    if(m)return[m[1].trim(),m[2].trim(),m[3].split(/[,，]/)[0].trim()];
-    return[e.trim(),"",""];
-  }).filter(e=>e[0]);
-}
-// Clean a keyword/meaning field: strip <br> & HTML, join with commas, lowercase-ish
-function cleanMeaning(s){
-  if(!s)return "";
-  // turn <br> into separators, strip any other HTML
-  let t=s.replace(/<br\s*\/?>/gi,"|").replace(/<[^>]+>/g," ");
-  // split on the separator, trim each, drop empties and "(none)"
-  const parts=t.split("|").map(x=>x.trim()).filter(x=>x&&!/^\(?none\)?$/i.test(x));
-  // de-dupe while preserving order
-  const seen=new Set(),out=[];
-  for(const p of parts){const k=p.toLowerCase();if(!seen.has(k)){seen.add(k);out.push(p);}}
-  return out.join(", ");
-}
-// Clean a reading field: split on Japanese comma, strip "(none)" and notes
-function cleanReading(s){
-  if(!s)return "—";
-  let t=s.replace(/<[^>]+>/g,"").replace(/[、,]/g,"・");
-  const parts=t.split("・").map(x=>x.trim()).filter(x=>x&&!/^\(?none\)?$/i.test(x)&&!/^-/.test(x));
-  return parts.length?parts.join("・"):"—";
-}
-
-function rowToKanji(h,c){
-  const g=n=>(c[h.indexOf(n)]||"").trim();
-  const char=g("Kanji");if(!char||char==="Kanji")return null;
-  const meaning=cleanMeaning(g("Keyword_KKLC"))||cleanMeaning(g("Keyword_RTK"))||"(no translation)";
-  return{
-    char,
-    on:cleanReading(g("Reading On")),
-    kun:cleanReading(g("Reading Kun")),
-    mean:meaning,
-    jlpt:g("Info_JLPT")||"—",
-    strokes:parseInt(g("Info_Stroke_Count"))||0,
-    freq2k:g("Info_Frequency_Top2000")==="TRUE",freq5k:g("Info_Frequency_Top5000")==="TRUE",
-    examples:[...parseVocab(g("Vocab_On")),...parseVocab(g("Vocab_Kun"))].slice(0,4),
-    story:stripHTML(g("Story_Wanikani")||g("Story_KKLC")||g("Story_RTK")||"").slice(0,500),
-  };
-}
-
-async function fetchKanji(){
+function loadKanjiData(){
   showKanjiLoading(true);
   try{
-    const res=await fetch(KANJI_URL);if(!res.ok)throw new Error("HTTP "+res.status);
-    const text=await res.text();const rows=parseCSV(text);if(rows.length<2)throw new Error("Empty");
-    const h=rows[0].map(x=>x.trim());
-    KANJI_DATA=rows.slice(1).map(r=>rowToKanji(h,r)).filter(Boolean);
-    console.log("✅ Loaded "+KANJI_DATA.length+" kanji");
-  }catch(e){console.warn("⚠️ Kanji fetch failed:",e.message,"— using fallback");KANJI_DATA=FALLBACK_KANJI;}
+    if(window.KANJI_DATA_FULL && window.KANJI_DATA_FULL.length){
+      KANJI_DATA = window.KANJI_DATA_FULL;
+      console.log("✅ Loaded "+KANJI_DATA.length+" kanji from static dataset");
+    } else {
+      console.warn("⚠️ kanji-data.js not found or empty — using fallback");
+      KANJI_DATA = FALLBACK_KANJI;
+    }
+  }catch(e){
+    console.warn("⚠️ Kanji data load failed:",e.message,"— using fallback");
+    KANJI_DATA = FALLBACK_KANJI;
+  }
   showKanjiLoading(false);renderKanji();renderHome();
 }
 function showKanjiLoading(on){
   const el=document.getElementById("kanji-today-grid");
-  if(el&&on)el.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;font-size:12px;color:var(--ink-soft);">🌸 Loading kanji from Jo-Mako's sheet…</div>`;
+  if(el&&on)el.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;font-size:12px;color:var(--ink-soft);">🌸 Loading kanji…</div>`;
 }
 
 const FALLBACK_KANJI=[
@@ -1305,7 +1239,7 @@ let state={
   lessonsDone:{},selectedLesson:0,
   quizLessonIdx:0,quizQIdx:0,quizScore:0,quizAnswered:false,
   fcFilter:"All",fcIdx:0,fcFlipped:false,fcKnown:new Set(),
-  kanjiLearned:new Set(),selectedKanjiIdx:null,kanjiJlptFilter:"All",
+  kanjiLearned:new Set(),selectedKanjiIdx:null,kanjiJlptFilter:"N5",
   journalEntries:[],selectedMood:"😊",
   studiedDays:new Set(),
   grammarDone:{},
@@ -1356,12 +1290,23 @@ function nav(page){
 document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>nav(btn.dataset.page)));
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
+// Indices ordered N5 → N4 → N3 → N2 → N1 → unrated, so daily rotation
+// ramps up in difficulty instead of hitting random JLPT levels.
+let KANJI_DIFFICULTY_ORDER = [];
+function buildDifficultyOrder(){
+  const order = ["N5","N4","N3","N2","N1","—"];
+  KANJI_DIFFICULTY_ORDER = KANJI_DATA
+    .map((k,i)=>i)
+    .sort((a,b)=> order.indexOf(KANJI_DATA[a].jlpt) - order.indexOf(KANJI_DATA[b].jlpt));
+}
+
 function todayKanjiIndices(){
   if(!KANJI_DATA.length)return[];
+  if(!KANJI_DIFFICULTY_ORDER.length)buildDifficultyOrder();
   const start=new Date(new Date().getFullYear(),0,0);
   const doy=Math.floor((new Date()-start)/86400000);
-  const s=((doy-1)*5)%KANJI_DATA.length;
-  return Array.from({length:5},(_,i)=>(s+i)%KANJI_DATA.length);
+  const s=((doy-1)*5)%KANJI_DIFFICULTY_ORDER.length;
+  return Array.from({length:5},(_,i)=>KANJI_DIFFICULTY_ORDER[(s+i)%KANJI_DIFFICULTY_ORDER.length]);
 }
 function fmtDate(d){return d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});}
 function todayKey(){const d=new Date();return`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;}
@@ -1576,21 +1521,36 @@ function markKanjiLearned(){
 function renderKanjiBank(){
   const search=(document.getElementById("kanji-search")||{}).value?.toLowerCase()||"";
   const jlpt=state.kanjiJlptFilter;
-  document.getElementById("kanji-jlpt-filters").innerHTML=["All","N5","N4","N3","N2"].map(f=>
+  document.getElementById("kanji-jlpt-filters").innerHTML=["All","N5","N4","N3","N2","N1"].map(f=>
     `<button class="chip ${jlpt===f?"active":""}" onclick="setKanjiFilter('${f}')">${f}</button>`).join("");
-  const filtered=KANJI_DATA.filter(k=>{
+
+  const MAX_RESULTS=300; // cap rendering so the page stays fast with 3,000+ kanji
+  let count=0, shown=0;
+  const cards=[];
+  for(let ki=0; ki<KANJI_DATA.length; ki++){
+    const k=KANJI_DATA[ki];
     const mj=jlpt==="All"||k.jlpt===jlpt;
+    if(!mj)continue;
     const ms=!search||k.char.includes(search)||k.on.toLowerCase().includes(search)||k.kun.toLowerCase().includes(search)||k.mean.toLowerCase().includes(search);
-    return mj&&ms;
-  });
-  document.getElementById("kanji-bank-grid").innerHTML=filtered.map(k=>{
-    const ki=KANJI_DATA.indexOf(k),learned=state.kanjiLearned.has(ki);
-    return`<div class="kanji-grid-item ${learned?"learned":""}" onclick="selectKanji(${ki})" title="${k.on} / ${k.kun} — ${k.mean}">
+    if(!ms)continue;
+    count++;
+    if(shown>=MAX_RESULTS)continue;
+    shown++;
+    const learned=state.kanjiLearned.has(ki);
+    cards.push(`<div class="kanji-grid-item ${learned?"learned":""}" onclick="selectKanji(${ki})" title="${k.on} / ${k.kun} — ${k.mean}">
       <div class="kanji-grid-char">${k.char}</div>
       <div class="kanji-grid-read">${k.on.split("・")[0]}</div>
       <div class="kanji-grid-mean">${k.mean.split(",")[0]}</div>
-    </div>`;
-  }).join("");
+    </div>`);
+  }
+  document.getElementById("kanji-bank-grid").innerHTML=cards.join("");
+
+  const noteEl=document.getElementById("kanji-bank-note");
+  if(noteEl){
+    noteEl.textContent = count>MAX_RESULTS
+      ? `Showing ${MAX_RESULTS} of ${count} matches — narrow with the search box or a JLPT filter to see more.`
+      : `${count} kanji found.`;
+  }
 }
 function setKanjiFilter(f){state.kanjiJlptFilter=f;renderKanjiBank();}
 function filterKanjiBank(){renderKanjiBank();}
@@ -2035,7 +1995,7 @@ renderFC();
 renderJournal();
 renderResources();
 spawnPetals();
-fetchKanji();
+loadKanjiData();
 
 // ── Expose cross-file functions globally (so content-loader.js can call them) ──
 window.mergeCustomDecks = mergeCustomDecks;

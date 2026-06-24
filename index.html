@@ -245,6 +245,7 @@
         <input type="text" id="kanji-search" placeholder="search kanji, reading, or meaning…" style="max-width:240px;" oninput="filterKanjiBank()"/>
         <div style="display:flex;gap:4px;flex-wrap:wrap;" id="kanji-jlpt-filters"></div>
       </div>
+      <div id="kanji-bank-note" style="font-size:10px;color:var(--ink-soft);margin-bottom:8px;"></div>
       <div class="kanji-grid" id="kanji-bank-grid"></div>
     </div>
   </div>
@@ -427,6 +428,7 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="grammar.js"></script>
 <script src="content-loader.js"></script>
+<script src="kanji-data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
