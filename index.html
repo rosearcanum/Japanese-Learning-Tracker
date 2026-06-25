@@ -226,7 +226,7 @@
       </div>
       <div class="kanji-practice-section">
         <div style="font-weight:500;font-size:12px;margin-bottom:8px;">practice — type the reading</div>
-        <input type="text" id="kanji-input" placeholder="type the on'yomi or kun'yomi reading…"/>
+        <input type="text" id="kanji-input" placeholder="type romaji or kana — e.g. nichi or にち…"/>
         <div class="btn-row">
           <button class="btn primary" onclick="checkKanji()">Check</button>
           <button class="btn" onclick="document.getElementById('kanji-input').value='';document.getElementById('kanji-feedback').innerHTML='';">Clear</button>
@@ -242,7 +242,7 @@
     <div class="panel-title">kanji bank</div>
     <div class="panel-body">
       <div class="kanji-bank-controls">
-        <input type="text" id="kanji-search" placeholder="search kanji, reading, or meaning…" style="max-width:240px;" oninput="filterKanjiBank()"/>
+        <input type="text" id="kanji-search" placeholder="search by kanji, romaji, reading, or meaning…" style="max-width:280px;" oninput="filterKanjiBank()"/>
         <div style="display:flex;gap:4px;flex-wrap:wrap;" id="kanji-jlpt-filters"></div>
       </div>
       <div id="kanji-bank-note" style="font-size:10px;color:var(--ink-soft);margin-bottom:8px;"></div>
@@ -426,9 +426,29 @@
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="romaji.js"></script>
 <script src="grammar.js"></script>
 <script src="content-loader.js"></script>
 <script src="kanji-data.js"></script>
 <script src="app.js"></script>
+<!-- ════════════════════════════════════════
+     VOCAB POPUP MODAL — click any word to enlarge
+════════════════════════════════════════ -->
+<div id="vocab-modal-overlay" onclick="closeVocabModal(event)" style="display:none;position:fixed;inset:0;background:rgba(58,46,48,0.4);z-index:500;align-items:center;justify-content:center;">
+  <div class="panel" style="max-width:380px;width:90%;" onclick="event.stopPropagation()">
+    <div class="panel-title" style="display:flex;justify-content:space-between;align-items:center;">
+      <span>word detail</span>
+      <span style="cursor:pointer;font-weight:700;" onclick="closeVocabModal()">×</span>
+    </div>
+    <div class="panel-body" style="text-align:center;padding:28px 18px;">
+      <div id="vm-jp" style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--sakura-pink-dk);margin-bottom:8px;"></div>
+      <div id="vm-read" style="font-size:18px;color:var(--ink-soft);margin-bottom:10px;"></div>
+      <div id="vm-en" style="font-size:16px;margin-bottom:8px;"></div>
+      <div id="vm-pos" class="pill" style="margin-bottom:14px;"></div>
+      <div id="vm-kanji-row" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

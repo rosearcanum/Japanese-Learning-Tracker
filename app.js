@@ -60,13 +60,10 @@ const LESSONS = [
     ],
     vocab:[
       {jp:"アジア研究",read:"アジアけんきゅう",en:"Asian studies",pos:"n."},
-      {jp:"あのう",read:"あのう",en:"um . . .",pos:"exp."},
       {jp:"アメリカ",read:"アメリカ",en:"U.S.A.",pos:"n."},
       {jp:"イギリス",read:"イギリス",en:"Britain",pos:"n."},
       {jp:"医者",read:"いしゃ",en:"doctor",pos:"n."},
-      {jp:"一時",read:"いちじ",en:"one o’clock",pos:"n."},
       {jp:"一年生",read:"いちねんせい",en:"first-year student",pos:"n."},
-      {jp:"一分",read:"いっぷん",en:"one minute",pos:"n."},
       {jp:"今",read:"いま",en:"now",pos:"adv."},
       {jp:"妹",read:"いもうと",en:"younger sister",pos:"n."},
       {jp:"インド",read:"インド",en:"India",pos:"n."},
@@ -82,18 +79,47 @@ const LESSONS = [
       {jp:"カナダ",read:"カナダ",en:"Canada",pos:"n."},
       {jp:"韓国",read:"かんこく",en:"Korea",pos:"n."},
       {jp:"看護師",read:"かんごし",en:"nurse",pos:"n."},
-      {jp:"九分",read:"きゅうふん",en:"nine minutes",pos:"n."},
-      {jp:"九時",read:"くじ",en:"nine o’clock",pos:"n."},
       {jp:"経済",read:"けいざい",en:"economics",pos:"n."},
-      {jp:"～語",read:"～ご",en:". . . language",pos:"suf."},
       {jp:"高校",read:"こうこう",en:"high school",pos:"n."},
       {jp:"高校生",read:"こうこうせい",en:"high school student",pos:"n."},
       {jp:"国際関係",read:"こくさいかんけい",en:"international relations",pos:"n."},
       {jp:"午後",read:"ごご",en:"p.m.",pos:"n."},
-      {jp:"五時",read:"ごじ",en:"five o’clock",pos:"n."},
       {jp:"午前",read:"ごぜん",en:"a.m.",pos:"n."},
-      {jp:"五分",read:"ごふん",en:"five minutes",pos:"n."},
       {jp:"コンピューター",read:"コンピューター",en:"computer",pos:"n."},
+      {jp:"主婦",read:"しゅふ",en:"housewife",pos:"n."},
+      {jp:"政治",read:"せいじ",en:"politics",pos:"n."},
+      {jp:"生物学",read:"せいぶつがく",en:"biology",pos:"n."},
+      {jp:"専攻",read:"せんこう",en:"major",pos:"n."},
+      {jp:"先生",read:"せんせい",en:"teacher; Professor . . .",pos:"n."},
+      {jp:"大学",read:"だいがく",en:"college; university",pos:"n."},
+      {jp:"大学院生",read:"だいがくいんせい",en:"graduate student",pos:"n."},
+      {jp:"大学生",read:"だいがくせい",en:"college student",pos:"n."},
+      {jp:"中国",read:"ちゅうごく",en:"China",pos:"n."},
+      {jp:"電話",read:"でんわ",en:"telephone",pos:"n."},
+      {jp:"友だち",read:"ともだち",en:"friend",pos:"n."},
+      {jp:"名前",read:"なまえ",en:"name",pos:"n."},
+      {jp:"二時半",read:"にじはん",en:"half past two",pos:"n."},
+      {jp:"日本",read:"にほん",en:"Japan",pos:"n."},
+      {jp:"日本語",read:"にほんご",en:"Japanese language",pos:"n."},
+      {jp:"日本人",read:"にほんじん",en:"Japanese people",pos:"n."},
+      {jp:"番号",read:"ばんごう",en:"number",pos:"n."},
+      {jp:"ビジネス",read:"ビジネス",en:"business",pos:"n."},
+      {jp:"フィリピン",read:"フィリピン",en:"Philippines",pos:"n."},
+      {jp:"文学",read:"ぶんがく",en:"literature",pos:"n."},
+      {jp:"弁護士",read:"べんごし",en:"lawyer",pos:"n."},
+      {jp:"留学生",read:"りゅうがくせい",en:"international student",pos:"n."},
+      {jp:"歴史",read:"れきし",en:"history",pos:"n."},
+      {jp:"私",read:"わたし",en:"I",pos:"n."}
+    ],
+    extraVocab:[
+      {jp:"あのう",read:"あのう",en:"um . . .",pos:"exp."},
+      {jp:"一時",read:"いちじ",en:"one o’clock",pos:"n."},
+      {jp:"一分",read:"いっぷん",en:"one minute",pos:"n."},
+      {jp:"九分",read:"きゅうふん",en:"nine minutes",pos:"n."},
+      {jp:"九時",read:"くじ",en:"nine o’clock",pos:"n."},
+      {jp:"～語",read:"～ご",en:". . . language",pos:"suf."},
+      {jp:"五時",read:"ごじ",en:"five o’clock",pos:"n."},
+      {jp:"五分",read:"ごふん",en:"five minutes",pos:"n."},
       {jp:"～歳",read:"～さい",en:". . . years old",pos:"suf."},
       {jp:"～さん",read:"～さん",en:"Mr./Ms. . . .",pos:"suf."},
       {jp:"三時",read:"さんじ",en:"three o’clock",pos:"n."},
@@ -115,32 +141,16 @@ const LESSONS = [
       {jp:"十四分",read:"じゅうよんぷん",en:"fourteen minutes",pos:"n."},
       {jp:"十六分",read:"じゅうろっぷん",en:"sixteen minutes",pos:"n."},
       {jp:"十分",read:"じゅっぷん",en:"ten minutes",pos:"n."},
-      {jp:"主婦",read:"しゅふ",en:"housewife",pos:"n."},
       {jp:"～人",read:"～じん",en:". . . people",pos:"suf."},
-      {jp:"政治",read:"せいじ",en:"politics",pos:"n."},
-      {jp:"生物学",read:"せいぶつがく",en:"biology",pos:"n."},
-      {jp:"専攻",read:"せんこう",en:"major",pos:"n."},
-      {jp:"先生",read:"せんせい",en:"teacher; Professor . . .",pos:"n."},
       {jp:"そうです",read:"そうです",en:"That’s right.",pos:"exp."},
       {jp:"そうですか",read:"そうですか",en:"I see.; Is that so?",pos:"exp."},
-      {jp:"大学",read:"だいがく",en:"college; university",pos:"n."},
-      {jp:"大学院生",read:"だいがくいんせい",en:"graduate student",pos:"n."},
-      {jp:"大学生",read:"だいがくせい",en:"college student",pos:"n."},
-      {jp:"中国",read:"ちゅうごく",en:"China",pos:"n."},
-      {jp:"電話",read:"でんわ",en:"telephone",pos:"n."},
-      {jp:"友だち",read:"ともだち",en:"friend",pos:"n."},
       {jp:"七分",read:"ななふん",en:"seven minutes",pos:"n."},
       {jp:"何",read:"なに/なん",en:"what",pos:"n."},
-      {jp:"名前",read:"なまえ",en:"name",pos:"n."},
       {jp:"何",read:"なん/なに",en:"what",pos:"n."},
       {jp:"二時",read:"にじ",en:"two o’clock",pos:"n."},
       {jp:"二十分",read:"にじっぷん",en:"twenty minutes",pos:"n."},
-      {jp:"二時半",read:"にじはん",en:"half past two",pos:"n."},
       {jp:"二十分",read:"にじゅっぷん",en:"twenty minutes",pos:"n."},
       {jp:"二分",read:"にふん",en:"two minutes",pos:"n."},
-      {jp:"日本",read:"にほん",en:"Japan",pos:"n."},
-      {jp:"日本語",read:"にほんご",en:"Japanese language",pos:"n."},
-      {jp:"日本人",read:"にほんじん",en:"Japanese people",pos:"n."},
       {jp:"～年生",read:"～ねんせい",en:". . . year student",pos:"suf."},
       {jp:"はい",read:"はい",en:"yes",pos:"exp."},
       {jp:"八時",read:"はちじ",en:"eight o’clock",pos:"n."},
@@ -148,20 +158,11 @@ const LESSONS = [
       {jp:"八分",read:"はっぷん",en:"eight minutes",pos:"n."},
       {jp:"半",read:"はん",en:"half",pos:"suf."},
       {jp:"～番",read:"～ばん",en:"number . . .",pos:"suf."},
-      {jp:"番号",read:"ばんごう",en:"number",pos:"n."},
-      {jp:"ビジネス",read:"ビジネス",en:"business",pos:"n."},
-      {jp:"フィリピン",read:"フィリピン",en:"Philippines",pos:"n."},
-      {jp:"文学",read:"ぶんがく",en:"literature",pos:"n."},
-      {jp:"弁護士",read:"べんごし",en:"lawyer",pos:"n."},
       {jp:"四時",read:"よじ",en:"four o’clock",pos:"n."},
       {jp:"四分",read:"よんぷん",en:"four minutes",pos:"n."},
-      {jp:"留学生",read:"りゅうがくせい",en:"international student",pos:"n."},
-      {jp:"歴史",read:"れきし",en:"history",pos:"n."},
       {jp:"六時",read:"ろくじ",en:"six o’clock",pos:"n."},
-      {jp:"六分",read:"ろっぷん",en:"six minutes",pos:"n."},
-      {jp:"私",read:"わたし",en:"I",pos:"n."}
+      {jp:"六分",read:"ろっぷん",en:"six minutes",pos:"n."}
     ],
-    extraVocab:[],
     kanjiChars:["日","本","人","私","今"],
     quiz:[
       {q:"How do you say 'Mary is a student'?",ch:["メアリーさんはがくせいです。","メアリーさんはがくせいじゃないです。","メアリーさんはせんせいです。","メアリーさんはがくせいですか。"],a:0},
@@ -181,25 +182,19 @@ const LESSONS = [
     ],
     vocab:[
       {jp:"あそこ",read:"あそこ",en:"over there",pos:"n."},
-      {jp:"あの",read:"あの",en:"that . . . (over there)",pos:"pre."},
       {jp:"あれ",read:"あれ",en:"that one (over there)",pos:"n."},
       {jp:"いくら",read:"いくら",en:"how much",pos:"n."},
       {jp:"いす",read:"いす",en:"chair",pos:"n."},
-      {jp:"いらっしゃいませ",read:"いらっしゃいませ",en:"Welcome (to our store).",pos:"exp."},
       {jp:"英語",read:"えいご",en:"English language",pos:"n."},
-      {jp:"～円",read:"～えん",en:". . . yen",pos:"suf."},
       {jp:"おいしい",read:"おいしい",en:"delicious",pos:"い-adj."},
-      {jp:"おねがいします（～を）",read:"おねがいします（～を）",en:". . . , please.",pos:"exp."},
       {jp:"カーテン",read:"カーテン",en:"curtain",pos:"n."},
       {jp:"傘",read:"かさ",en:"umbrella",pos:"n."},
       {jp:"かばん",read:"かばん",en:"bag",pos:"n."},
       {jp:"銀行",read:"ぎんこう",en:"bank",pos:"n."},
-      {jp:"ください（～を）",read:"ください（～を）",en:"Please give me . . .",pos:"exp."},
       {jp:"靴",read:"くつ",en:"shoes",pos:"n."},
       {jp:"消しゴム",read:"けしゴム",en:"eraser",pos:"n."},
       {jp:"黒板",read:"こくばん",en:"blackboard",pos:"n."},
       {jp:"ここ",read:"ここ",en:"here",pos:"n."},
-      {jp:"この",read:"この",en:"this . . .",pos:"pre."},
       {jp:"これ",read:"これ",en:"this one",pos:"n."},
       {jp:"コンビニ",read:"コンビニ",en:"convenience store",pos:"n."},
       {jp:"財布",read:"さいふ",en:"wallet",pos:"n."},
@@ -207,11 +202,9 @@ const LESSONS = [
       {jp:"ジーンズ",read:"ジーンズ",en:"jeans",pos:"n."},
       {jp:"辞書",read:"じしょ",en:"dictionary",pos:"n."},
       {jp:"自転車",read:"じてんしゃ",en:"bicycle",pos:"n."},
-      {jp:"じゃあ",read:"じゃあ",en:"then . . . ; if that is the case, . . .",pos:"exp."},
       {jp:"新聞",read:"しんぶん",en:"newspaper",pos:"n."},
       {jp:"スマホ",read:"スマホ",en:"smartphone; mobile",pos:"n."},
       {jp:"そこ",read:"そこ",en:"there",pos:"n."},
-      {jp:"その",read:"その",en:"that . . .",pos:"pre."},
       {jp:"それ",read:"それ",en:"that one",pos:"n."},
       {jp:"高い",read:"たかい",en:"expensive; high",pos:"い-adj."},
       {jp:"だれ",read:"だれ",en:"who",pos:"n."},
@@ -220,12 +213,9 @@ const LESSONS = [
       {jp:"電気",read:"でんき",en:"electricity; light",pos:"n."},
       {jp:"ドア",read:"ドア",en:"door",pos:"n."},
       {jp:"トイレ",read:"トイレ",en:"toilet; restroom",pos:"n."},
-      {jp:"どうぞ",read:"どうぞ",en:"Please.; Here it is.",pos:"exp."},
-      {jp:"どうも",read:"どうも",en:"Thank you.",pos:"exp."},
       {jp:"時計",read:"とけい",en:"watch; clock",pos:"n."},
       {jp:"どこ",read:"どこ",en:"where",pos:"n."},
       {jp:"図書館",read:"としょかん",en:"library",pos:"n."},
-      {jp:"どの",read:"どの",en:"which . . .",pos:"pre."},
       {jp:"どれ",read:"どれ",en:"which one",pos:"n."},
       {jp:"とんかつ",read:"とんかつ",en:"pork cutlet",pos:"n."},
       {jp:"肉",read:"にく",en:"meat",pos:"n."},
@@ -238,7 +228,19 @@ const LESSONS = [
       {jp:"野菜",read:"やさい",en:"vegetable",pos:"n."},
       {jp:"郵便局",read:"ゆうびんきょく",en:"post office",pos:"n."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"あの",read:"あの",en:"that . . . (over there)",pos:"pre."},
+      {jp:"いらっしゃいませ",read:"いらっしゃいませ",en:"Welcome (to our store).",pos:"exp."},
+      {jp:"～円",read:"～えん",en:". . . yen",pos:"suf."},
+      {jp:"おねがいします（～を）",read:"おねがいします（～を）",en:". . . , please.",pos:"exp."},
+      {jp:"ください（～を）",read:"ください（～を）",en:"Please give me . . .",pos:"exp."},
+      {jp:"この",read:"この",en:"this . . .",pos:"pre."},
+      {jp:"じゃあ",read:"じゃあ",en:"then . . . ; if that is the case, . . .",pos:"exp."},
+      {jp:"その",read:"その",en:"that . . .",pos:"pre."},
+      {jp:"どうぞ",read:"どうぞ",en:"Please.; Here it is.",pos:"exp."},
+      {jp:"どうも",read:"どうも",en:"Thank you.",pos:"exp."},
+      {jp:"どの",read:"どの",en:"which . . .",pos:"pre."}
+    ],
     kanjiChars:["円","本","魚","高","食"],
     quiz:[
       {q:"Which word means 'this one' (near speaker)?",ch:["それ","あれ","これ","どれ"],a:2},
@@ -268,7 +270,6 @@ const LESSONS = [
       {jp:"いつ",read:"いつ",en:"when",pos:"n."},
       {jp:"うち",read:"うち",en:"home; house; my place",pos:"n."},
       {jp:"映画",read:"えいが",en:"movie",pos:"n."},
-      {jp:"ええ",read:"ええ",en:"yes",pos:"exp."},
       {jp:"起きる",read:"おきる",en:"to get up",pos:"ru-v."},
       {jp:"お酒",read:"おさけ",en:"sake; alcoholic drink",pos:"n."},
       {jp:"お茶",read:"おちゃ",en:"green tea",pos:"n."},
@@ -280,7 +281,6 @@ const LESSONS = [
       {jp:"今日",read:"きょう",en:"today",pos:"n."},
       {jp:"来る",read:"くる",en:"to come",pos:"irr-v."},
       {jp:"コーヒー",read:"コーヒー",en:"coffee",pos:"n."},
-      {jp:"～ごろ",read:"～ごろ",en:"at about . . .",pos:"suf."},
       {jp:"今晩",read:"こんばん",en:"tonight",pos:"n."},
       {jp:"酒",read:"さけ",en:"sake; alcohol",pos:"n."},
       {jp:"雑誌",read:"ざっし",en:"magazine",pos:"n."},
@@ -288,16 +288,13 @@ const LESSONS = [
       {jp:"スポーツ",read:"スポーツ",en:"sports",pos:"n."},
       {jp:"する",read:"する",en:"to do",pos:"irr-v."},
       {jp:"全然",read:"ぜんぜん ＋ negative",en:"not at all",pos:"adv."},
-      {jp:"そうですね",read:"そうですね",en:"That’s right.; Let me see.",pos:"exp."},
       {jp:"たいてい",read:"たいてい",en:"usually",pos:"adv."},
       {jp:"食べる",read:"たべる",en:"to eat",pos:"ru-v."},
       {jp:"茶",read:"ちゃ",en:"green tea",pos:"n."},
       {jp:"ちょっと",read:"ちょっと",en:"a little",pos:"adv."},
       {jp:"デート",read:"デート",en:"date (romantic, not calendar)",pos:"n."},
       {jp:"テニス",read:"テニス",en:"tennis",pos:"n."},
-      {jp:"でも",read:"でも",en:"but",pos:"exp."},
       {jp:"テレビ",read:"テレビ",en:"TV",pos:"n."},
-      {jp:"どうですか",read:"どうですか",en:"How about . . . ?; How is . . . ?",pos:"exp."},
       {jp:"時々",read:"ときどき",en:"sometimes",pos:"adv."},
       {jp:"土曜日",read:"どようび",en:"Saturday",pos:"n."},
       {jp:"日曜日",read:"にちようび",en:"Sunday",pos:"n."},
@@ -316,7 +313,13 @@ const LESSONS = [
       {jp:"よく",read:"よく",en:"often; much",pos:"adv."},
       {jp:"読む",read:"よむ",en:"to read",pos:"u-v."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"ええ",read:"ええ",en:"yes",pos:"exp."},
+      {jp:"～ごろ",read:"～ごろ",en:"at about . . .",pos:"suf."},
+      {jp:"そうですね",read:"そうですね",en:"That’s right.; Let me see.",pos:"exp."},
+      {jp:"でも",read:"でも",en:"but",pos:"exp."},
+      {jp:"どうですか",read:"どうですか",en:"How about . . . ?; How is . . . ?",pos:"exp."}
+    ],
     kanjiChars:["水","食","飲","見","聞"],
     quiz:[
       {q:"Polite present / future verb ending?",ch:["ます","ません","ました","ませんか"],a:0},
@@ -341,9 +344,7 @@ const LESSONS = [
       {jp:"あなた",read:"あなた",en:"you",pos:"n."},
       {jp:"ある",read:"ある",en:"there is . . .",pos:"u-v."},
       {jp:"アルバイト",read:"アルバイト",en:"part-time job",pos:"n."},
-      {jp:"一月",read:"いちがつ",en:"January",pos:"n."},
       {jp:"一時間",read:"いちじかん",en:"one hour",pos:"n."},
-      {jp:"五日",read:"いつか",en:"the fifth day of a month",pos:"n."},
       {jp:"犬",read:"いぬ",en:"dog",pos:"n."},
       {jp:"いる",read:"いる",en:"(a person) is in . . . ; stays at . . .",pos:"ru-v."},
       {jp:"上",read:"うえ",en:"on",pos:"n."},
@@ -358,34 +359,20 @@ const LESSONS = [
       {jp:"昨日",read:"きのう",en:"yesterday",pos:"n."},
       {jp:"去年",read:"きょねん",en:"last year",pos:"n."},
       {jp:"金曜日",read:"きんようび",en:"Friday",pos:"n."},
-      {jp:"九月",read:"くがつ",en:"September",pos:"n."},
-      {jp:"～ぐらい",read:"～ぐらい",en:"about (approximate measurement)",pos:"suf."},
       {jp:"クラス",read:"クラス",en:"class",pos:"n."},
       {jp:"ゲーム",read:"ゲーム",en:"game",pos:"n."},
       {jp:"月曜日",read:"げつようび",en:"Monday",pos:"n."},
       {jp:"公園",read:"こうえん",en:"park",pos:"n."},
-      {jp:"五月",read:"ごがつ",en:"May",pos:"n."},
-      {jp:"九日",read:"ここのか",en:"the ninth day of a month",pos:"n."},
       {jp:"今年",read:"ことし",en:"this year",pos:"n."},
       {jp:"子供",read:"こども",en:"child",pos:"n."},
       {jp:"ご飯",read:"ごはん",en:"rice; meal",pos:"n."},
-      {jp:"ごめんなさい",read:"ごめんなさい",en:"I’m sorry.",pos:"exp."},
       {jp:"今月",read:"こんげつ",en:"this month",pos:"n."},
       {jp:"今週",read:"こんしゅう",en:"this week",pos:"n."},
       {jp:"再来月",read:"さらいげつ",en:"the month after next",pos:"n."},
       {jp:"再来週",read:"さらいしゅう",en:"the week after next",pos:"n."},
       {jp:"再来年",read:"さらいねん",en:"the year after next",pos:"n."},
-      {jp:"三月",read:"さんがつ",en:"March",pos:"n."},
-      {jp:"四月",read:"しがつ",en:"April",pos:"n."},
-      {jp:"～時間",read:"～じかん",en:". . . hours",pos:"suf."},
       {jp:"下",read:"した",en:"under",pos:"n."},
-      {jp:"七月",read:"しちがつ",en:"July",pos:"n."},
       {jp:"写真",read:"しゃしん",en:"picture; photograph",pos:"n."},
-      {jp:"十一月",read:"じゅういちがつ",en:"November",pos:"n."},
-      {jp:"十一日",read:"じゅういちにち",en:"the eleventh day of a month",pos:"n."},
-      {jp:"十月",read:"じゅうがつ",en:"October",pos:"n."},
-      {jp:"十二月",read:"じゅうにがつ",en:"December",pos:"n."},
-      {jp:"十四日",read:"じゅうよっか",en:"the fourteenth day of a month",pos:"n."},
       {jp:"水曜日",read:"すいようび",en:"Wednesday",pos:"n."},
       {jp:"スーパー",read:"スーパー",en:"supermarket",pos:"n."},
       {jp:"先月",read:"せんげつ",en:"last month",pos:"n."},
@@ -394,52 +381,69 @@ const LESSONS = [
       {jp:"だから",read:"だから",en:"so; therefore",pos:"adv."},
       {jp:"たくさん",read:"たくさん",en:"many; a lot",pos:"adv."},
       {jp:"近く",read:"ちかく",en:"near; nearby",pos:"n."},
-      {jp:"一日",read:"ついたち",en:"the first day of a month",pos:"n."},
       {jp:"寺",read:"てら",en:"temple",pos:"n."},
-      {jp:"～と",read:"～と",en:"together with (a person); and",pos:"part."},
       {jp:"どうして",read:"どうして",en:"why",pos:"adv."},
-      {jp:"十日",read:"とおか",en:"the tenth day of a month",pos:"n."},
       {jp:"時",read:"とき",en:"when . . . ; at the time of . . .",pos:"n."},
       {jp:"隣",read:"となり",en:"next",pos:"n."},
       {jp:"撮る",read:"とる",en:"to take (a picture)",pos:"u-v."},
       {jp:"中",read:"なか",en:"inside",pos:"n."},
-      {jp:"七日",read:"なのか",en:"the seventh day of a month",pos:"n."},
       {jp:"二か月前",read:"にかげつまえ",en:"two months ago",pos:"n."},
-      {jp:"二月",read:"にがつ",en:"February",pos:"n."},
       {jp:"二週間前",read:"にしゅうかんまえ",en:"two weeks ago",pos:"n."},
-      {jp:"二十四日",read:"にじゅうよっか",en:"the twenty-fourth day of a month",pos:"n."},
       {jp:"猫",read:"ねこ",en:"cat",pos:"n."},
       {jp:"バス停",read:"バスてい",en:"bus stop",pos:"n."},
-      {jp:"八月",read:"はちがつ",en:"August",pos:"n."},
-      {jp:"二十日",read:"はつか",en:"the twentieth day of a month",pos:"n."},
       {jp:"花",read:"はな",en:"flower",pos:"n."},
       {jp:"パン",read:"パン",en:"bread",pos:"n."},
       {jp:"左",read:"ひだり",en:"left",pos:"n."},
       {jp:"人",read:"ひと",en:"person",pos:"n."},
       {jp:"一人で",read:"ひとりで",en:"alone",pos:"adv."},
       {jp:"病院",read:"びょういん",en:"hospital",pos:"n."},
-      {jp:"二日",read:"ふつか",en:"the second day of a month",pos:"n."},
       {jp:"ホテル",read:"ホテル",en:"hotel",pos:"n."},
       {jp:"本屋",read:"ほんや",en:"bookstore",pos:"n."},
       {jp:"前",read:"まえ",en:"front",pos:"n."},
       {jp:"町",read:"まち",en:"town; city",pos:"n."},
       {jp:"待つ",read:"まつ",en:"to wait",pos:"u-v."},
       {jp:"右",read:"みぎ",en:"right",pos:"n."},
-      {jp:"三日",read:"みっか",en:"the third day of a month",pos:"n."},
-      {jp:"六日",read:"むいか",en:"the sixth day of a month",pos:"n."},
       {jp:"木曜日",read:"もくようび",en:"Thursday",pos:"n."},
-      {jp:"もしもし",read:"もしもし",en:"Hello? (used on the phone)",pos:"exp."},
-      {jp:"八日",read:"ようか",en:"the eighth day of a month",pos:"n."},
-      {jp:"四日",read:"よっか",en:"the fourth day of a month",pos:"n."},
       {jp:"来月",read:"らいげつ",en:"next month",pos:"n."},
       {jp:"来週",read:"らいしゅう",en:"next week",pos:"n."},
       {jp:"来年",read:"らいねん",en:"next year",pos:"n."},
       {jp:"レストラン",read:"レストラン",en:"restaurant",pos:"n."},
       {jp:"レポート",read:"レポート",en:"(term) paper",pos:"n."},
-      {jp:"六月",read:"ろくがつ",en:"June",pos:"n."},
       {jp:"わかる",read:"わかる",en:"to understand",pos:"u-v."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"一月",read:"いちがつ",en:"January",pos:"n."},
+      {jp:"五日",read:"いつか",en:"the fifth day of a month",pos:"n."},
+      {jp:"九月",read:"くがつ",en:"September",pos:"n."},
+      {jp:"～ぐらい",read:"～ぐらい",en:"about (approximate measurement)",pos:"suf."},
+      {jp:"五月",read:"ごがつ",en:"May",pos:"n."},
+      {jp:"九日",read:"ここのか",en:"the ninth day of a month",pos:"n."},
+      {jp:"ごめんなさい",read:"ごめんなさい",en:"I’m sorry.",pos:"exp."},
+      {jp:"三月",read:"さんがつ",en:"March",pos:"n."},
+      {jp:"四月",read:"しがつ",en:"April",pos:"n."},
+      {jp:"～時間",read:"～じかん",en:". . . hours",pos:"suf."},
+      {jp:"七月",read:"しちがつ",en:"July",pos:"n."},
+      {jp:"十一月",read:"じゅういちがつ",en:"November",pos:"n."},
+      {jp:"十一日",read:"じゅういちにち",en:"the eleventh day of a month",pos:"n."},
+      {jp:"十月",read:"じゅうがつ",en:"October",pos:"n."},
+      {jp:"十二月",read:"じゅうにがつ",en:"December",pos:"n."},
+      {jp:"十四日",read:"じゅうよっか",en:"the fourteenth day of a month",pos:"n."},
+      {jp:"一日",read:"ついたち",en:"the first day of a month",pos:"n."},
+      {jp:"～と",read:"～と",en:"together with (a person); and",pos:"part."},
+      {jp:"十日",read:"とおか",en:"the tenth day of a month",pos:"n."},
+      {jp:"七日",read:"なのか",en:"the seventh day of a month",pos:"n."},
+      {jp:"二月",read:"にがつ",en:"February",pos:"n."},
+      {jp:"二十四日",read:"にじゅうよっか",en:"the twenty-fourth day of a month",pos:"n."},
+      {jp:"八月",read:"はちがつ",en:"August",pos:"n."},
+      {jp:"二十日",read:"はつか",en:"the twentieth day of a month",pos:"n."},
+      {jp:"二日",read:"ふつか",en:"the second day of a month",pos:"n."},
+      {jp:"三日",read:"みっか",en:"the third day of a month",pos:"n."},
+      {jp:"六日",read:"むいか",en:"the sixth day of a month",pos:"n."},
+      {jp:"もしもし",read:"もしもし",en:"Hello? (used on the phone)",pos:"exp."},
+      {jp:"八日",read:"ようか",en:"the eighth day of a month",pos:"n."},
+      {jp:"四日",read:"よっか",en:"the fourth day of a month",pos:"n."},
+      {jp:"六月",read:"ろくがつ",en:"June",pos:"n."}
+    ],
     kanjiChars:["月","火","水","木","金"],
     quiz:[
       {q:"Which verb is used for living things?",ch:["あります","います","です","します"],a:1},
@@ -483,7 +487,6 @@ const LESSONS = [
       {jp:"好き",read:"すき（な）",en:"fond of; to like",pos:"な-adj."},
       {jp:"すごく",read:"すごく",en:"extremely",pos:"adv."},
       {jp:"大嫌い",read:"だいきらい（な）",en:"to hate",pos:"な-adj."},
-      {jp:"大丈夫",read:"だいじょうぶ",en:"It’s okay.; Not to worry.; Everything is under control.",pos:"exp."},
       {jp:"大好き",read:"だいすき（な）",en:"very fond of; to love",pos:"な-adj."},
       {jp:"楽しい",read:"たのしい",en:"fun",pos:"い-adj."},
       {jp:"食べ物",read:"たべもの",en:"food",pos:"n."},
@@ -494,7 +497,6 @@ const LESSONS = [
       {jp:"テスト",read:"テスト",en:"test",pos:"n."},
       {jp:"天気",read:"てんき",en:"weather",pos:"n."},
       {jp:"とても",read:"とても",en:"very",pos:"adv."},
-      {jp:"どんな",read:"どんな",en:"what kind of . . .",pos:"pre."},
       {jp:"にぎやか（な）",read:"にぎやか（な）",en:"lively",pos:"な-adj."},
       {jp:"飲み物",read:"のみもの",en:"drink",pos:"n."},
       {jp:"乗る",read:"のる",en:"to ride; to board",pos:"u-v."},
@@ -503,7 +505,6 @@ const LESSONS = [
       {jp:"古い",read:"ふるい",en:"old (thing)",pos:"い-adj."},
       {jp:"部屋",read:"へや",en:"room",pos:"n."},
       {jp:"僕",read:"ぼく",en:"I (used by men)",pos:"n."},
-      {jp:"～枚",read:"～まい",en:"[counter for flat objects]",pos:"suf."},
       {jp:"土産",read:"みやげ",en:"souvenir",pos:"n."},
       {jp:"難しい",read:"むずかしい",en:"difficult",pos:"い-adj."},
       {jp:"やさしい",read:"やさしい",en:"easy (problem); kind (person)",pos:"い-adj."},
@@ -512,7 +513,11 @@ const LESSONS = [
       {jp:"やる",read:"やる",en:"to do; to perform",pos:"u-v."},
       {jp:"旅行",read:"りょこう",en:"travel",pos:"n."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"大丈夫",read:"だいじょうぶ",en:"It’s okay.; Not to worry.; Everything is under control.",pos:"exp."},
+      {jp:"どんな",read:"どんな",en:"what kind of . . .",pos:"pre."},
+      {jp:"～枚",read:"～まい",en:"[counter for flat objects]",pos:"suf."}
+    ],
     kanjiChars:["海","天","新","古","楽"],
     quiz:[
       {q:"Past tense of おもしろい (interesting)?",ch:["おもしろいでした","おもしろかったです","おもしろじゃなかったです","おもしろくないです"],a:1},
@@ -548,7 +553,6 @@ const LESSONS = [
       {jp:"教科書",read:"きょうかしょ",en:"textbook",pos:"n."},
       {jp:"国",read:"くに",en:"country; place of origin",pos:"n."},
       {jp:"消す",read:"けす",en:"to turn off; to erase",pos:"u-v."},
-      {jp:"結構です",read:"けっこうです",en:"That would be fine.; That wouldn’t be necessary.",pos:"exp."},
       {jp:"死ぬ",read:"しぬ",en:"to die",pos:"u-v."},
       {jp:"閉める",read:"しめる",en:"to close (something)",pos:"ru-v."},
       {jp:"シャワー",read:"シャワー",en:"shower",pos:"n."},
@@ -575,7 +579,6 @@ const LESSONS = [
       {jp:"一つ目",read:"ひとつめ",en:"first",pos:"n."},
       {jp:"二つ目",read:"ふたつめ",en:"second",pos:"n."},
       {jp:"ページ",read:"ページ",en:"page",pos:"n."},
-      {jp:"本当ですか",read:"ほんとうですか",en:"Really?",pos:"exp."},
       {jp:"曲がる",read:"まがる",en:"to turn (right/left)",pos:"u-v."},
       {jp:"まっすぐ",read:"まっすぐ",en:"straight",pos:"adv."},
       {jp:"右側",read:"みぎがわ",en:"right side",pos:"n."},
@@ -589,7 +592,10 @@ const LESSONS = [
       {jp:"忘れる",read:"わすれる",en:"to forget; to leave behind",pos:"ru-v."},
       {jp:"渡る",read:"わたる",en:"to cross",pos:"u-v."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"結構です",read:"けっこうです",en:"That would be fine.; That wouldn’t be necessary.",pos:"exp."},
+      {jp:"本当ですか",read:"ほんとうですか",en:"Really?",pos:"exp."}
+    ],
     kanjiChars:["電","車","来","週","漢"],
     quiz:[
       {q:"'Please open the window' in Japanese?",ch:["まどをあけてもいいですか。","まどをあけてください。","まどをあけてはいけません。","まどをあけなければなりません。"],a:1},
@@ -621,7 +627,6 @@ const LESSONS = [
       {jp:"おなか",read:"おなか",en:"stomach",pos:"n."},
       {jp:"おばあさん",read:"おばあさん",en:"grandmother; old woman",pos:"n."},
       {jp:"女の人",read:"おんなのひと",en:"woman",pos:"n."},
-      {jp:"～が",read:"～が",en:". . . , but",pos:"part."},
       {jp:"会社",read:"かいしゃ",en:"company",pos:"n."},
       {jp:"顔",read:"かお",en:"face",pos:"n."},
       {jp:"かける（眼鏡を）",read:"かける（めがねを）",en:"to put on (glasses)",pos:"ru-v."},
@@ -637,10 +642,8 @@ const LESSONS = [
       {jp:"車",read:"くるま",en:"car",pos:"n."},
       {jp:"結婚する",read:"けっこんする",en:"to get married",pos:"irr-v."},
       {jp:"サークル",read:"サークル",en:"club activity",pos:"n."},
-      {jp:"知っています",read:"しっています",en:"I know",pos:"exp."},
       {jp:"食堂",read:"しょくどう",en:"cafeteria; dining commons",pos:"n."},
       {jp:"尻",read:"しり",en:"buttocks",pos:"n."},
-      {jp:"知りません",read:"しりません",en:"I do not know",pos:"exp."},
       {jp:"知る",read:"しる",en:"to get to know",pos:"u-v."},
       {jp:"親切",read:"しんせつ（な）",en:"kind",pos:"な-adj."},
       {jp:"住む",read:"すむ",en:"to live",pos:"u-v."},
@@ -652,16 +655,12 @@ const LESSONS = [
       {jp:"デパート",read:"デパート",en:"department store",pos:"n."},
       {jp:"長い",read:"ながい",en:"long",pos:"い-adj."},
       {jp:"何も",read:"なにも ＋ negative",en:"not . . . anything",pos:"adv."},
-      {jp:"～人",read:"～にん",en:"[counter for people]",pos:"suf."},
       {jp:"歯",read:"は",en:"tooth",pos:"n."},
       {jp:"はく",read:"はく",en:"to put on (items below your waist)",pos:"u-v."},
       {jp:"働く",read:"はたらく",en:"to work",pos:"u-v."},
       {jp:"鼻",read:"はな",en:"nose",pos:"n."},
       {jp:"母",read:"はは",en:"(my) mother",pos:"n."},
       {jp:"速い",read:"はやい",en:"fast",pos:"い-adj."},
-      {jp:"一人",read:"ひとり",en:"one person",pos:"exp."},
-      {jp:"二人",read:"ふたり",en:"two people",pos:"exp."},
-      {jp:"太っています",read:"ふとっています",en:"to be on the heavy side",pos:"exp."},
       {jp:"太る",read:"ふとる",en:"to gain weight; overweight",pos:"u-v."},
       {jp:"別に",read:"べつに ＋ negative",en:"nothing in particular",pos:"adv."},
       {jp:"便利",read:"べんり（な）",en:"convenient",pos:"な-adj."},
@@ -672,12 +671,20 @@ const LESSONS = [
       {jp:"目",read:"め",en:"eye",pos:"n."},
       {jp:"眼鏡",read:"めがね",en:"glasses",pos:"n."},
       {jp:"もちろん",read:"もちろん",en:"of course",pos:"adv."},
-      {jp:"やせています",read:"やせています",en:"to be thin",pos:"exp."},
       {jp:"やせる",read:"やせる",en:"to lose weight",pos:"ru-v."},
       {jp:"指",read:"ゆび",en:"finger",pos:"n."},
       {jp:"よかったら",read:"よかったら",en:"if you like",pos:"adv."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"～が",read:"～が",en:". . . , but",pos:"part."},
+      {jp:"知っています",read:"しっています",en:"I know",pos:"exp."},
+      {jp:"知りません",read:"しりません",en:"I do not know",pos:"exp."},
+      {jp:"～人",read:"～にん",en:"[counter for people]",pos:"suf."},
+      {jp:"一人",read:"ひとり",en:"one person",pos:"exp."},
+      {jp:"二人",read:"ふたり",en:"two people",pos:"exp."},
+      {jp:"太っています",read:"ふとっています",en:"to be on the heavy side",pos:"exp."},
+      {jp:"やせています",read:"やせています",en:"to be thin",pos:"exp."}
+    ],
     kanjiChars:["家","族","兄","姉","弟"],
     quiz:[
       {q:"〜ています for an ongoing action means:",ch:["was doing","will do","is doing / has done","did"],a:2},
@@ -704,8 +711,6 @@ const LESSONS = [
       {jp:"いちご",read:"いちご",en:"strawberry",pos:"n."},
       {jp:"いつも",read:"いつも",en:"always",pos:"adv."},
       {jp:"いる",read:"いる",en:"to need",pos:"u-v."},
-      {jp:"ううん",read:"ううん",en:"uh-uh; no",pos:"exp."},
-      {jp:"うん",read:"うん",en:"uh-huh; yes",pos:"exp."},
       {jp:"運転する",read:"うんてんする",en:"to drive",pos:"irr-v."},
       {jp:"遅く",read:"おそく",en:"(do something) late",pos:"adv."},
       {jp:"遅くなる",read:"おそくなる",en:"to be late",pos:"u-v."},
@@ -714,7 +719,6 @@ const LESSONS = [
       {jp:"思う",read:"おもう",en:"to think",pos:"u-v."},
       {jp:"カメラ",read:"カメラ",en:"camera",pos:"n."},
       {jp:"カラオケ",read:"カラオケ",en:"karaoke",pos:"n."},
-      {jp:"乾杯",read:"かんぱい",en:"Cheers! (a toast)",pos:"exp."},
       {jp:"気温",read:"きおん",en:"temperature (weather)",pos:"n."},
       {jp:"キャベツ",read:"キャベツ",en:"cabbage",pos:"n."},
       {jp:"牛肉",read:"ぎゅうにく",en:"beef",pos:"n."},
@@ -722,7 +726,6 @@ const LESSONS = [
       {jp:"切る",read:"きる",en:"to cut",pos:"u-v."},
       {jp:"曇り",read:"くもり",en:"cloudy weather",pos:"n."},
       {jp:"今朝",read:"けさ",en:"this morning",pos:"n."},
-      {jp:"残念（ですね）",read:"ざんねん（ですね）",en:"That’s too bad.",pos:"exp."},
       {jp:"仕事",read:"しごと",en:"job; work; occupation",pos:"n."},
       {jp:"じゃがいも",read:"じゃがいも",en:"potato",pos:"n."},
       {jp:"上手",read:"じょうず（な）",en:"skillful; good at . . .",pos:"な-adj."},
@@ -734,7 +737,6 @@ const LESSONS = [
       {jp:"たまねぎ",read:"たまねぎ",en:"onion",pos:"n."},
       {jp:"作る",read:"つくる",en:"to make",pos:"u-v."},
       {jp:"天気予報",read:"てんきよほう",en:"weather forecast",pos:"n."},
-      {jp:"～度",read:"～ど",en:". . . degrees (temperature)",pos:"suf."},
       {jp:"どう",read:"どう",en:"how",pos:"adv."},
       {jp:"所",read:"ところ",en:"place",pos:"n."},
       {jp:"トマト",read:"トマト",en:"tomato",pos:"n."},
@@ -742,7 +744,6 @@ const LESSONS = [
       {jp:"なす",read:"なす",en:"eggplant",pos:"n."},
       {jp:"夏",read:"なつ",en:"summer",pos:"n."},
       {jp:"何か",read:"なにか",en:"something",pos:"n."},
-      {jp:"～について",read:"～について",en:"about . . . ; concerning . . .",pos:"part."},
       {jp:"にんじん",read:"にんじん",en:"carrot",pos:"n."},
       {jp:"パーティー",read:"パーティー",en:"party",pos:"n."},
       {jp:"バーベキュー",read:"バーベキュー",en:"barbecue",pos:"n."},
@@ -771,7 +772,14 @@ const LESSONS = [
       {jp:"料理する",read:"りょうりする",en:"to cook",pos:"irr-v."},
       {jp:"りんご",read:"りんご",en:"apple",pos:"n."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"ううん",read:"ううん",en:"uh-uh; no",pos:"exp."},
+      {jp:"うん",read:"うん",en:"uh-huh; yes",pos:"exp."},
+      {jp:"乾杯",read:"かんぱい",en:"Cheers! (a toast)",pos:"exp."},
+      {jp:"残念（ですね）",read:"ざんねん（ですね）",en:"That’s too bad.",pos:"exp."},
+      {jp:"～度",read:"～ど",en:". . . degrees (temperature)",pos:"suf."},
+      {jp:"～について",read:"～について",en:"about . . . ; concerning . . .",pos:"part."}
+    ],
     kanjiChars:["春","夏","秋","冬","有"],
     quiz:[
       {q:"Plain form of たべます?",ch:["たべ","たべる","たべた","たべない"],a:1},
@@ -795,7 +803,6 @@ const LESSONS = [
       {jp:"赤い",read:"あかい",en:"red",pos:"い-adj."},
       {jp:"いい子",read:"いいこ",en:"good child",pos:"n."},
       {jp:"意地悪",read:"いじわる（な）",en:"mean-spirited",pos:"な-adj."},
-      {jp:"五つ",read:"いつつ",en:"five",pos:"n."},
       {jp:"色",read:"いろ",en:"color",pos:"n."},
       {jp:"運動する",read:"うんどうする",en:"to exercise",pos:"irr-v."},
       {jp:"踊る",read:"おどる",en:"to dance",pos:"u-v."},
@@ -805,7 +812,6 @@ const LESSONS = [
       {jp:"終わる",read:"おわる",en:"(something) ends",pos:"u-v."},
       {jp:"顔が青い",read:"かおがあおい",en:"to look pale",pos:"い-adj."},
       {jp:"歌舞伎",read:"かぶき",en:"Kabuki; traditional Japanese theatrical art",pos:"n."},
-      {jp:"～から",read:"～から",en:"from . . .",pos:"part."},
       {jp:"黄色い",read:"きいろい",en:"yellow",pos:"い-adj."},
       {jp:"ギター",read:"ギター",en:"guitar",pos:"n."},
       {jp:"金色",read:"きんいろ",en:"gold",pos:"n."},
@@ -816,7 +822,6 @@ const LESSONS = [
       {jp:"グレー",read:"グレー",en:"gray",pos:"n."},
       {jp:"黒い",read:"くろい",en:"black",pos:"い-adj."},
       {jp:"ゴールド",read:"ゴールド",en:"gold",pos:"n."},
-      {jp:"九つ",read:"ここのつ",en:"nine",pos:"n."},
       {jp:"紺色",read:"こんいろ",en:"navy",pos:"n."},
       {jp:"コンサート",read:"コンサート",en:"concert",pos:"n."},
       {jp:"今度",read:"こんど",en:"near future",pos:"n."},
@@ -835,36 +840,40 @@ const LESSONS = [
       {jp:"茶色い",read:"ちゃいろい",en:"brown",pos:"い-adj."},
       {jp:"手紙",read:"てがみ",en:"letter",pos:"n."},
       {jp:"出る",read:"でる",en:"to appear; to attend; to exit",pos:"ru-v."},
-      {jp:"十",read:"とお",en:"ten",pos:"n."},
       {jp:"ところで",read:"ところで",en:"by the way",pos:"adv."},
-      {jp:"七つ",read:"ななつ",en:"seven",pos:"n."},
       {jp:"人気がある",read:"にんきがある",en:"to be popular",pos:"u-v."},
       {jp:"灰色",read:"はいいろ",en:"gray",pos:"n."},
       {jp:"始まる",read:"はじまる",en:"(something) begins",pos:"u-v."},
       {jp:"ピアノ",read:"ピアノ",en:"piano",pos:"n."},
       {jp:"弾く",read:"ひく",en:"to play (a string instrument or piano)",pos:"u-v."},
       {jp:"ピザ",read:"ピザ",en:"pizza",pos:"n."},
-      {jp:"一つ",read:"ひとつ",en:"one",pos:"n."},
       {jp:"病気",read:"びょうき",en:"illness; sickness",pos:"n."},
       {jp:"ピンク",read:"ピンク",en:"pink",pos:"n."},
-      {jp:"二つ",read:"ふたつ",en:"two",pos:"n."},
       {jp:"ベージュ",read:"ベージュ",en:"beige",pos:"n."},
       {jp:"弁当",read:"べんとう",en:"boxed lunch",pos:"n."},
-      {jp:"～まで",read:"～まで",en:"to (a place/a time)",pos:"part."},
       {jp:"水色",read:"みずいろ",en:"light blue",pos:"n."},
-      {jp:"三つ",read:"みっつ",en:"three",pos:"n."},
       {jp:"緑",read:"みどり",en:"green",pos:"n."},
       {jp:"みんな",read:"みんな",en:"all",pos:"adv."},
-      {jp:"六つ",read:"むっつ",en:"six",pos:"n."},
       {jp:"紫",read:"むらさき",en:"purple",pos:"n."},
       {jp:"メール",read:"メール",en:"e-mail",pos:"n."},
       {jp:"もう",read:"もう",en:"already",pos:"adv."},
       {jp:"もらう",read:"もらう",en:"to get (from somebody)",pos:"u-v."},
-      {jp:"八つ",read:"やっつ",en:"eight",pos:"n."},
-      {jp:"四つ",read:"よっつ",en:"four",pos:"n."},
       {jp:"若い",read:"わかい",en:"young",pos:"い-adj."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"五つ",read:"いつつ",en:"five",pos:"n."},
+      {jp:"～から",read:"～から",en:"from . . .",pos:"part."},
+      {jp:"九つ",read:"ここのつ",en:"nine",pos:"n."},
+      {jp:"十",read:"とお",en:"ten",pos:"n."},
+      {jp:"七つ",read:"ななつ",en:"seven",pos:"n."},
+      {jp:"一つ",read:"ひとつ",en:"one",pos:"n."},
+      {jp:"二つ",read:"ふたつ",en:"two",pos:"n."},
+      {jp:"～まで",read:"～まで",en:"to (a place/a time)",pos:"part."},
+      {jp:"三つ",read:"みっつ",en:"three",pos:"n."},
+      {jp:"六つ",read:"むっつ",en:"six",pos:"n."},
+      {jp:"八つ",read:"やっつ",en:"eight",pos:"n."},
+      {jp:"四つ",read:"よっつ",en:"four",pos:"n."}
+    ],
     kanjiChars:["花","山","川","外","国"],
     quiz:[
       {q:"〜たことがあります expresses:",ch:["future plans","past experience","ongoing action","desire"],a:1},
@@ -886,7 +895,6 @@ const LESSONS = [
       {jp:"秋",read:"あき",en:"fall",pos:"n."},
       {jp:"暖かい",read:"あたたかい",en:"warm",pos:"い-adj."},
       {jp:"歩いて",read:"あるいて",en:"on foot",pos:"adv."},
-      {jp:"～行き",read:"～いき",en:"bound for . . .",pos:"suf."},
       {jp:"一号車",read:"いちごうしゃ",en:"Car No. 1",pos:"n."},
       {jp:"一番",read:"いちばん",en:"best",pos:"adv."},
       {jp:"入口",read:"いりぐち",en:"entrance",pos:"n."},
@@ -894,12 +902,10 @@ const LESSONS = [
       {jp:"往復",read:"おうふく",en:"round trip",pos:"n."},
       {jp:"お金持ち",read:"おかねもち",en:"rich person",pos:"n."},
       {jp:"遅い",read:"おそい",en:"slow; late",pos:"い-adj."},
-      {jp:"～か～",read:"～か～",en:"or",pos:"part."},
       {jp:"改札",read:"かいさつ",en:"gate",pos:"n."},
       {jp:"階段",read:"かいだん",en:"stairs",pos:"n."},
       {jp:"かかる",read:"かかる",en:"to take (amount of time/money)",pos:"u-v."},
       {jp:"学割",read:"がくわり",en:"student discount",pos:"n."},
-      {jp:"～か月",read:"～かげつ",en:"for . . . months",pos:"suf."},
       {jp:"片道",read:"かたみち",en:"one way",pos:"n."},
       {jp:"金持ち",read:"かねもち",en:"rich person",pos:"n."},
       {jp:"簡単",read:"かんたん（な）",en:"easy; simple",pos:"な-adj."},
@@ -909,7 +915,6 @@ const LESSONS = [
       {jp:"急行",read:"きゅうこう",en:"express",pos:"n."},
       {jp:"牛乳",read:"ぎゅうにゅう",en:"milk",pos:"n."},
       {jp:"ケーキ",read:"ケーキ",en:"cake",pos:"n."},
-      {jp:"～後",read:"～ご",en:"in . . . time; after . . .",pos:"suf."},
       {jp:"交通系ICカード",read:"こうつうけいアイシーカード",en:"rechargeable card such as Suica, Icoca, Pasmo, etc.",pos:"n."},
       {jp:"このごろ",read:"このごろ",en:"these days",pos:"adv."},
       {jp:"ごろごろする",read:"ごろごろする",en:"to chill out at home; to stay home do nothing",pos:"irr-v."},
@@ -917,7 +922,6 @@ const LESSONS = [
       {jp:"時間",read:"じかん",en:"time",pos:"n."},
       {jp:"指定席",read:"していせき",en:"reserved seat",pos:"n."},
       {jp:"次発",read:"じはつ",en:"departing second",pos:"n."},
-      {jp:"～週間",read:"～しゅうかん",en:"for . . . weeks",pos:"suf."},
       {jp:"自由席",read:"じゆうせき",en:"general admission seat",pos:"n."},
       {jp:"終電",read:"しゅうでん",en:"last train (of the day)",pos:"n."},
       {jp:"乗車券",read:"じょうしゃけん",en:"(boarding) ticket",pos:"n."},
@@ -929,9 +933,7 @@ const LESSONS = [
       {jp:"先発",read:"せんぱつ",en:"departing first",pos:"n."},
       {jp:"地下鉄",read:"ちかてつ",en:"subway",pos:"n."},
       {jp:"ツアー",read:"ツアー",en:"tour",pos:"n."},
-      {jp:"次は～",read:"つぎは～",en:"next (stop), . . .",pos:"exp."},
       {jp:"冷たい",read:"つめたい",en:"cold (things/people)",pos:"い-adj."},
-      {jp:"～で",read:"～で",en:"by (means of transportation); with (a tool)",pos:"part."},
       {jp:"定期券",read:"ていきけん",en:"commuter’s pass",pos:"n."},
       {jp:"出口",read:"でぐち",en:"exit",pos:"n."},
       {jp:"手袋",read:"てぶくろ",en:"gloves",pos:"n."},
@@ -942,21 +944,17 @@ const LESSONS = [
       {jp:"どちら",read:"どちら",en:"which",pos:"n."},
       {jp:"特急",read:"とっきゅう",en:"super express",pos:"n."},
       {jp:"どっち",read:"どっち",en:"which",pos:"n."},
-      {jp:"どのぐらい",read:"どのぐらい",en:"how much; how long",pos:"exp."},
       {jp:"泊まる",read:"とまる",en:"to stay (at a hotel, etc.)",pos:"u-v."},
       {jp:"なる",read:"なる",en:"to become",pos:"u-v."},
       {jp:"眠い",read:"ねむい",en:"sleepy",pos:"い-adj."},
-      {jp:"～年",read:"～ねん",en:". . . years",pos:"suf."},
       {jp:"乗り換え",read:"のりかえ",en:"transfer",pos:"n."},
       {jp:"売店",read:"ばいてん",en:"shop; stand",pos:"n."},
       {jp:"早く/速く",read:"はやく",en:"(do something) early; fast",pos:"adv."},
       {jp:"春",read:"はる",en:"spring",pos:"n."},
-      {jp:"～番線",read:"～ばんせん",en:"track number . . .",pos:"suf."},
       {jp:"飛行機",read:"ひこうき",en:"airplane",pos:"n."},
       {jp:"美容院",read:"びよういん",en:"beauty parlor",pos:"n."},
       {jp:"普通",read:"ふつう",en:"local (train)",pos:"n."},
       {jp:"船",read:"ふね",en:"ship; boat",pos:"n."},
-      {jp:"～方面",read:"～ほうめん",en:"serving . . . areas",pos:"suf."},
       {jp:"ホーム",read:"ホーム",en:"platform",pos:"n."},
       {jp:"野球",read:"やきゅう",en:"baseball",pos:"n."},
       {jp:"有名人",read:"ゆうめいじん",en:"celebrity",pos:"n."},
@@ -965,7 +963,19 @@ const LESSONS = [
       {jp:"旅行する",read:"りょこうする",en:"to travel",pos:"irr-v."},
       {jp:"練習する",read:"れんしゅうする",en:"to practice",pos:"irr-v."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"～行き",read:"～いき",en:"bound for . . .",pos:"suf."},
+      {jp:"～か～",read:"～か～",en:"or",pos:"part."},
+      {jp:"～か月",read:"～かげつ",en:"for . . . months",pos:"suf."},
+      {jp:"～後",read:"～ご",en:"in . . . time; after . . .",pos:"suf."},
+      {jp:"～週間",read:"～しゅうかん",en:"for . . . weeks",pos:"suf."},
+      {jp:"次は～",read:"つぎは～",en:"next (stop), . . .",pos:"exp."},
+      {jp:"～で",read:"～で",en:"by (means of transportation); with (a tool)",pos:"part."},
+      {jp:"どのぐらい",read:"どのぐらい",en:"how much; how long",pos:"exp."},
+      {jp:"～年",read:"～ねん",en:". . . years",pos:"suf."},
+      {jp:"～番線",read:"～ばんせん",en:"track number . . .",pos:"suf."},
+      {jp:"～方面",read:"～ほうめん",en:"serving . . . areas",pos:"suf."}
+    ],
     kanjiChars:["冬","休","空","港","決"],
     quiz:[
       {q:"〜から at the end of a clause means:",ch:["before","after","because","although"],a:2},
@@ -984,7 +994,6 @@ const LESSONS = [
       {p:"〜そうです (looks like)", ex:"あめがふりそうです。", tr:"It looks like it will rain."},
     ],
     vocab:[
-      {jp:"後",read:"（〜の）あと",en:"after (an event)",pos:"exp."},
       {jp:"意味",read:"いみ",en:"meaning",pos:"n."},
       {jp:"うそをつく",read:"うそをつく",en:"to tell a lie",pos:"u-v."},
       {jp:"宇宙飛行士",read:"うちゅうひこうし",en:"astronaut",pos:"n."},
@@ -1004,7 +1013,6 @@ const LESSONS = [
       {jp:"キャンプ",read:"キャンプ",en:"camp",pos:"n."},
       {jp:"教師",read:"きょうし",en:"schoolteacher",pos:"n."},
       {jp:"共通語",read:"きょうつうご",en:"common language",pos:"n."},
-      {jp:"～行目",read:"～ぎょうめ",en:"line number . . .",pos:"suf."},
       {jp:"くだけた言い方",read:"くだけたいいかた",en:"colloquial expression",pos:"n."},
       {jp:"警察官",read:"けいさつかん",en:"police officer",pos:"n."},
       {jp:"けんかする",read:"けんかする",en:"to have a fight; to quarrel",pos:"irr-v."},
@@ -1030,13 +1038,11 @@ const LESSONS = [
       {jp:"そして",read:"そして",en:"and then",pos:"adv."},
       {jp:"ダイエットする",read:"ダイエットする",en:"to go on a diet",pos:"irr-v."},
       {jp:"大統領",read:"だいとうりょう",en:"president of a country",pos:"n."},
-      {jp:"～だけ",read:"～だけ",en:"just . . . ; only . . .",pos:"suf."},
       {jp:"例えば",read:"たとえば",en:"for example",pos:"adv."},
       {jp:"遅刻する",read:"ちこくする",en:"to be late (for an appointment)",pos:"irr-v."},
       {jp:"疲れる",read:"つかれる",en:"to get tired",pos:"ru-v."},
       {jp:"つり",read:"つり",en:"fishing",pos:"n."},
       {jp:"ていねいな言い方",read:"ていねいないいかた",en:"polite expression",pos:"n."},
-      {jp:"～点",read:"～てん",en:". . . points",pos:"suf."},
       {jp:"ドライブ",read:"ドライブ",en:"drive",pos:"n."},
       {jp:"取る",read:"とる",en:"to take (a class); to get (a grade)",pos:"u-v."},
       {jp:"習う",read:"ならう",en:"to learn",pos:"u-v."},
@@ -1046,14 +1052,11 @@ const LESSONS = [
       {jp:"ばつ",read:"ばつ",en:"× (wrong)",pos:"n."},
       {jp:"発音",read:"はつおん",en:"pronunciation",pos:"n."},
       {jp:"ビール",read:"ビール",en:"beer",pos:"n."},
-      {jp:"久しぶり",read:"ひさしぶり",en:"it has been a long time",pos:"exp."},
       {jp:"美術館",read:"びじゅつかん",en:"art museum",pos:"n."},
-      {jp:"二人ずつ",read:"ふたりずつ",en:"two people each",pos:"exp."},
       {jp:"文法",read:"ぶんぽう",en:"grammar",pos:"n."},
       {jp:"方言",read:"ほうげん",en:"dialect",pos:"n."},
       {jp:"ほかに",read:"ほかに",en:"anything else",pos:"adv."},
       {jp:"ホストファミリー",read:"ホストファミリー",en:"host family",pos:"n."},
-      {jp:"まあまあ",read:"まあまあ",en:"okay; so-so",pos:"exp."},
       {jp:"祭り",read:"まつり",en:"festival",pos:"n."},
       {jp:"まる",read:"まる",en:"○ (correct)",pos:"n."},
       {jp:"漫画家",read:"まんがか",en:"cartoonist",pos:"n."},
@@ -1068,7 +1071,15 @@ const LESSONS = [
       {jp:"例",read:"れい",en:"example",pos:"n."},
       {jp:"練習",read:"れんしゅう",en:"exercise",pos:"n."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"後",read:"（〜の）あと",en:"after (an event)",pos:"exp."},
+      {jp:"～行目",read:"～ぎょうめ",en:"line number . . .",pos:"suf."},
+      {jp:"～だけ",read:"～だけ",en:"just . . . ; only . . .",pos:"suf."},
+      {jp:"～点",read:"～てん",en:". . . points",pos:"suf."},
+      {jp:"久しぶり",read:"ひさしぶり",en:"it has been a long time",pos:"exp."},
+      {jp:"二人ずつ",read:"ふたりずつ",en:"two people each",pos:"exp."},
+      {jp:"まあまあ",read:"まあまあ",en:"okay; so-so",pos:"exp."}
+    ],
     kanjiChars:["道","橋","駅","地","図"],
     quiz:[
       {q:"Potential form of たべる is:",ch:["たべます","たべられます","たべています","たべましょう"],a:1},
@@ -1093,7 +1104,6 @@ const LESSONS = [
       {jp:"痛み止め",read:"いたみどめ",en:"painkiller",pos:"n."},
       {jp:"インフルエンザ",read:"インフルエンザ",en:"influenza",pos:"n."},
       {jp:"多い",read:"おおい",en:"there are many . . .",pos:"い-adj."},
-      {jp:"お大事に",read:"おだいじに",en:"Get well soon.",pos:"exp."},
       {jp:"お手洗い",read:"おてあらい",en:"restroom",pos:"n."},
       {jp:"同じ",read:"おなじ",en:"same",pos:"adv."},
       {jp:"風邪",read:"かぜ",en:"cold",pos:"n."},
@@ -1111,7 +1121,6 @@ const LESSONS = [
       {jp:"けが",read:"けが",en:"injury",pos:"n."},
       {jp:"外科",read:"げか",en:"surgeon",pos:"n."},
       {jp:"下痢",read:"げり",en:"diarrhea",pos:"n."},
-      {jp:"元気がない",read:"げんきがない",en:"don’t look well",pos:"exp."},
       {jp:"抗生物質",read:"こうせいぶっしつ",en:"antibiotic",pos:"n."},
       {jp:"骨折する",read:"こっせつする",en:"to break (a bone)",pos:"irr-v."},
       {jp:"産婦人科",read:"さんふじんか",en:"obstetrician and gynecologist",pos:"n."},
@@ -1130,7 +1139,6 @@ const LESSONS = [
       {jp:"せきが出る",read:"せきがでる",en:"to cough",pos:"ru-v."},
       {jp:"狭い",read:"せまい",en:"narrow; not spacious",pos:"い-adj."},
       {jp:"それに",read:"それに",en:"moreover, . . .",pos:"adv."},
-      {jp:"～代",read:"～だい",en:"charge; fee",pos:"suf."},
       {jp:"体温計",read:"たいおんけい",en:"thermometer",pos:"n."},
       {jp:"多分",read:"たぶん",en:"probably; maybe",pos:"adv."},
       {jp:"卵",read:"たまご",en:"egg",pos:"n."},
@@ -1139,7 +1147,6 @@ const LESSONS = [
       {jp:"点滴",read:"てんてき",en:"intravenous feeding",pos:"n."},
       {jp:"内科",read:"ないか",en:"physician",pos:"n."},
       {jp:"なくす",read:"なくす",en:"to lose",pos:"u-v."},
-      {jp:"二三日",read:"にさんにち",en:"for two to three days",pos:"n."},
       {jp:"熱がある",read:"ねつがある",en:"to have a fever",pos:"u-v."},
       {jp:"喉",read:"のど",en:"throat",pos:"n."},
       {jp:"喉が渇く",read:"のどがかわく",en:"to become thirsty",pos:"u-v."},
@@ -1166,7 +1173,12 @@ const LESSONS = [
       {jp:"別れる",read:"わかれる",en:"to break up; to separate",pos:"ru-v."},
       {jp:"悪い",read:"わるい",en:"bad",pos:"い-adj."}
     ],
-    extraVocab:[],
+    extraVocab:[
+      {jp:"お大事に",read:"おだいじに",en:"Get well soon.",pos:"exp."},
+      {jp:"元気がない",read:"げんきがない",en:"don’t look well",pos:"exp."},
+      {jp:"～代",read:"～だい",en:"charge; fee",pos:"suf."},
+      {jp:"二三日",read:"にさんにち",en:"for two to three days",pos:"n."}
+    ],
     kanjiChars:["文","化","言","葉","世"],
     quiz:[
       {q:"〜んです is used to:",ch:["give a command","express hearsay","explain or emphasize a situation","express ability"],a:2},
@@ -1182,6 +1194,9 @@ function buildFlashcards(){
   const cards=[];
   LESSONS.forEach(l=>{
     l.vocab.forEach(v=>{
+      cards.push({f:v.jp,b:`${v.read} — ${v.en}`,sub:v.read,t:`L${l.num}`,pos:v.pos});
+    });
+    (l.extraVocab||[]).forEach(v=>{
       cards.push({f:v.jp,b:`${v.read} — ${v.en}`,sub:v.read,t:`L${l.num}`,pos:v.pos});
     });
   });
@@ -1393,8 +1408,13 @@ function renderLessonDetail(){
       <div class="grammar-trans">${g.tr}</div>
     </div>`).join("");
 
+  // store this lesson's vocab list so the popup modal can look words up by index
+  window._lessonVocabCache = window._lessonVocabCache || {};
+  window._lessonVocabCache.vocab = l.vocab;
+  window._lessonVocabCache.extraVocab = l.extraVocab || [];
+
   document.getElementById("tab-vocab").innerHTML=`<div class="vocab-grid">${
-    l.vocab.map(v=>`<div class="vocab-item">
+    l.vocab.map((v,vi)=>`<div class="vocab-item" onclick="openVocabModal('vocab',${vi})">
       <div><div class="vocab-jp">${v.jp}</div><div class="vocab-read">${v.read}</div></div>
       <div style="text-align:right;"><div class="vocab-en">${v.en}</div><div class="vocab-pos">${v.pos}</div></div>
     </div>`).join("")
@@ -1402,23 +1422,15 @@ function renderLessonDetail(){
 
   document.getElementById("tab-extra-vocab").innerHTML=l.extraVocab&&l.extraVocab.length
     ?`<div style="font-size:11px;color:var(--ink-soft);margin-bottom:10px;">Additional / supplementary vocabulary for this chapter</div>
-      <div class="vocab-grid">${l.extraVocab.map(v=>`<div class="vocab-item">
+      <div class="vocab-grid">${l.extraVocab.map((v,vi)=>`<div class="vocab-item" onclick="openVocabModal('extraVocab',${vi})">
         <div><div class="vocab-jp">${v.jp}</div><div class="vocab-read">${v.read}</div></div>
         <div style="text-align:right;"><div class="vocab-en">${v.en}</div><div class="vocab-pos">${v.pos}</div></div>
       </div>`).join("")}</div>`
     :`<div class="empty-state" style="padding:24px;">No extra vocab for this lesson.</div>`;
 
-  const lk=(l.kanjiChars||[]).map(ch=>KANJI_DATA.find(k=>k.char===ch)).filter(Boolean);
-  document.getElementById("tab-kanji-tab").innerHTML=lk.length
-    ?`<div class="lesson-kanji-row">${lk.map(k=>`
-        <div class="lesson-kanji-card" onclick="nav('kanji')">
-          <div class="lesson-kanji-char">${k.char}</div>
-          <div style="font-weight:700;font-size:12px;">${k.on}</div>
-          <div style="font-size:10px;color:var(--ink-soft);">${k.mean}</div>
-          <span class="pill ${k.jlpt.toLowerCase()}" style="margin-top:6px;">${k.jlpt}</span>
-        </div>`).join("")
-      }</div>`
-    :`<div style="color:var(--ink-soft);font-size:12px;padding:12px 0;">Kanji loading from sheet… go to the Kanji tab to study today's set.</div>`;
+  // ── Lesson kanji: extract EVERY unique kanji character that appears
+  //    in this lesson's vocab + extraVocab, not just a hand-picked sample. ──
+  document.getElementById("tab-kanji-tab").innerHTML = renderLessonKanjiTab(l);
 
   // My Notes tab (loaded from /content/lessons via content-loader)
   const notesEl=document.getElementById("tab-notes-tab");
@@ -1428,6 +1440,95 @@ function renderLessonDetail(){
     notesEl.innerHTML='<div class="empty-state" style="padding:24px;">Loading notes…</div>';
   }
 }
+
+// Build a fast char -> KANJI_DATA index lookup once, reused across lessons
+let _kanjiCharIndex = null;
+function getKanjiCharIndex(){
+  if(_kanjiCharIndex && _kanjiCharIndex.size===KANJI_DATA.length) return _kanjiCharIndex;
+  _kanjiCharIndex = new Map();
+  KANJI_DATA.forEach((k,i)=>{ if(!_kanjiCharIndex.has(k.char)) _kanjiCharIndex.set(k.char,i); });
+  return _kanjiCharIndex;
+}
+
+function renderLessonKanjiTab(l){
+  if(!KANJI_DATA.length){
+    return `<div style="color:var(--ink-soft);font-size:12px;padding:12px 0;">Kanji data loading… go to the Kanji tab to study today's set.</div>`;
+  }
+  const idx = getKanjiCharIndex();
+  const allWords = [...l.vocab, ...(l.extraVocab||[])];
+  // pull out every individual kanji character used across this lesson's words
+  const seen = new Set();
+  const found = [];
+  for(const w of allWords){
+    const chars = (w.jp||"").match(/[\u4e00-\u9faf]/g) || []; // CJK kanji range only
+    for(const ch of chars){
+      if(seen.has(ch)) continue;
+      seen.add(ch);
+      const ki = idx.get(ch);
+      if(ki !== undefined) found.push(ki);
+    }
+  }
+  if(!found.length){
+    return `<div class="empty-state" style="padding:24px;">No kanji found in this lesson's vocabulary (it may be entirely kana-based).</div>`;
+  }
+  return `
+    <div style="font-size:11px;color:var(--ink-soft);margin-bottom:10px;">
+      ${found.length} kanji appear in this lesson's vocabulary — click any to study it in depth.
+    </div>
+    <div class="lesson-kanji-row" style="flex-wrap:wrap;">${found.map(ki=>{
+      const k=KANJI_DATA[ki];
+      const learned=state.kanjiLearned.has(ki);
+      return `<div class="lesson-kanji-card ${learned?'learned':''}" style="min-width:84px;flex:0 1 84px;" onclick="jumpToKanji(${ki})">
+        <div class="lesson-kanji-char" style="font-size:34px;">${k.char}</div>
+        <div style="font-weight:700;font-size:11px;">${k.on.split("・")[0]}</div>
+        <div style="font-size:9px;color:var(--ink-soft);">${k.mean.split(",")[0]}</div>
+        <span class="pill ${(k.jlpt||'').toLowerCase()}" style="margin-top:4px;font-size:9px;">${k.jlpt}</span>
+      </div>`;
+    }).join("")}</div>`;
+}
+
+// Jump to the Kanji page and open a specific kanji's detail view
+function jumpToKanji(ki){
+  nav('kanji');
+  setTimeout(()=>selectKanji(ki), 50);
+}
+
+// ── Vocab popup modal: click any vocab word to view it larger ──
+function openVocabModal(listKey, idx){
+  const list = (window._lessonVocabCache||{})[listKey];
+  if(!list || !list[idx]) return;
+  const v = list[idx];
+  document.getElementById("vm-jp").textContent = v.jp;
+  document.getElementById("vm-read").textContent = v.read;
+  document.getElementById("vm-en").textContent = v.en;
+  document.getElementById("vm-pos").textContent = v.pos || "";
+
+  // show any kanji within this word as small clickable chips, linking to full kanji detail
+  const idx2 = getKanjiCharIndex();
+  const chars = (v.jp||"").match(/[\u4e00-\u9faf]/g) || [];
+  const seen = new Set();
+  const rowEl = document.getElementById("vm-kanji-row");
+  const chips = [];
+  for(const ch of chars){
+    if(seen.has(ch)) continue;
+    seen.add(ch);
+    const ki = idx2.get(ch);
+    if(ki===undefined) continue;
+    const k = KANJI_DATA[ki];
+    chips.push(`<div class="pill" style="cursor:pointer;font-size:13px;padding:4px 10px;" onclick="closeVocabModal();jumpToKanji(${ki})">${k.char} ${k.on.split("・")[0]}</div>`);
+  }
+  rowEl.innerHTML = chips.join("");
+
+  document.getElementById("vocab-modal-overlay").style.display = "flex";
+}
+function closeVocabModal(e){
+  if(e && e.target && e.target.id!=="vocab-modal-overlay") return;
+  document.getElementById("vocab-modal-overlay").style.display = "none";
+}
+// close on Escape key
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape") closeVocabModal();
+});
 
 function markLessonDone(){
   state.lessonsDone[state.selectedLesson]=!state.lessonsDone[state.selectedLesson];
@@ -1493,13 +1594,17 @@ function toggleStory(){
 function checkKanji(){
   if(state.selectedKanjiIdx===null)return;
   const k=KANJI_DATA[state.selectedKanjiIdx];
-  const input=document.getElementById("kanji-input").value.trim().toLowerCase();
+  const input=document.getElementById("kanji-input").value.trim();
   if(!input)return;
   const all=[...k.on.split("・"),...k.kun.split("・")].map(r=>r.toLowerCase().replace(/[・。\s（(].*/g,"").trim()).filter(Boolean);
-  const ok=all.some(r=>r&&input.replace(/\s/g,"")===r);
+  // accept: exact kana match, OR romaji typed -> converted to hiragana/katakana match
+  const ok = all.some(r => r && (
+    input.toLowerCase().replace(/\s/g,"")===r ||
+    (window.romajiMatches && window.romajiMatches(input, r))
+  ));
   document.getElementById("kanji-feedback").innerHTML=ok
     ?`<div class="feedback-box feedback-correct">✓ Correct! 音: ${k.on}　訓: ${k.kun}</div>`
-    :`<div class="feedback-box feedback-wrong">Not quite — 音: ${k.on} / 訓: ${k.kun}</div>`;
+    :`<div class="feedback-box feedback-wrong">Not quite — 音: ${k.on} / 訓: ${k.kun}<br><span style="font-size:10px;">(romaji is OK — e.g. "nichi" for にち)</span></div>`;
 }
 
 function markKanjiLearned(){
@@ -1519,7 +1624,10 @@ function markKanjiLearned(){
 }
 
 function renderKanjiBank(){
-  const search=(document.getElementById("kanji-search")||{}).value?.toLowerCase()||"";
+  const searchRaw=(document.getElementById("kanji-search")||{}).value||"";
+  const search=searchRaw.toLowerCase();
+  // pre-compute romaji->kana conversions once per render, not per kanji
+  const searchKana = window.normalizeSearchInput ? window.normalizeSearchInput(searchRaw) : {raw:search,kana:"",kata:""};
   const jlpt=state.kanjiJlptFilter;
   document.getElementById("kanji-jlpt-filters").innerHTML=["All","N5","N4","N3","N2","N1"].map(f=>
     `<button class="chip ${jlpt===f?"active":""}" onclick="setKanjiFilter('${f}')">${f}</button>`).join("");
@@ -1531,7 +1639,14 @@ function renderKanjiBank(){
     const k=KANJI_DATA[ki];
     const mj=jlpt==="All"||k.jlpt===jlpt;
     if(!mj)continue;
-    const ms=!search||k.char.includes(search)||k.on.toLowerCase().includes(search)||k.kun.toLowerCase().includes(search)||k.mean.toLowerCase().includes(search);
+    let ms = !search;
+    if(!ms){
+      const onLower=k.on.toLowerCase(), kunLower=k.kun.toLowerCase(), meanLower=k.mean.toLowerCase();
+      ms = k.char.includes(search) || onLower.includes(search) || kunLower.includes(search) || meanLower.includes(search)
+        // romaji: also check converted kana/katakana forms against the readings
+        || (searchKana.kana && (onLower.includes(searchKana.kana)||kunLower.includes(searchKana.kana)))
+        || (searchKana.kata && (onLower.includes(searchKana.kata)||kunLower.includes(searchKana.kata)));
+    }
     if(!ms)continue;
     count++;
     if(shown>=MAX_RESULTS)continue;
@@ -1958,7 +2073,13 @@ function answerText(id,pointId){
   const input=document.getElementById(id+"-input").value;
   const norm=normalizeJP(input);
   const accepts=[q.answer,...(q.accept||[])].map(normalizeJP);
-  const ok=accepts.some(a=>a&&norm===a);
+  let ok=accepts.some(a=>a&&norm===a);
+  // romaji fallback: convert the user's input to hiragana and compare again
+  // (helps when typing full sentences without a Japanese keyboard)
+  if(!ok && window.romajiToHiragana){
+    const asKana = normalizeJP(window.romajiToHiragana(input));
+    ok = accepts.some(a=>a&&asKana===a);
+  }
   const ex=document.getElementById(id+"-explain");
   ex.className="practice-explain show "+(ok?"correct":"wrong");
   ex.innerHTML=(ok?"✓ Correct! ":`✗ Not quite. The answer is <b>${q.answer}</b>. `)+(q.ex?q.ex:"");
