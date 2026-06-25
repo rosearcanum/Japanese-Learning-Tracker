@@ -1777,13 +1777,13 @@ function renderStats(){
 
   // Stat cards — now from real tracked data
   document.getElementById("stats-cards").innerHTML=[
-    {icon:"🔥",val:streak,label:"Day Streak",sub:`${totalDays} days total`},
-    {icon:"🃏",val:`${known}`,label:"Vocab Mastered",sub:`of ${totalFC} cards`},
-    {icon:"🖊",val:kanjiLearned,label:"Kanji Learned",sub:"all-time"},
-    {icon:"🌟",val:qh.length?quizAvg+"%":"—",label:"Quiz Average",sub:`${qh.length} quizzes taken`},
-    {icon:"📚",val:`${lessonsN}/12`,label:"Lessons Done",sub:"Genki I"},
-    {icon:"📖",val:Object.keys(state.grammarDone||{}).length,label:"Grammar Points",sub:"practiced"},
-  ].map(s=>`<div class="panel stat-block"><div class="stat-icon">${s.icon}</div><div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div><div style="font-size:10px;color:var(--ink-soft);margin-top:2px;">${s.sub}</div></div>`).join("");
+    {val:streak,label:"Day Streak",sub:`${totalDays} days total`},
+    {val:`${known}`,label:"Vocab Mastered",sub:`of ${totalFC} cards`},
+    {val:kanjiLearned,label:"Kanji Learned",sub:"all-time"},
+    {val:qh.length?quizAvg+"%":"—",label:"Quiz Average",sub:`${qh.length} quizzes taken`},
+    {val:`${lessonsN}/12`,label:"Lessons Done",sub:"Genki I"},
+    {val:Object.keys(state.grammarDone||{}).length,label:"Grammar Points",sub:"practiced"},
+  ].map(s=>`<div class="panel stat-block"><div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div><div style="font-size:10px;color:var(--ink-soft);margin-top:2px;">${s.sub}</div></div>`).join("");
 
   // Progress bars
   document.getElementById("stats-bars-inner").innerHTML=[
