@@ -427,7 +427,7 @@ nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
 .choice-btn.wrong   { background: #fbe2e2; border-color: #e09a9a; color: #8a3030; }
 .choice-btn:disabled{ cursor: default; }
 .quiz-result        { text-align: center; padding: 26px 16px; }
-.quiz-result-icon   { font-size: 42px; margin-bottom: 8px; }
+.quiz-result-icon   { font-size: 28px; margin-bottom: 8px; font-family: var(--font-body); letter-spacing: 0.02em; }
 .quiz-result-score  { font-family: var(--font-display); font-size: 30px; color: var(--sakura-pink-dk); margin-bottom: 6px; }
 .quiz-result-msg    { font-size: 12px; color: var(--ink-soft); margin-bottom: 18px; }
 
@@ -507,13 +507,15 @@ nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
 .admin-cta { font-size: 11px; background: #fdf2dc; border: var(--border-w) solid #e8cf95; padding: 8px 12px; color: #6a5320; margin-bottom: 12px; }
 .admin-cta a { color: var(--sakura-pink-dk); font-weight: 500; }
 
-.mood-row { display: flex; gap: 5px; margin-bottom: 8px; }
+.mood-row { display: flex; gap: 5px; margin-bottom: 8px; flex-wrap: wrap; }
 .mood-btn {
-  font-size: 18px;
+  font-size: 13px;
+  font-family: var(--font-body);
   background: var(--bg-panel);
   border: var(--border-w) solid var(--line);
   cursor: pointer;
-  padding: 3px 6px;
+  padding: 5px 8px;
+  white-space: nowrap;
 }
 .mood-btn:hover  { background: var(--sakura-pink-lt); }
 .mood-btn.active { background: var(--sakura-pink-lt); border-color: var(--sakura-pink); }
@@ -646,4 +648,34 @@ textarea:focus, input[type=text]:focus, input[type=number]:focus { border-color:
   .kanji-today-grid { grid-template-columns: repeat(2,1fr); }
   .kanji-grid  { grid-template-columns: repeat(3,1fr); }
   .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   PIXEL ICONS — decorative pixel art (sakura branch, dango, etc.)
+   Add new icons to media/uploads/ and use this class to keep
+   them crisp (no browser blur on scaling).
+   ================================================================ */
+.pixel-icon {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  display: inline-block;
+  vertical-align: middle;
+}
+.pixel-icon-sm { width: 24px; height: 24px; }
+.pixel-icon-md { width: 40px; height: 40px; }
+.pixel-icon-lg { width: 64px; height: 64px; }
+
+/* Decorative corner sprite — sits in a panel corner, doesn't block clicks */
+.pixel-icon-corner {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Sakura branch motif used as a recurring header accent */
+.sakura-branch-accent {
+  width: 36px;
+  height: 36px;
+  margin-right: 6px;
 }

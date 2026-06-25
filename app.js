@@ -1255,7 +1255,7 @@ let state={
   quizLessonIdx:0,quizQIdx:0,quizScore:0,quizAnswered:false,
   fcFilter:"All",fcIdx:0,fcFlipped:false,fcKnown:new Set(),
   kanjiLearned:new Set(),selectedKanjiIdx:null,kanjiJlptFilter:"N5",
-  journalEntries:[],selectedMood:"😊",
+  journalEntries:[],selectedMood:"(´｡• ω •｡`)",
   studiedDays:new Set(),
   grammarDone:{},
   quizHistory:[],          // [{lesson, score, total, date}]
@@ -1398,7 +1398,7 @@ function renderLessonDetail(){
   document.getElementById("ld-topics").innerHTML=l.topics.map(t=>`<span class="pill">${t}</span>`).join("");
   const done=state.lessonsDone[state.selectedLesson];
   const btn=document.getElementById("ld-mark-btn");
-  btn.textContent=done?"✅ Done!":"Mark Complete";
+  btn.textContent=done?"(´｡• ω •｡`) Done!":"Mark Complete";
   btn.className=`btn ${done?"btn-soft":"btn-primary"}`;
 
   document.getElementById("tab-grammar").innerHTML=l.grammar.map(g=>`
@@ -1552,7 +1552,7 @@ function renderKanji(){
   document.getElementById("kanji-today-grid").innerHTML=todayIdx.map(ki=>{
     const k=KANJI_DATA[ki],learned=state.kanjiLearned.has(ki),active=state.selectedKanjiIdx===ki;
     return`<div class="kanji-today-card ${learned?"learned":""} ${active?"active":""}" onclick="selectKanji(${ki})">
-      <div class="ktc-badge">${learned?"✅":"&nbsp;"}</div>
+      <div class="ktc-badge">${learned?"(｀・ω・´)":"&nbsp;"}</div>
       <div class="ktc-char">${k.char}</div>
       <div class="ktc-read">${k.on.split("・")[0]}</div>
       <div class="ktc-mean">${k.mean.split(",")[0]}</div>
@@ -1577,7 +1577,7 @@ function selectKanji(ki){
   if(k.story){storyEl.textContent=k.story;storyBtn.style.display="inline-block";}
   else{storyEl.style.display="none";storyBtn.style.display="none";}
   const learned=state.kanjiLearned.has(ki);
-  document.getElementById("kanji-learn-btn").textContent=learned?"✅ Learned!":"Mark as Learned";
+  document.getElementById("kanji-learn-btn").textContent=learned?"(｀・ω・´) Learned!":"Mark as Learned";
   document.getElementById("kanji-input").value="";
   document.getElementById("kanji-feedback").innerHTML="";
   document.getElementById("kanji-detail-card").scrollIntoView({behavior:"smooth",block:"nearest"});
@@ -1619,7 +1619,7 @@ function markKanjiLearned(){
     logActivity("kanji",1);
   }
   save();
-  document.getElementById("kanji-learn-btn").textContent=state.kanjiLearned.has(ki)?"✅ Learned!":"Mark as Learned";
+  document.getElementById("kanji-learn-btn").textContent=state.kanjiLearned.has(ki)?"(｀・ω・´) Learned!":"Mark as Learned";
   renderKanji();
 }
 
@@ -1705,8 +1705,8 @@ function showQuizResult(){
   if(state.quizHistory.length>200)state.quizHistory=state.quizHistory.slice(-200);
   logActivity("quizzes",1);
   document.getElementById("quiz-card").style.display="none";document.getElementById("quiz-result").style.display="block";
-  const icon=state.quizScore===t?"🌸":state.quizScore>=t/2?"✨":"💪";
-  const msgs={"🌸":"Perfect score! You know this lesson well 🌸","✨":"Nice work! Review any missed ones.","💪":"Keep going — practice makes perfect!"};
+  const icon=state.quizScore===t?"🌸":state.quizScore>=t/2?"(｀・ω・´)":"(ง'̀-'́)ง";
+  const msgs={"🌸":"Perfect score! You know this lesson well 🌸","(｀・ω・´)":"Nice work! Review any missed ones.","(ง'̀-'́)ง":"Keep going — practice makes perfect!"};
   document.getElementById("qr-icon").textContent=icon;document.getElementById("qr-score").textContent=`${state.quizScore}/${t}`;
   document.getElementById("qr-msg").textContent=msgs[icon];
   document.getElementById("quiz-next-lesson-btn").disabled=state.quizLessonIdx>=11;
@@ -1866,14 +1866,14 @@ function renderCalendar(){
   html+="</div>";
   document.getElementById("study-calendar").innerHTML=html;
   const streak=calcStreak();
-  document.getElementById("streak-label").textContent=`🔥 Current streak: ${streak} day${streak===1?"":"s"}  ·  🏆 Best: ${longestStreak()} days`;
+  document.getElementById("streak-label").textContent=`(ง'̀-'́)ง Current streak: ${streak} day${streak===1?"":"s"}  ·  (｀・ω・´) Best: ${longestStreak()} days`;
 }
 
 function toggleStudyDay(key,el){
   if(state.studiedDays.has(key)){state.studiedDays.delete(key);el.classList.remove("studied");}
   else{state.studiedDays.add(key);el.classList.add("studied");}
   save();
-  document.getElementById("streak-label").textContent=`🔥 Current streak: ${calcStreak()} days  ·  🏆 Best: ${longestStreak()} days`;
+  document.getElementById("streak-label").textContent=`(ง'̀-'́)ง Current streak: ${calcStreak()} days  ·  (｀・ω・´) Best: ${longestStreak()} days`;
 }
 
 function calcStreak(){
@@ -1922,7 +1922,7 @@ function renderJournal(){
   el.innerHTML=state.journalEntries.map(e=>`
     <div class="panel entry-card">
       <div class="panel-body">
-        <div class="entry-header"><span class="entry-date">${e.date}</span><span style="font-size:22px;">${e.mood}</span></div>
+        <div class="entry-header"><span class="entry-date">${e.date}</span><span style="font-size:14px;font-family:var(--font-body);">${e.mood}</span></div>
         <div class="entry-text">${e.text.replace(/\n/g,"<br>")}</div>
       </div>
     </div>`).join("");
