@@ -345,6 +345,7 @@ nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 .vocab-item:hover { background: var(--sakura-pink-lt); }
 .vocab-jp   { font-size: 15px; font-weight: 500; }
@@ -363,6 +364,7 @@ nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
   cursor: pointer;
 }
 .lesson-kanji-card:hover { background: var(--sakura-pink-lt); }
+.lesson-kanji-card.learned { background: var(--branch-green-lt); border-color: var(--branch-green); }
 .lesson-kanji-char { font-size: 48px; color: var(--sakura-pink-dk); line-height: 1; margin-bottom: 4px; }
 
 .lesson-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
