@@ -1227,25 +1227,25 @@ function mergeCustomDecks(){
 // ─── RESOURCES ────────────────────────────────────────────────────────────────
 const RESOURCES={
   jomako:[
-    {icon:"📊",title:"Jo-Mako's Japanese Spreadsheet",desc:"Main hub — anime, games, manga, VN vocab with Anki decks",url:"https://docs.google.com/spreadsheets/d/1IytlD4JjYO5-38wP6VbFNjHQDaDEsx4WWi2Rs-gaamk/edit"},
-    {icon:"📈",title:"Jo-Mako's Frequency List",desc:"Japanese vocabulary ranked by frequency across anime, games, novels",url:"https://docs.google.com/spreadsheets/u/0/d/1z3Wc85VuDhjgjy1s_zgbGx2daaOoqm0s/htmlview"},
-    {icon:"🈳",title:"Jo-Mako's Kanji Spreadsheet",desc:"Full kanji reference — JLPT, mnemonics, stroke count, examples",url:"https://docs.google.com/spreadsheets/d/1idXxl-Wsrs_cj0jkqUAErBzYFG6OZPOTsgoNkaKSAvU/edit"},
-    {icon:"📖",title:"Genki Vocabulary Index (3rd ed.)",desc:"Full Genki I & II vocabulary index with parts of speech and lesson numbers",url:"https://docs.google.com/spreadsheets/d/1LvkY5vxgrt2rBTHXwHKPLZ3bbnEdedH-/edit?gid=1137479501"},
+    {title:"Jo-Mako's Japanese Spreadsheet",desc:"Main hub — anime, games, manga, VN vocab with Anki decks",url:"https://docs.google.com/spreadsheets/d/1IytlD4JjYO5-38wP6VbFNjHQDaDEsx4WWi2Rs-gaamk/edit"},
+    {title:"Jo-Mako's Frequency List",desc:"Japanese vocabulary ranked by frequency across anime, games, novels",url:"https://docs.google.com/spreadsheets/u/0/d/1z3Wc85VuDhjgjy1s_zgbGx2daaOoqm0s/htmlview"},
+    {title:"Jo-Mako's Kanji Spreadsheet",desc:"Full kanji reference — JLPT, mnemonics, stroke count, examples",url:"https://docs.google.com/spreadsheets/d/1idXxl-Wsrs_cj0jkqUAErBzYFG6OZPOTsgoNkaKSAvU/edit"},
+    {title:"Genki Vocabulary Index (3rd ed.)",desc:"Full Genki I & II vocabulary index with parts of speech and lesson numbers",url:"https://docs.google.com/spreadsheets/d/1LvkY5vxgrt2rBTHXwHKPLZ3bbnEdedH-/edit?gid=1137479501"},
   ],
   tools:[
-    {icon:"🃏",title:"Anki",desc:"Spaced repetition — gold standard for retention",url:"https://apps.ankiweb.net"},
-    {icon:"📖",title:"Jisho.org",desc:"Best free Japanese dictionary with kanji search and JLPT tags",url:"https://jisho.org"},
-    {icon:"🔊",title:"Forvo",desc:"Native speaker pronunciation for any Japanese word",url:"https://forvo.com/languages/ja/"},
-    {icon:"💬",title:"HelloTalk",desc:"Language exchange — chat and call native Japanese speakers",url:"https://www.hellotalk.com"},
-    {icon:"🎧",title:"Comprehensible Japanese",desc:"Beginner input videos — great for listening practice",url:"https://www.youtube.com/@cijapanese"},
-    {icon:"✏️",title:"Jisho Kanji Draw",desc:"Draw a kanji you don't know to look it up instantly",url:"https://jisho.org/#radical"},
+    {title:"Anki",desc:"Spaced repetition — gold standard for retention",url:"https://apps.ankiweb.net"},
+    {title:"Jisho.org",desc:"Best free Japanese dictionary with kanji search and JLPT tags",url:"https://jisho.org"},
+    {title:"Forvo",desc:"Native speaker pronunciation for any Japanese word",url:"https://forvo.com/languages/ja/"},
+    {title:"HelloTalk",desc:"Language exchange — chat and call native Japanese speakers",url:"https://www.hellotalk.com"},
+    {title:"Comprehensible Japanese",desc:"Beginner input videos — great for listening practice",url:"https://www.youtube.com/@cijapanese"},
+    {title:"Jisho Kanji Draw",desc:"Draw a kanji you don't know to look it up instantly",url:"https://jisho.org/#radical"},
   ],
   genki:[
-    {icon:"📚",title:"Genki Self-Study Room",desc:"Official Genki exercises and audio from Japan Times",url:"https://genki.japantimes.co.jp/self"},
-    {icon:"📝",title:"Cure Dolly (YouTube)",desc:"Organic Japanese grammar — excellent structural explanations",url:"https://www.youtube.com/@organicjapanesewithcuredol9357"},
-    {icon:"📐",title:"Tae Kim's Guide to Japanese",desc:"Builds grammar from fundamentals — explains WHERE polite forms come from, not just how to use them",url:"https://guidetojapanese.org/learn/"},
-    {icon:"🌐",title:"Marshall Yin — Genki Vocab",desc:"Per-lesson vocab lists matching Genki I 3rd edition",url:"https://marshallyin.com/genki-1-vocabulary/"},
-    {icon:"🗣",title:"Genki Conjugation Drill",desc:"Practice verb and adjective conjugation interactively",url:"https://drills.vajeon.org/"},
+    {title:"Genki Self-Study Room",desc:"Official Genki exercises and audio from Japan Times",url:"https://genki.japantimes.co.jp/self"},
+    {title:"Cure Dolly (YouTube)",desc:"Organic Japanese grammar — excellent structural explanations",url:"https://www.youtube.com/@organicjapanesewithcuredol9357"},
+    {title:"Tae Kim's Guide to Japanese",desc:"Builds grammar from fundamentals — explains WHERE polite forms come from, not just how to use them",url:"https://guidetojapanese.org/learn/"},
+    {title:"Marshall Yin — Genki Vocab",desc:"Per-lesson vocab lists matching Genki I 3rd edition",url:"https://marshallyin.com/genki-1-vocabulary/"},
+    {title:"Genki Conjugation Drill",desc:"Practice verb and adjective conjugation interactively",url:"https://drills.vajeon.org/"},
   ],
 };
 
@@ -1932,7 +1932,6 @@ function renderJournal(){
 function renderResources(){
   const mk=arr=>arr.map(r=>`
     <a class="resource-card" href="${r.url}" target="_blank" rel="noopener">
-      <span class="resource-icon">${r.icon}</span>
       <div><div class="resource-title">${r.title}</div><div class="resource-desc">${r.desc}</div></div>
     </a>`).join("");
   document.getElementById("jomako-links").innerHTML=mk(RESOURCES.jomako);
