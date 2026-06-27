@@ -1,12 +1,19 @@
 # ═══════════════════════════════════════════════════════════════
 #  Decap CMS configuration
 #  This defines what you can edit from the /admin panel.
-#  IMPORTANT: change `backend.repo` to your own GitHub username/repo.
+#
+#  AUTH: this site uses a Cloudflare Worker for GitHub login
+#  (replacing Netlify Identity). See SETUP.md for the one-time
+#  Worker deployment steps. Update base_url below to match your
+#  deployed Worker's URL.
 # ═══════════════════════════════════════════════════════════════
 
 backend:
-  name: git-gateway          # uses Netlify Identity + Git Gateway for login
-  branch: main               # the branch your site is published from
+  name: github
+  repo: rosearcanum/Japanese-Learning-Tracker   # your GitHub username/repo
+  branch: main                                   # the branch your site is published from
+  base_url: https://decap-auth.queenbea104.workers.dev   # confirmed live Worker URL
+  auth_endpoint: auth
 
 # When testing locally you can run `npx decap-server` and uncomment:
 # local_backend: true
