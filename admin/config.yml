@@ -25,6 +25,43 @@ publish_mode: simple
 
 collections:
 
+ - name: "garden_drawings"
+    label: "Garden — Drawing"
+    folder: "content/garden"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Type", name: "type", widget: "hidden", default: "drawing"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Notes", name: "body", widget: "markdown", required: false}
+
+  - name: "garden_stories"
+    label: "Garden — Story"
+    folder: "content/garden"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Type", name: "type", widget: "hidden", default: "story"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Story", name: "body", widget: "markdown"}
+
+  - name: "garden_diary"
+    label: "Garden — Diary"
+    folder: "content/garden"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Type", name: "type", widget: "hidden", default: "diary"}
+      - {label: "Title", name: "title", widget: "string", default: "Diary Entry"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Entry", name: "body", widget: "markdown"}
+      
   # ─── BLOG POSTS (progress updates + anything else) ───
   - name: "blog"
     label: "📓 Blog Posts"
