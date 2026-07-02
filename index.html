@@ -34,7 +34,7 @@
     <div class="logo-title">日本語 Study</div>
     <div class="logo-sub">Genki I · MDC Japanese 2</div>
   </div>
-  <nav>
+  <nav id="nav-study">
     <button class="nav-btn active" data-page="home">Home</button>
     <button class="nav-btn" data-page="lessons">Lessons</button>
     <button class="nav-btn" data-page="kanji">Kanji</button>
@@ -44,6 +44,15 @@
     <button class="nav-btn" data-page="stats">Stats</button>
     <button class="nav-btn" data-page="resources">Links</button>
   </nav>
+  <nav id="nav-garden" style="display:none;">
+    <button class="nav-btn" data-page="garden-home">Garden</button>
+    <button class="nav-btn" data-page="garden-drawings">Drawings</button>
+    <button class="nav-btn" data-page="garden-stories">Stories</button>
+    <button class="nav-btn" data-page="garden-diary">Diary</button>
+  </nav>
+  <button id="mode-toggle" class="mode-toggle-btn" onclick="toggleMode()" title="Switch between study site and Secret Garden">
+    <span id="mode-toggle-label">🌙 Secret Garden</span>
+  </button>
 </div>
 
 <!-- ════════════════════════════════════════
@@ -52,6 +61,8 @@
      Edit the sidebar panels below freely —
      each is just a .panel block.
 ════════════════════════════════════════ -->
+<div id="study-pages">
+
 <div id="page-home" class="page visible">
   <div class="profile-layout">
 
@@ -426,6 +437,140 @@
     <div class="panel-body"><div class="resource-grid" id="genki-links"></div></div>
   </div>
 </div>
+
+</div><!-- /#study-pages -->
+
+<!-- ════════════════════════════════════════
+     🌙 SECRET GARDEN — personal creative space
+     Separate "mode" from the study side: own sidebar,
+     own nav (#nav-garden), own theme (body.mode-garden
+     in style.css). Toggled via toggleMode() in app.js.
+════════════════════════════════════════ -->
+<div id="garden-pages" style="display:none;">
+
+<!-- ───── GARDEN HOME — recent posts + progress feed ───── -->
+<div id="page-garden-home" class="page">
+  <div class="profile-layout">
+
+    <!-- ───── SIDEBAR ───── -->
+    <div class="profile-sidebar">
+      <div class="panel">
+        <div class="panel-body" style="text-align:center;">
+          <div class="avatar-box"><img src="media/uploads/pfp-marie.gif" alt="profile picture"/></div>
+          <div class="profile-name">marie's secret garden</div>
+          <div class="profile-tagline">(๑˃ᴗ˂)ﻭ a quiet place to grow things</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">✿ garden stats</div>
+        <div class="panel-body">
+          <div class="stat-row"><span>drawings</span><span id="sb-garden-drawings">0</span></div>
+          <div class="stat-row"><span>stories</span><span id="sb-garden-stories">0</span></div>
+          <div class="stat-row"><span>diary entries</span><span id="sb-garden-diary">0</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">♪ currently</div>
+        <div class="panel-body">
+          <div style="font-size:11px;color:var(--ink-soft);line-height:1.8;">
+            a space for drawings, short stories,<br/>
+            and diary entries — separate from<br/>
+            the study side, just for me.<br/><br/>
+            mood: (´｡• ᵕ •｡`) ♡
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">tags</div>
+        <div class="panel-body">
+          <span class="pill">art</span>
+          <span class="pill">fiction</span>
+          <span class="pill green">diary</span>
+          <span class="pill">wip</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── MAIN — feed ───── -->
+    <div class="profile-main">
+      <div class="panel">
+        <div class="panel-title">🗺️ the map — coming soon</div>
+        <div class="panel-body">
+          <div style="font-size:11px;color:var(--ink-soft);">
+            One day this'll be a clickable garden scene — click a flower for
+            drawings, a bench for stories, a lantern for diary entries. For now,
+            here's a plain feed and the tabs above. (｡•̀ᴗ-)✧
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:10px;">
+        <div class="panel-title">recent — posts &amp; progress</div>
+        <div class="panel-body">
+          <div id="garden-feed" class="garden-feed">
+            <div class="empty-state">Loading… 🌙</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───── DRAWINGS ───── -->
+<div id="page-garden-drawings" class="page">
+  <div class="panel">
+    <div class="panel-title">drawings</div>
+    <div class="panel-body">
+      <div class="admin-cta">
+        Add new drawings from <a href="admin/" target="_blank">the admin panel »</a> —
+        the "Garden — Drawing" collection.
+      </div>
+      <hr class="glitter-rule"/>
+      <div id="garden-drawings-grid" class="garden-entry-grid">
+        <div class="empty-state">No drawings posted yet 🎨</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───── STORIES ───── -->
+<div id="page-garden-stories" class="page">
+  <div class="panel">
+    <div class="panel-title">short stories</div>
+    <div class="panel-body">
+      <div class="admin-cta">
+        Add new stories from <a href="admin/" target="_blank">the admin panel »</a> —
+        the "Garden — Story" collection.
+      </div>
+      <hr class="glitter-rule"/>
+      <div id="garden-stories-grid" class="garden-entry-grid">
+        <div class="empty-state">No stories posted yet 📖</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───── DIARY ───── -->
+<div id="page-garden-diary" class="page">
+  <div class="panel">
+    <div class="panel-title">diary</div>
+    <div class="panel-body">
+      <div class="admin-cta">
+        Add new entries from <a href="admin/" target="_blank">the admin panel »</a> —
+        the "Garden — Diary" collection.
+      </div>
+      <hr class="glitter-rule"/>
+      <div id="garden-diary-grid" class="garden-entry-grid">
+        <div class="empty-state">No diary entries posted yet 🕯️</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /#garden-pages -->
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

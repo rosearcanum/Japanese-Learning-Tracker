@@ -16,6 +16,7 @@ const GH_BRANCH = "main";
 window.BLOG_POSTS = [];
 window.CUSTOM_DECKS = [];
 window.LESSON_NOTES = [];
+window.GARDEN_ENTRIES = []; // drawings / stories / diary — 🌙 Secret Garden
 
 // ── Tiny YAML frontmatter parser (handles the fields our CMS writes) ──
 function parseFrontmatter(text) {
@@ -117,6 +118,7 @@ async function loadBlog() {
   posts.sort((a,b) => new Date(b.date) - new Date(a.date));
   window.BLOG_POSTS = posts;
   renderBlog();
+  if (typeof renderGardenFeed === "function") renderGardenFeed();
 }
 
 // ── Load custom decks ──
@@ -154,6 +156,46 @@ async function loadLessonNotes() {
   }
   window.LESSON_NOTES = notes;
   if (typeof renderLessonDetail === "function") renderLessonDetail();
+}
+
+// ── Load 🌙 Secret Garden entries (drawings / stories / diary) ──
+// All three Decap collections (Garden — Drawing/Story/Diary) write into the
+// same content/garden/ folder; each entry's `type` field tells them apart.
+async function loadGarden() {
+  const names = await listFolder("garden");
+  const entries = [];
+  for (const name of names) {
+    const text = await fetchMd("garden", name);
+    if (!text) continue;
+    const { data, body } = parseFrontmatter(text);
+    entries.push({
+      type: data.type || "diary",           // "drawing" | "story" | "diary"
+      title: data.title || "Untitled",
+      date: data.date || "",
+      tags: Array.isArray(data.tags) ? data.tags : [],
+      image: data.image || "",              // drawings only
+      bodyHtml: window.marked ? marked.parse(body) : body,
+    });
+  }
+  entries.sort((a,b) => new Date(b.date) - new Date(a.date));
+  window.GARDEN_ENTRIES = entries;
+
+  // Update sidebar counts + whichever garden view is currently open
+  const counts = { drawing:0, story:0, diary:0 };
+  entries.forEach(e => { if (counts[e.type] !== undefined) counts[e.type]++; });
+  const dEl = document.getElementById("sb-garden-drawings");
+  const sEl = document.getElementById("sb-garden-stories");
+  const jEl = document.getElementById("sb-garden-diary");
+  if (dEl) dEl.textContent = counts.drawing;
+  if (sEl) sEl.textContent = counts.story;
+  if (jEl) jEl.textContent = counts.diary;
+
+  if (typeof renderGardenFeed === "function") renderGardenFeed();
+  if (typeof renderGardenEntries === "function") {
+    renderGardenEntries("drawing", "garden-drawings-grid", "No drawings posted yet 🎨");
+    renderGardenEntries("story", "garden-stories-grid", "No stories posted yet 📖");
+    renderGardenEntries("diary", "garden-diary-grid", "No diary entries posted yet 🕯️");
+  }
 }
 
 // ── Render blog list ──
@@ -206,6 +248,7 @@ function initContent() {
   loadBlog();
   loadDecks();
   loadLessonNotes();
+  loadGarden();
 }
 // run after app.js has defined its functions
 if (document.readyState === "complete" || document.readyState === "interactive") {
@@ -217,3 +260,4 @@ if (document.readyState === "complete" || document.readyState === "interactive")
 // ── Expose for app.js ──
 window.renderBlog = renderBlog;
 window.renderLessonNotesFor = renderLessonNotesFor;
+window.loadGarden = loadGarden;

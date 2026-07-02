@@ -1301,8 +1301,112 @@ function nav(page){
   if(page==="stats"){loadAnkiInputs();renderStats();}
   if(page==="journal")renderJournal();
   if(page==="resources")renderResources();
+  if(page==="garden-home")renderGardenFeed();
+  if(page==="garden-drawings")renderGardenEntries("drawing","garden-drawings-grid","No drawings posted yet 🎨");
+  if(page==="garden-stories")renderGardenEntries("story","garden-stories-grid","No stories posted yet 📖");
+  if(page==="garden-diary")renderGardenEntries("diary","garden-diary-grid","No diary entries posted yet 🕯️");
 }
 document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>nav(btn.dataset.page)));
+
+// ─── MODE SWITCH (Study ⇄ Secret Garden) ───────────────────────────────────────
+// Two "modes" share the same shell (topbar, .page/.panel system) but swap which
+// nav + page set is visible, and body.mode-garden re-themes CSS variables.
+function setMode(mode){
+  const garden=mode==="garden";
+  document.body.classList.toggle("mode-garden",garden);
+  document.getElementById("study-pages").style.display=garden?"none":"";
+  document.getElementById("garden-pages").style.display=garden?"":"none";
+  document.getElementById("nav-study").style.display=garden?"none":"";
+  document.getElementById("nav-garden").style.display=garden?"":"none";
+  document.getElementById("mode-toggle-label").textContent=garden?"🌸 Back to Study":"🌙 Secret Garden";
+  try{localStorage.setItem("jp-mode",mode);}catch(e){}
+  if(garden)nav("garden-home");
+  else nav("home");
+}
+function toggleMode(){
+  setMode(document.body.classList.contains("mode-garden")?"study":"garden");
+}
+
+// ─── GARDEN FEED — merges blog posts + recent study progress by date ──────────
+function renderGardenFeed(){
+  const el=document.getElementById("garden-feed");
+  if(!el)return;
+  const items=[];
+
+  (window.BLOG_POSTS||[]).forEach(p=>{
+    if(!p.date)return;
+    items.push({date:p.date,kind:"post",icon:p.mood||"📓",title:p.title,
+      detail:p.category?`study blog · ${p.category}`:"study blog"});
+  });
+
+  (window.GARDEN_ENTRIES||[]).forEach(g=>{
+    if(!g.date)return;
+    const icon=g.type==="drawing"?"🎨":g.type==="story"?"📖":"🕯️";
+    items.push({date:g.date,kind:"garden",icon,title:g.title,
+      detail:g.type?`secret garden · ${g.type}`:"secret garden"});
+  });
+
+  Object.keys(state.dailyActivity||{}).forEach(k=>{
+    const a=state.dailyActivity[k];
+    const total=(a.cards||0)+(a.kanji||0)+(a.quizzes||0)+(a.grammar||0);
+    if(!total)return;
+    const parts=[];
+    if(a.cards)parts.push(`${a.cards} cards`);
+    if(a.kanji)parts.push(`${a.kanji} kanji`);
+    if(a.quizzes)parts.push(`${a.quizzes} quizzes`);
+    if(a.grammar)parts.push(`${a.grammar} grammar pts`);
+    const [y,m,d]=k.split("-").map(Number);
+    items.push({date:new Date(y,m,d).toISOString(),kind:"progress",icon:"📚",
+      title:"Study progress",detail:parts.join(" · ")});
+  });
+
+  items.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const recent=items.slice(0,20);
+
+  if(!recent.length){
+    el.innerHTML=`<div class="empty-state">Nothing here yet — write a blog post or study a little and it'll show up here 🌙</div>`;
+    return;
+  }
+  el.innerHTML=recent.map(it=>{
+    const d=new Date(it.date).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+    return `
+    <div class="garden-feed-item">
+      <span class="garden-feed-icon">${it.icon}</span>
+      <div class="garden-feed-body">
+        <div class="garden-feed-title">${it.title}</div>
+        <div class="garden-feed-meta">${it.detail} · <span class="garden-feed-date">${d}</span></div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ─── GARDEN ENTRY GRIDS — drawings / stories / diary ───────────────────────────
+function renderGardenEntries(type,gridId,emptyMsg){
+  const el=document.getElementById(gridId);
+  if(!el)return;
+  const list=(window.GARDEN_ENTRIES||[]).filter(g=>g.type===type);
+  if(!list.length){
+    el.innerHTML=`<div class="empty-state">${emptyMsg}</div>`;
+    return;
+  }
+  el.innerHTML=list.map(g=>{
+    const d=g.date?new Date(g.date).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"}):"";
+    return `
+    <div class="garden-entry-card">
+      ${g.image?`<img class="garden-entry-img" src="${g.image}" alt=""/>`:""}
+      <div class="garden-entry-inner">
+        <div class="garden-entry-meta">
+          ${g.tags&&g.tags.length?g.tags.map(t=>`<span class="pill muted">${t}</span>`).join(""):""}
+          <span class="garden-feed-date">${d}</span>
+        </div>
+        <div class="garden-entry-title">${g.title}</div>
+        ${g.bodyHtml?`<div class="garden-entry-body">${g.bodyHtml}</div>`:""}
+      </div>
+    </div>`;
+  }).join("");
+}
+window.renderGardenFeed=renderGardenFeed;
+window.renderGardenEntries=renderGardenEntries;
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 // Indices ordered N5 → N4 → N3 → N2 → N1 → unrated, so daily rotation
@@ -2116,6 +2220,10 @@ renderJournal();
 renderResources();
 spawnPetals();
 loadKanjiData();
+
+let _savedMode="study";
+try{_savedMode=localStorage.getItem("jp-mode")||"study";}catch(e){}
+setMode(_savedMode);
 
 // ── Expose cross-file functions globally (so content-loader.js can call them) ──
 window.mergeCustomDecks = mergeCustomDecks;
