@@ -25,7 +25,7 @@ publish_mode: simple
 
 collections:
 
- - name: "garden_drawings"
+- name: "garden_drawings"
     label: "Garden — Drawing"
     folder: "content/garden"
     create: true
@@ -36,6 +36,8 @@ collections:
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Image", name: "image", widget: "image"}
+      - {label: "Background color", name: "background_color", widget: "string", required: false, hint: "e.g. #1a0022, or leave blank"}
+      - {label: "Background image", name: "background_image", widget: "image", required: false}
       - {label: "Notes", name: "body", widget: "markdown", required: false}
 
   - name: "garden_stories"
@@ -48,6 +50,8 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Background color", name: "background_color", widget: "string", required: false}
+      - {label: "Background image", name: "background_image", widget: "image", required: false}
       - {label: "Story", name: "body", widget: "markdown"}
 
   - name: "garden_diary"
@@ -57,9 +61,11 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Type", name: "type", widget: "hidden", default: "diary"}
-      - {label: "Title", name: "title", widget: "string", default: "Diary Entry"}
+      - {label: "Title", name: "title", widget: "string", default: "diary entry"}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Background color", name: "background_color", widget: "string", required: false}
+      - {label: "Background image", name: "background_image", widget: "image", required: false}
       - {label: "Entry", name: "body", widget: "markdown"}
       
   # ─── BLOG POSTS (progress updates + anything else) ───
