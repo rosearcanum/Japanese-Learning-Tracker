@@ -120,8 +120,8 @@ collections:
       - { label: "Background image", name: "background_image", widget: "image", required: false }
       - { label: "Story", name: "body", widget: "markdown" }
 
-  - name: "garden_diary"
-    label: "🕯️ Garden — Diary"
+  - name: "garden_posts"
+    label: "Garden — Posts"
     folder: "content/garden"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
