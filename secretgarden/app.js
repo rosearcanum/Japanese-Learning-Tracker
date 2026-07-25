@@ -111,7 +111,7 @@ async function loadEntry(name) {
     const { data, body } = parseFrontmatter(text);
     return {
       slug: name.replace(/\.md$/, ""),
-      type: data.type || "diary",
+      type: data.type || "post",
       title: data.title || "untitled",
       date: data.date || "",
       tags: Array.isArray(data.tags) ? data.tags : [],
@@ -173,7 +173,7 @@ async function renderIndex() {
       listEl.innerHTML = `<li class="empty-state">nothing here yet.</li>`;
       return;
     }
-    const typeTag = { drawing: "art", story: "fic", diary: "diary" };
+    const typeTag = { drawing: "art", story: "fic", post: "post" };
     listEl.innerHTML = entries.map(e => {
       const d = e.date ? new Date(e.date) : null;
       const valid = d && !isNaN(d.getTime());
