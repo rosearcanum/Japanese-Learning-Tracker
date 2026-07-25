@@ -25,7 +25,7 @@ const GH_OWNER = "rosearcanum";
 const GH_REPO  = "Japanese-Learning-Tracker";
 const GH_BRANCH = "main";
 
-const CUSDIS_APP_ID = "PASTE-YOUR-CUSDIS-APP-ID-HERE";
+const CUSDIS_APP_ID = "ae9780db-0b37-43cc-adf3-cd34a9c41020";
 const CUSDIS_HOST = "https://cusdis.com";
 
 // ── Tiny frontmatter parser (same approach as the main site's content-loader.js) ──
