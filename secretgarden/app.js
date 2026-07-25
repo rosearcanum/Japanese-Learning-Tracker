@@ -9,7 +9,7 @@
    setting DEBUG = false just below.
 ══════════════════════════════════════════════════════════════════ */
 
-const DEBUG = true;
+const DEBUG = false;
 
 const GH_OWNER = "rosearcanum";
 const GH_REPO  = "Japanese-Learning-Tracker";
@@ -244,12 +244,17 @@ function mountCusdis(entry) {
     wrap.innerHTML = `<div class="cta">comments not configured yet.</div>`;
     return;
   }
-  wrap.innerHTML = `<div id="cusdis_thread"
+  // data-theme="dark" is the ONLY way to style the widget's insides —
+  // it renders in a cross-origin iframe, so page CSS can't reach it.
+  // Without this it defaults to light: white text in white inputs.
+  wrap.innerHTML = `<div class="label">comments</div>
+  <div id="cusdis_thread"
     data-host="${CUSDIS_HOST}"
     data-app-id="${CUSDIS_APP_ID}"
     data-page-id="${entry.slug}"
     data-page-url="${location.href}"
     data-page-title="${String(entry.title).replace(/"/g, "&quot;")}"
+    data-theme="dark"
   ></div>`;
   const s = document.createElement("script");
   s.async = true; s.defer = true; s.src = `${CUSDIS_HOST}/js/cusdis.es.js`;

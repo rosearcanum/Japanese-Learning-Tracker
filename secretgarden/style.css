@@ -1,42 +1,50 @@
 /* ══════════════════════════════════════════════════════════════════
    secretgarden/style.css
-   Terminal / green-text-adjacent aesthetic, built from the CSS Marie
-   supplied. This is a SEPARATE stylesheet from the main study site's
-   style.css on purpose — Secret Garden is its own standalone folder
-   now, not a "mode" of the main app.
+   Terminal aesthetic, dressed up: still monospace and dark, but with
+   depth (layered gradients), a dusty-rose accent tying back to
+   rosearcanum.moe, and a faint CRT scanline wash instead of flat black.
+   No rounded corners anywhere, by preference.
 
-   FONT NOTE: Abaddon (@font-face below) isn't a font I have access
-   to — you'll need to drop AbaddonLight.woff2/.woff and
-   AbaddonBold.woff2/.woff into secretgarden/res/ yourself (or swap
-   the src: paths for wherever you host them). Until then it falls
-   back to 'MS Gothic'/'Courier New'/monospace, which is why the site
-   still looks right without the font files.
-   ══════════════════════════════════════════════════════════════════ */
+   FONT: Abaddon files go in secretgarden/res/. Until they're there it
+   falls back to MS Gothic / Courier New, which still reads correctly.
+══════════════════════════════════════════════════════════════════ */
 
 @font-face {
   font-family: 'Abaddon';
   src: local('Abaddon Light Regular'), local('AbaddonLight'),
        url('res/AbaddonLight.woff2') format('woff2'),
        url('res/AbaddonLight.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+  font-weight: 300; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Abaddon';
   src: local('Abaddon Bold Regular'), local('AbaddonBold'),
        url('res/AbaddonBold.woff2') format('woff2'),
        url('res/AbaddonBold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
+  font-weight: bold; font-style: normal; font-display: swap;
+}
+
+:root {
+  --bg-deep:    #0a0810;
+  --bg-lift:    #14101c;
+  --ink:        #b8b0c4;
+  --ink-soft:   #6d6480;
+  --ink-bright: #f0ebf5;
+  --rose:       #e08bb0;
+  --rose-dim:   #a8637f;
+  --line:       #2a2435;
+  --line-soft:  #1d1826;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #000000;
-  color: #b0b0b0;
+  background-color: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(120, 60, 100, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(60, 50, 110, 0.16) 0%, transparent 55%);
+  background-attachment: fixed;
+  color: var(--ink);
   font-family: 'Abaddon', 'MS Gothic', 'Courier New', Courier, monospace;
   min-height: 100vh;
   display: flex;
@@ -48,105 +56,153 @@ body {
   text-rendering: optimizeSpeed;
 }
 
-/* Per-post custom background (set via inline style from frontmatter —
-   see setPostBackground() in app.js). Falls back to plain black. */
+/* Faint CRT scanline wash over everything */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.016) 0px,
+    rgba(255,255,255,0.016) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Per-post custom background from frontmatter */
 body.custom-bg { background-size: cover; background-position: center; background-attachment: fixed; }
 
 .viewport-container {
   width: 100%;
-  max-width: 960px;
+  max-width: 900px;
   min-height: 100vh;
   padding: 40px;
   display: flex;
   flex-direction: column;
 }
+@media (max-width: 900px) { .viewport-container { padding: 22px 18px; } }
 
-@media (max-width: 960px) {
-  .viewport-container { padding: 20px; }
-}
-
-/* ── Top bar: link back to the map + creator indicator ── */
+/* ── top bar ── */
 .gs-topbar {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 30px; font-size: 13px; color: rgb(80,80,80);
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  margin-bottom: 26px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px; color: var(--ink-soft); letter-spacing: 0.5px;
 }
-.gs-topbar a { color: rgb(80,80,80); }
-.gs-topbar a:hover { color: #fff; }
+.gs-topbar a { color: var(--ink-soft); }
+.gs-topbar a:hover { color: var(--rose); }
 #creator-badge {
-  display: none;
-  border: 1px solid #333; padding: 3px 9px; letter-spacing: 1px;
-  color: #d8b563;
+  display: none; border: 1px solid var(--rose-dim); padding: 3px 10px;
+  letter-spacing: 1px; color: var(--rose); font-size: 12px;
 }
 #creator-badge.visible { display: inline-block; }
 
-.entry-header { flex-shrink: 0; margin-bottom: 20px; }
+.entry-header { flex-shrink: 0; margin-bottom: 24px; }
 
-.bottom-fields {
-  flex-shrink: 0; margin-top: 30px; font-size: 16px; color: rgb(80, 80, 80);
-  white-space: pre-wrap; user-select: none; letter-spacing: 1px;
-}
-
-.main-content {
-  width: 100%; flex-grow: 1; min-height: 0; overflow-y: auto; padding-right: 15px;
-  scrollbar-width: thin; scrollbar-color: rgb(80, 80, 80) #000000;
-}
-.main-content::-webkit-scrollbar { width: 8px; }
-.main-content::-webkit-scrollbar-track { background: #000000; border-left: 1px solid #333333; }
-.main-content::-webkit-scrollbar-thumb { background: rgb(80, 80, 80); }
-.main-content::-webkit-scrollbar-thumb:hover { background: #b0b0b0; }
+.main-content { width: 100%; flex-grow: 1; min-height: 0; }
 
 a { color: currentColor; text-decoration: none; }
-a:hover { color: #fff; animation: hoverFlicker 60ms step-end infinite; }
-@keyframes hoverFlicker { 0%, 100% { background-color: #111; } 50% { background-color: #222; } }
+a:hover { color: var(--ink-bright); }
 
-/* ── Index / entry list ── */
-#terminal-text { font-size: 16px; line-height: 1.5; white-space: pre-wrap; margin: 0; }
-#wait-indicator {
-  font-size: 16px; margin-top: 4px; color: rgb(80, 80, 80);
-  visibility: hidden; user-select: none;
-}
-#wait-indicator.visible { visibility: visible; animation: terminal-blink 1.2s step-end infinite; }
-@keyframes terminal-blink { 50% { opacity: 0; } }
+/* ── index / entry list ── */
+#terminal-text { font-size: 16px; line-height: 1.7; white-space: pre-wrap; }
 
-#entry-list { margin-top: 40px; opacity: 0; transition: opacity 1.2s ease-in-out; }
+#entry-list { margin-top: 12px; opacity: 0; transition: opacity 0.9s ease-in-out; }
 #entry-list.fade-in { opacity: 1; }
-#entry-list h1 { font-size: 18px; font-weight: normal; margin: 20px 0 5px 0; color: #ffffff; }
-#entry-list hr { border: none; border-top: 1px solid #333333; margin-bottom: 15px; }
-#entry-list ul { list-style-type: none; margin: 0; }
-#entry-list li { margin-bottom: 10px; }
-#entry-list li a { display: flex; align-items: flex-start; color: #b0b0b0; width: 100%; }
-#entry-list a:hover .entry-title { text-decoration: underline; }
-.entry-month { width: 10ch; flex-shrink: 0; }
-.entry-day { width: 6ch; flex-shrink: 0; }
-.entry-type-tag { width: 10ch; flex-shrink: 0; opacity: 0.6; }
-.entry-title { flex-grow: 1; }
+#entry-list h1 {
+  font-size: 15px; font-weight: normal; margin: 0 0 10px 0;
+  color: var(--rose); letter-spacing: 3px; text-transform: uppercase;
+}
+#entry-list hr { border: none; border-top: 1px solid var(--line); margin-bottom: 18px; }
+#entry-list ul { list-style-type: none; }
+#entry-list li { margin-bottom: 2px; }
+#entry-list li a {
+  display: flex; align-items: baseline; gap: 4px; width: 100%;
+  color: var(--ink); padding: 9px 10px;
+  border-left: 2px solid transparent;
+  background: rgba(255,255,255,0.012);
+}
+#entry-list li a:hover {
+  background: var(--bg-lift);
+  border-left-color: var(--rose);
+  color: var(--ink-bright);
+}
+.entry-month { width: 5ch; flex-shrink: 0; color: var(--ink-soft); font-size: 13px; }
+.entry-day   { width: 4ch; flex-shrink: 0; color: var(--ink-soft); font-size: 13px; }
+.entry-type-tag {
+  width: 7ch; flex-shrink: 0; font-size: 11px; letter-spacing: 1px;
+  color: var(--rose-dim); text-transform: uppercase;
+}
+.entry-title { flex-grow: 1; font-size: 15px; }
 
-/* ── Single post ── */
-h1#title { font-size: 24px; color: #ffffff; font-weight: normal; margin: 0 0 5px 0; }
-.date-subtitle { font-size: 16px; color: rgb(80, 80, 80); font-weight: normal; margin: 0; }
-.main-content p { font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
-.main-content strong { color: #fff; }
-.main-content em { color: #d0d0d0; }
-.main-content u { text-decoration: underline; }
-.main-content del, .main-content s { color: rgb(80,80,80); }
-.main-content center, .main-content .center { text-align: center; }
-.main-content ul, .main-content ol { margin: 0 0 18px 22px; }
+/* ── single post ── */
+h1#title {
+  font-size: 26px; color: var(--ink-bright); font-weight: normal;
+  margin: 0 0 6px 0; letter-spacing: 0.5px;
+}
+.date-subtitle { font-size: 13px; color: var(--ink-soft); letter-spacing: 1px; text-transform: uppercase; }
 
-.image-container { text-align: center; margin: 30px 0; }
-.image-container img { max-width: 100%; height: auto; border: 1px solid #333333; display: inline-block; }
+#post-body { font-size: 16px; line-height: 1.75; }
+#post-body p { margin-bottom: 20px; }
+#post-body strong { color: var(--ink-bright); font-weight: bold; }
+#post-body em { color: #cfc6db; }
+#post-body u { text-decoration: underline; text-underline-offset: 3px; }
+#post-body del, #post-body s { color: var(--ink-soft); }
+#post-body center, #post-body .center { text-align: center; }
+#post-body ul, #post-body ol { margin: 0 0 20px 24px; }
+#post-body li { margin-bottom: 7px; }
+#post-body blockquote {
+  border-left: 2px solid var(--rose-dim); padding: 4px 0 4px 16px;
+  margin: 0 0 20px 0; color: var(--ink-soft);
+}
+#post-body code {
+  background: var(--bg-lift); border: 1px solid var(--line);
+  padding: 1px 5px; font-size: 14px;
+}
+#post-body a { color: var(--rose); text-decoration: underline; text-underline-offset: 3px; }
+#post-body a:hover { color: var(--ink-bright); }
+#post-body img { max-width: 100%; height: auto; border: 1px solid var(--line); display: block; margin: 0 auto 20px; }
+#post-body hr { border: none; border-top: 1px solid var(--line); margin: 28px 0; }
 
-hr.separator { border: none; border-top: 1px solid #333333; margin: 30px 0; }
+.image-container { text-align: center; margin: 0 0 28px; }
+.image-container img { max-width: 100%; height: auto; border: 1px solid var(--line); display: inline-block; }
 
-.end-symbol { text-align: right; margin-top: 40px; animation: flickerOpacity 1.3s infinite; }
+hr.separator { border: none; border-top: 1px solid var(--line); margin: 34px 0 26px; }
+
+.end-symbol { text-align: right; margin-top: 34px; color: var(--rose-dim); animation: flickerOpacity 4s infinite; }
 @keyframes flickerOpacity {
-  0% { opacity: 1; } 4% { opacity: 0.25; } 8% { opacity: 0.9; } 13% { opacity: 0.15; }
-  18% { opacity: 1; } 23% { opacity: 0.4; } 29% { opacity: 0.95; } 35% { opacity: 0.2; }
-  41% { opacity: 1; } 48% { opacity: 0.6; } 55% { opacity: 0.1; } 62% { opacity: 0.85; }
-  70% { opacity: 0.3; } 78% { opacity: 1; } 86% { opacity: 0.5; } 93% { opacity: 0.2; } 100% { opacity: 1; }
+  0%,100% { opacity: 1; } 12% { opacity: 0.35; } 20% { opacity: 0.9; }
+  33% { opacity: 0.2; } 45% { opacity: 1; } 60% { opacity: 0.5; }
+  72% { opacity: 0.95; } 88% { opacity: 0.3; }
 }
 
-.empty-state { color: rgb(80,80,80); padding: 20px 0; }
+.empty-state { color: var(--ink-soft); padding: 16px 0; list-style: none; }
 
-/* ── Comments (Cusdis) ── */
-#comments-wrap { margin-top: 40px; }
-#comments-wrap .cta { font-size: 13px; color: rgb(80,80,80); margin-bottom: 12px; }
+/* ── comments ──
+   The Cusdis widget is a cross-origin iframe, so its INTERNAL styling
+   can't be reached from here — that's handled by data-theme="dark" in
+   app.js. What we can control is the frame itself: give it room so it
+   doesn't need its own scrollbar. */
+#comments-wrap { margin-top: 8px; }
+#comments-wrap .label {
+  font-size: 13px; color: var(--rose); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+#comments-wrap .cta { font-size: 13px; color: var(--ink-soft); }
+#cusdis_thread { background: transparent; }
+#cusdis_thread iframe {
+  width: 100% !important;
+  min-height: 520px;
+  border: 1px solid var(--line) !important;
+  background: transparent;
+}
+
+/* ── footer ── */
+.bottom-fields {
+  flex-shrink: 0; margin-top: 40px; padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--ink-soft);
+  white-space: pre-wrap; user-select: none; letter-spacing: 1px;
+}
+.bottom-fields a { color: var(--ink-soft); }
+.bottom-fields a:hover { color: var(--rose); }
