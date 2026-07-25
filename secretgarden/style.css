@@ -69,8 +69,23 @@ body::before {
   );
 }
 
-/* Per-post custom background from frontmatter */
-body.custom-bg { background-size: cover; background-position: center; background-attachment: fixed; }
+/* ── Per-post custom background from frontmatter ──
+   A background image alone makes light text unreadable, so whenever
+   one is set we lay a dark scrim over it and put the content above.
+   Strength is controlled by --scrim-opacity, set per-post in app.js
+   from the `background_dim` field (0 = no scrim, 1 = fully opaque). */
+body.custom-bg {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+body.custom-bg::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: rgba(8, 6, 12, var(--scrim-opacity, 0.82));
+}
+/* Content must sit above the scrim */
+.viewport-container { position: relative; z-index: 1; }
 
 .viewport-container {
   width: 100%;

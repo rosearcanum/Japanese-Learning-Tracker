@@ -111,13 +111,14 @@ async function loadEntry(name) {
     const { data, body } = parseFrontmatter(text);
     return {
       slug: name.replace(/\.md$/, ""),
-      type: data.type || "post",
+      type: data.type || "diary",
       title: data.title || "untitled",
       date: data.date || "",
       tags: Array.isArray(data.tags) ? data.tags : [],
       image: data.image || "",
       backgroundColor: data.background_color || "",
       backgroundImage: data.background_image || "",
+      backgroundDim: data.background_dim || "",
       bodyHtml: (window.marked && marked.parse) ? marked.parse(body) : body,
     };
   } catch (e) {
@@ -152,6 +153,14 @@ function applyPostBackground(entry) {
   if (entry.backgroundImage) {
     document.body.style.backgroundImage = `url('${entry.backgroundImage}')`;
     document.body.classList.add("custom-bg");
+
+    // Scrim strength. Defaults to 0.82 — enough to keep light text
+    // readable over most images. Set background_dim in the post's
+    // frontmatter to override (0 = image at full strength, but expect
+    // the text to be hard to read).
+    let dim = parseFloat(entry.backgroundDim);
+    if (isNaN(dim) || dim < 0 || dim > 1) dim = 0.82;
+    document.body.style.setProperty("--scrim-opacity", String(dim));
   } else if (entry.backgroundColor) {
     document.body.style.backgroundColor = entry.backgroundColor;
   }
@@ -173,7 +182,7 @@ async function renderIndex() {
       listEl.innerHTML = `<li class="empty-state">nothing here yet.</li>`;
       return;
     }
-    const typeTag = { drawing: "art", story: "fic", post: "post" };
+    const typeTag = { drawing: "art", story: "fic", diary: "diary" };
     listEl.innerHTML = entries.map(e => {
       const d = e.date ? new Date(e.date) : null;
       const valid = d && !isNaN(d.getTime());
