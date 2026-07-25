@@ -237,6 +237,54 @@ async function renderPost() {
   }
 }
 
+// ── CSS injected INTO the Cusdis widget ───────────────────────────
+// Cusdis builds its iframe with srcdoc, which inherits this page's
+// origin — so unlike a normal third-party embed, we can reach inside
+// it. We watch for the iframe appearing and rewrite its srcdoc to
+// append our own styles before it renders.
+// These rules target plain elements (body/textarea/input/button)
+// rather than Cusdis's internal class names, so they keep working if
+// the widget's markup changes. To refine further: inspect the iframe
+// in devtools and add rules for whatever classes you find.
+const CUSDIS_INJECTED_CSS = `
+  * { border-radius: 0 !important; }
+  body, html {
+    background: transparent !important;
+    color: #b8b0c4 !important;
+    font-family: 'Abaddon','MS Gothic','Courier New',Courier,monospace !important;
+    font-size: 14px !important;
+  }
+  a { color: #e08bb0 !important; }
+  textarea, input {
+    background: #14101c !important;
+    color: #f0ebf5 !important;
+    border: 1px solid #2a2435 !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+  }
+  textarea::placeholder, input::placeholder { color: #6d6480 !important; }
+  textarea:focus, input:focus {
+    outline: none !important;
+    border-color: #a8637f !important;
+  }
+  button {
+    background: #14101c !important;
+    color: #e08bb0 !important;
+    border: 1px solid #a8637f !important;
+    font-family: inherit !important;
+    font-size: 13px !important;
+    letter-spacing: 1px !important;
+    padding: 8px 16px !important;
+    cursor: pointer !important;
+    text-transform: lowercase !important;
+  }
+  button:hover { background: #1d1826 !important; color: #f0ebf5 !important; }
+  /* comment rows */
+  .dark, .dark * { background-color: transparent !important; }
+  hr { border-color: #2a2435 !important; }
+`;
+
 function mountCusdis(entry) {
   const wrap = document.getElementById("comments-wrap");
   if (!wrap) return;
@@ -244,9 +292,7 @@ function mountCusdis(entry) {
     wrap.innerHTML = `<div class="cta">comments not configured yet.</div>`;
     return;
   }
-  // data-theme="dark" is the ONLY way to style the widget's insides —
-  // it renders in a cross-origin iframe, so page CSS can't reach it.
-  // Without this it defaults to light: white text in white inputs.
+
   wrap.innerHTML = `<div class="label">comments</div>
   <div id="cusdis_thread"
     data-host="${CUSDIS_HOST}"
@@ -256,6 +302,26 @@ function mountCusdis(entry) {
     data-page-title="${String(entry.title).replace(/"/g, "&quot;")}"
     data-theme="dark"
   ></div>`;
+
+  // Observer must be watching BEFORE the Cusdis script builds the
+  // iframe, otherwise we miss our chance to rewrite srcdoc.
+  const thread = document.getElementById("cusdis_thread");
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (!node || node.tagName !== "IFRAME") return;
+        try {
+          if (typeof node.srcdoc === "string" && node.srcdoc.includes("</style>")) {
+            node.srcdoc = node.srcdoc.replace("</style>", CUSDIS_INJECTED_CSS + "</style>");
+          }
+        } catch (e) {
+          showError("cusdis style injection", e);
+        }
+      });
+    });
+  });
+  observer.observe(thread, { childList: true, subtree: true });
+
   const s = document.createElement("script");
   s.async = true; s.defer = true; s.src = `${CUSDIS_HOST}/js/cusdis.es.js`;
   document.body.appendChild(s);
