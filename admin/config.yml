@@ -21,7 +21,7 @@ backend:
 media_folder: "media/uploads"     # where uploaded images are stored in the repo
 public_folder: "/media/uploads"   # how the site refers to them
 
-publish_mode: simple
+publish_mode: editorial_workflow
 
 collections:
 
