@@ -182,7 +182,7 @@ async function renderIndex() {
       listEl.innerHTML = `<li class="empty-state">nothing here yet.</li>`;
       return;
     }
-    const typeTag = { drawing: "art", story: "fic", diary: "diary" };
+    const typeTag = { drawing: "art", story: "fic", diary: "post" };
     listEl.innerHTML = entries.map(e => {
       const d = e.date ? new Date(e.date) : null;
       const valid = d && !isNaN(d.getTime());
