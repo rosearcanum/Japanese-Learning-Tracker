@@ -201,7 +201,7 @@ async function renderIndex() {
         <a href="post.html?slug=${encodeURIComponent(e.slug)}">
           <span class="trk-num">${num}</span>
           <span class="trk-title">${e.title}</span>
-          <span class="trk-tag">${TYPE_TAG[e.type] || e.type || ""}</span>
+         <span class="trk-tag">${tagFor(e.type)}</span>
           <span class="trk-date">${date}</span>
         </a>
       </li>`;
