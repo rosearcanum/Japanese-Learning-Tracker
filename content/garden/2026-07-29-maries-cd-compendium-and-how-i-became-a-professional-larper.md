@@ -8,7 +8,7 @@ Hello everyone, welcome to the secret garden. This is probably the first time yo
 
 These days, every time I post, I disappear for another year or so. It can't really be helped. I had someone recently describe me as someone who "loves to work" but that's really not the case—it's all a means to an end for me. I work 9 days a week, which I know sounds impossible, but that's probably the best way to describe my situation. I work 9-5, Mon-Fri as an admin assistant. Then, Thur-Sun, I work at the ice arena still, and whenever the days intersect with my other job it simply means that I continue working from the early evenings to the night. The weekends are typically an all-day ordeal depending on whether I party hostess, which means I'm a glorified waitress every now and then, but the tips are good, very good. Then, during the days where I don't work double shifts, I have classes. I have taken my degree so slowly over the past years due to juggling my jobs and having had a more prominent social life, so I had taken to doing two classes a semester or taking unnecessary gaps, and I know that if I truly locked in, I could finish everything no problem, but I've just been in a dilemma of sorts. It started first when I had turned 18 and I needed to provide for my family more, and while I still do, I realized I also needed to start seriously saving if I'm going to be more independent in my life. So, even though I tell myself all the time that I need to quit the rink so I can have more free time that just belongs to me, I plan on hitting  20 grand first before I consider that, which I've already made great progress in doing, so fingers crossed on eventually making that a reality. 
 
-So let’s finally get into the core of the post. This post features my collection of CDs which is in part, one of many other things that I do collect. My car doesn’t have a CD player, which may seem like it’d drill a hole in my ability to listen to them for the most part, but I cam up with a solution to that. Rather than buying a cheap player and hooking it up to my car, why not drop a cool hundred dollars on a FiiO DM13 just so my autism dreams of wanting to see a disc spin as it plays get fulfilled. So that’s what I did. And nowadays, I hoard all of my CDs in my glove compartment for easy listening. It’s the perfect larp, anytime I have anyone in my car, I let them choose any CD they want and play on any one of my homebrewed video game systems that I never played. I do play my PS Vita, though. It’s the best handheld ever created.
+So let’s finally get into the core of the post. This post features my collection of CDs which is in part, one of many other things that I do collect. My car doesn’t have a CD player, which may seem like it’d drill a hole in my ability to listen to them for the most part, but I came up with a solution to that. Rather than buying a cheap player and hooking it up to my car, why not drop a cool hundred dollars on a FiiO DM13 just so my autism dreams of wanting to see a disc spin as it plays get fulfilled. So that’s what I did. And nowadays, I hoard all of my CDs in my glove compartment for easy listening. It’s the perfect larp, anytime I have anyone in my car, I let them choose any CD they want and play on any one of my homebrewed video game systems that I never played. I do play my PS Vita, though. It’s the best handheld ever created.
 
 ![](/media/uploads/img_0159.jpeg)
 
@@ -18,11 +18,7 @@ So let’s finally get into the core of the post. This post features my collecti
 
 Now, here’s the compendium of all of the CDs that I do own, and with each one, I attached my review of it, big and small, as well as a star rating alongside each one that I deem worthy of it.
 
-
-
  You can call me Marie. Here’s what I have to say.
-
-
 
 * Avril Lavigne - Let Go 
 
