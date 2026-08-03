@@ -174,6 +174,13 @@ function applyPostBackground(entry) {
 }
 
 // ── index page ────────────────────────────────────────────────────
+// Looks up the display tag by key existence, not truthiness — a
+// deliberately blank label (like diary) must be allowed to stay blank.
+function tagFor(type) {
+  if (Object.prototype.hasOwnProperty.call(TYPE_TAG, type)) return TYPE_TAG[type];
+  return type || "";
+}
+
 async function renderIndex() {
   const listEl = document.getElementById("entry-list-items");
   const wrapEl = document.getElementById("entry-list");
@@ -201,7 +208,7 @@ async function renderIndex() {
         <a href="post.html?slug=${encodeURIComponent(e.slug)}">
           <span class="trk-num">${num}</span>
           <span class="trk-title">${e.title}</span>
-         <span class="trk-tag">${tagFor(e.type)}</span>
+          <span class="trk-tag">${tagFor(e.type)}</span>
           <span class="trk-date">${date}</span>
         </a>
       </li>`;
@@ -242,7 +249,7 @@ async function renderPost() {
     if (numEl) {
       const idx = entries.findIndex(x => x.slug === entry.slug);
       const label = TYPE_TAG[entry.type] ? " · " + TYPE_TAG[entry.type] : "";
-      numEl.textContent = "ENTRY " + String(idx + 1).padStart(2, "0") + label;
+      numEl.textContent = String(idx + 1).padStart(2, "0") + label;
     }
     if (titleEl) titleEl.textContent = entry.title;
     const d = entry.date ? new Date(entry.date) : null;
