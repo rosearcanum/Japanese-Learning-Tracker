@@ -242,7 +242,7 @@ async function renderPost() {
     if (numEl) {
       const idx = entries.findIndex(x => x.slug === entry.slug);
       const label = TYPE_TAG[entry.type] ? " · " + TYPE_TAG[entry.type] : "";
-      numEl.textContent = "TRACK " + String(idx + 1).padStart(2, "0") + label;
+      numEl.textContent = "ENTRY " + String(idx + 1).padStart(2, "0") + label;
     }
     if (titleEl) titleEl.textContent = entry.title;
     const d = entry.date ? new Date(entry.date) : null;
