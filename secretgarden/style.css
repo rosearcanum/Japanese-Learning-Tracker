@@ -81,7 +81,6 @@ body.custom-bg::after {
 .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .album-title { color: var(--ink-bright); font-size: 19px; margin-bottom: 4px; }
 .album-by { color: var(--rose-dim); font-size: 11px; letter-spacing: 2px; margin-bottom: 7px; }
-.album-note { color: var(--ink-soft); font-size: 10.5px; line-height: 1.7; }
 @media (max-width: 560px) {
   .album-head { flex-direction: column; gap: 14px; }
 }
