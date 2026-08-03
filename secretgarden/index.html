@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>secret garden</title>
+<title>the secret garden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -11,24 +14,47 @@
 
   <div class="gs-topbar">
     <span>rosearcanum.moe / secret garden</span>
-    <span id="creator-badge"></span>
   </div>
 
-  <div class="entry-header">
-    <p id="terminal-text">welcome to the garden. </p>
-  </div>
-
-  <div class="main-content">
-    <div id="entry-list">
-      <h1>entries</h1>
-      <hr/>
-      <ul id="entry-list-items">
-        <div class="empty-state">loading…</div>
-      </ul>
+  <!-- ── album header ── -->
+  <div class="album-head">
+    <div class="album-cover" id="album-cover"></div>
+    <div>
+      <div class="album-title">the secret garden</div>
+      <div class="album-by">MARIE · 2026 —</div>
+      <div class="album-note">
+        writings, drawings, shitposts.<br/>
+        updated whenever.
+      </div>
     </div>
   </div>
 
-  <div class="bottom-fields">[ study site → <a href="/">rosearcanum.moe</a> ]</div>
+  <!-- ── player — hidden until the music section is built.
+       Remove the `hidden` attribute to reveal it; styles are ready. ── -->
+  <div class="player" id="player" hidden>
+    <div class="player-row">
+      <button class="player-btn" aria-label="Play">play</button>
+      <div>
+        <div class="player-track" id="player-track">—</div>
+        <div class="player-sub">now playing</div>
+      </div>
+      <span class="player-time" id="player-time">0:00</span>
+    </div>
+    <div class="player-bar"><div class="player-fill" id="player-fill"></div></div>
+  </div>
+
+  <!-- ── tracklist ── -->
+  <div class="sec-label">WRITINGS</div>
+  <div id="entry-list">
+    <ul id="entry-list-items">
+      <li class="empty-state">loading…</li>
+    </ul>
+  </div>
+
+  <div class="bottom-fields">
+    <span class="credit">all writings by marie</span>
+    <span><a href="/">study site</a></span>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

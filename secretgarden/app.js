@@ -18,6 +18,11 @@ const GH_BRANCH = "main";
 const CUSDIS_APP_ID = "ae9780db-0b37-43cc-adf3-cd34a9c41020";
 const CUSDIS_HOST = "https://cusdis.com";
 
+// Display labels for each collection type. Change the right-hand values
+// freely — these are cosmetic only. The left-hand keys must keep matching
+// the hidden `type` field in the CMS collections.
+const TYPE_TAG = { drawing: "ART", story: "FIC", diary: "" };
+
 // ── on-page diagnostics ───────────────────────────────────────────
 function debugLog(msg) {
   if (!DEBUG) return;
@@ -119,6 +124,8 @@ async function loadEntry(name) {
       backgroundColor: data.background_color || "",
       backgroundImage: data.background_image || "",
       backgroundDim: data.background_dim || "",
+      lineSpacing: data.line_spacing || "",
+      paragraphSpacing: data.paragraph_spacing || "",
       bodyHtml: (window.marked && marked.parse) ? marked.parse(body) : body,
     };
   } catch (e) {
@@ -134,18 +141,18 @@ async function loadAllEntries() {
   return entries.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
-// ── creator badge ─────────────────────────────────────────────────
-async function renderCreatorBadge() {
-  const el = document.getElementById("creator-badge");
-  if (!el) return;
-  try {
-    const res = await fetch("/api/whoami", { credentials: "include" });
-    if (!res.ok) { debugLog(`/api/whoami: HTTP ${res.status} (login Worker not deployed yet — badge stays hidden, this is fine)`); return; }
-    const { loggedIn } = await res.json();
-    el.textContent = loggedIn ? "★ creator" : "";
-    el.classList.toggle("visible", !!loggedIn);
-  } catch (e) {
-    debugLog("/api/whoami unreachable (login Worker not deployed yet — this is fine)");
+function applyPostTypography(entry) {
+  const body = document.getElementById("post-body");
+  if (!body) return;
+
+  const lh = parseFloat(entry.lineSpacing);
+  if (!isNaN(lh) && lh >= 0.8 && lh <= 4) {
+    body.style.setProperty("--post-line-height", String(lh));
+  }
+
+  const gap = parseFloat(entry.paragraphSpacing);
+  if (!isNaN(gap) && gap >= 0 && gap <= 200) {
+    body.style.setProperty("--post-para-gap", gap + "px");
   }
 }
 
@@ -171,8 +178,7 @@ async function renderIndex() {
   const listEl = document.getElementById("entry-list-items");
   const wrapEl = document.getElementById("entry-list");
 
-  // Make it visible FIRST. This is the fix — previously this happened
-  // last, so any error above left the entire section at opacity 0.
+  // Reveal first so a thrown error can never leave a blank page.
   if (wrapEl) wrapEl.classList.add("fade-in");
   if (!listEl) return;
 
@@ -182,25 +188,27 @@ async function renderIndex() {
       listEl.innerHTML = `<li class="empty-state">nothing here yet.</li>`;
       return;
     }
-    const typeTag = { drawing: "art", story: "fic", diary: "post" };
-    listEl.innerHTML = entries.map(e => {
+    // Track numbers run newest = 01, matching the display order.
+    listEl.innerHTML = entries.map((e, i) => {
+      const num = String(i + 1).padStart(2, "0");
       const d = e.date ? new Date(e.date) : null;
       const valid = d && !isNaN(d.getTime());
-      const month = valid ? d.toLocaleDateString("en-US", { month: "short" }) : "";
-      const day = valid ? d.getDate() : "";
+      const date = valid
+        ? String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0")
+        : "";
       return `
       <li>
         <a href="post.html?slug=${encodeURIComponent(e.slug)}">
-          <span class="entry-month">${month}</span>
-          <span class="entry-day">${day}</span>
-          <span class="entry-type-tag">${typeTag[e.type] || e.type}</span>
-          <span class="entry-title">${e.title}</span>
+          <span class="trk-num">${num}</span>
+          <span class="trk-title">${e.title}</span>
+          <span class="trk-tag">${TYPE_TAG[e.type] || e.type || ""}</span>
+          <span class="trk-date">${date}</span>
         </a>
       </li>`;
     }).join("");
   } catch (e) {
     showError("renderIndex", e);
-    listEl.innerHTML = `<li class="empty-state">something went wrong loading entries — see debug below.</li>`;
+    listEl.innerHTML = `<li class="empty-state">something went wrong loading entries.</li>`;
   }
 }
 
@@ -228,6 +236,14 @@ async function renderPost() {
     }
 
     applyPostBackground(entry);
+    applyPostTypography(entry);
+
+    const numEl = document.getElementById("post-num");
+    if (numEl) {
+      const idx = entries.findIndex(x => x.slug === entry.slug);
+      const label = TYPE_TAG[entry.type] ? " · " + TYPE_TAG[entry.type] : "";
+      numEl.textContent = "TRACK " + String(idx + 1).padStart(2, "0") + label;
+    }
     if (titleEl) titleEl.textContent = entry.title;
     const d = entry.date ? new Date(entry.date) : null;
     if (dateEl && d && !isNaN(d.getTime())) {
@@ -260,7 +276,7 @@ const CUSDIS_INJECTED_CSS = `
   body, html {
     background: transparent !important;
     color: #b8b0c4 !important;
-    font-family: 'Abaddon','MS Gothic','Courier New',Courier,monospace !important;
+    font-family: 'IBM Plex Mono','Courier New',Courier,monospace !important;
     font-size: 14px !important;
   }
   a { color: #e08bb0 !important; }
@@ -340,7 +356,6 @@ function mountCusdis(entry) {
 function boot() {
   debugLog(`page: ${location.pathname}`);
   debugLog(`marked.js loaded: ${!!(window.marked && marked.parse)}`);
-  renderCreatorBadge();
   if (document.getElementById("entry-list-items")) renderIndex();
   if (document.getElementById("post-body")) renderPost();
 }
