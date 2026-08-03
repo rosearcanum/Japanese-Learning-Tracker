@@ -1,7 +1,7 @@
 ---
 type: diary
 title: Marie's CD Compendium and How I Became a Professional Larper
-date: 2026-07-29T16:17:00.000-04:00
+date: 2026-08-03T00:57:00.000-04:00
 background_image: /media/uploads/2f10ce69b96c0611989308b0abc68e70.gif
 ---
 Hello everyone, welcome to the secret garden. This is probably the first time you've seen this area, unless you've been stalking my pages, then this probably shouldn't be too unfamiliar to you. Regardless, welcome. I'm no stranger to creating websites out of boredom, so this really shouldn't be any different, but the main difference is that I want it to host all of my writings, past and future, away from any other websites created that isn't wholly my own. I've seen that most posts are made using Google Docs, or by using alternative websites such as Medium, which is all fine and good, whatever gets the job done is really what's most important, but I've always been someone who takes the "extra" route. There's so much more that I have yet to update on here, I was so focused on all my other projects that for this step, I've pretty much neglected so much of it. There will eventually be other things to do here, there's a whole other side to the site that just hosts my personal study material, but it really isn't meant for others to see yet. In terms of content, you really only have the markdowns disguised as posts (where I tried to mimic the feel of Amino in a lot of aspects) as well as the ability to leave comments if you wish. The downside of the latter is I have to use my admin abilities and approve them manually, which really sucks, I hate giving myself more work, so maybe don't leave any comments? It's a double-edged sword. 
