@@ -190,7 +190,15 @@ function folderLabel(type) {
 function renderFolders() {
   const box = document.getElementById("folders");
   if (!box) return;
-  box.innerHTML = FOLDERS.map(f => {
+
+  // Only show folders that actually hold something. "all" is always
+  // shown; the rest appear the moment their first post is published,
+  // so the sidebar grows with the site instead of listing empties.
+  const visible = FOLDERS.filter(f =>
+    f.key === null || ALL_ENTRIES.some(e => e.type === f.key)
+  );
+
+  box.innerHTML = visible.map(f => {
     const count = f.key === null
       ? ALL_ENTRIES.length
       : ALL_ENTRIES.filter(e => e.type === f.key).length;

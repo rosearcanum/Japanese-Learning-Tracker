@@ -44,12 +44,20 @@ body {
 }
 @media (max-width: 760px) { body { padding: 14px 12px 30px; } }
 
-/* Per-post background image + readability scrim */
+/* ── Per-post background image + readability scrim ──
+   When a post sets a background, the window chrome goes translucent so
+   the image reads through it instead of being boxed out. The scrim
+   underneath is what keeps text legible — tune it per post with the
+   `background_dim` field (0 = image at full strength). */
 body.custom-bg { background-size: cover; background-position: center; background-attachment: fixed; }
 body.custom-bg::after {
   content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background: rgba(8, 6, 12, var(--scrim-opacity, 0.82));
+  background: rgba(8, 6, 12, var(--scrim-opacity, 0.72));
 }
+body.custom-bg .win        { background: transparent; border-color: rgba(58, 52, 70, 0.55); }
+body.custom-bg .win-bar    { background: rgba(36, 29, 51, 0.45); border-bottom-color: rgba(58, 52, 70, 0.5); }
+body.custom-bg .win-status { background: rgba(26, 21, 38, 0.45); border-top-color: rgba(58, 52, 70, 0.5); }
+body.custom-bg .side       { background: rgba(16, 13, 24, 0.4); }
 
 /* ── the window ── */
 .win {
