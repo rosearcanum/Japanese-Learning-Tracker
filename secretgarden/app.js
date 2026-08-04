@@ -18,10 +18,15 @@ const GH_BRANCH = "main";
 const CUSDIS_APP_ID = "ae9780db-0b37-43cc-adf3-cd34a9c41020";
 const CUSDIS_HOST = "https://cusdis.com";
 
-// Display labels for each collection type. Change the right-hand values
-// freely — these are cosmetic only. The left-hand keys must keep matching
-// the hidden `type` field in the CMS collections.
-const TYPE_TAG = { drawing: "ART", story: "FIC", diary: "" };
+// Sidebar folders. `key` must match the hidden `type` field in the CMS
+// collections (or be null for the catch-all). `label` is cosmetic —
+// rename freely. Reorder this array to reorder the sidebar.
+const FOLDERS = [
+  { key: null,      label: "all" },
+  { key: "diary",   label: "posts" },
+  { key: "drawing", label: "art" },
+  { key: "story",   label: "stories" },
+];
 
 // ── on-page diagnostics ───────────────────────────────────────────
 function debugLog(msg) {
@@ -174,48 +179,85 @@ function applyPostBackground(entry) {
 }
 
 // ── index page ────────────────────────────────────────────────────
-// Looks up the display tag by key existence, not truthiness — a
-// deliberately blank label (like diary) must be allowed to stay blank.
-function tagFor(type) {
-  if (Object.prototype.hasOwnProperty.call(TYPE_TAG, type)) return TYPE_TAG[type];
-  return type || "";
+let ALL_ENTRIES = [];
+let ACTIVE_FOLDER = null;
+
+function folderLabel(type) {
+  const f = FOLDERS.find(x => x.key === type);
+  return f ? f.label : (type || "");
+}
+
+function renderFolders() {
+  const box = document.getElementById("folders");
+  if (!box) return;
+  box.innerHTML = FOLDERS.map(f => {
+    const count = f.key === null
+      ? ALL_ENTRIES.length
+      : ALL_ENTRIES.filter(e => e.type === f.key).length;
+    const on = ACTIVE_FOLDER === f.key ? " on" : "";
+    return `<button class="folder${on}" data-folder="${f.key === null ? "" : f.key}">
+      <span>${f.label}</span><span class="n">${count}</span>
+    </button>`;
+  }).join("");
+
+  box.querySelectorAll(".folder").forEach(btn => {
+    btn.addEventListener("click", () => {
+      ACTIVE_FOLDER = btn.dataset.folder || null;
+      renderFolders();
+      renderEntryList();
+    });
+  });
+}
+
+function renderEntryList() {
+  const listEl = document.getElementById("entry-list-items");
+  const statusEl = document.getElementById("status-count");
+  if (!listEl) return;
+
+  const shown = ACTIVE_FOLDER === null
+    ? ALL_ENTRIES
+    : ALL_ENTRIES.filter(e => e.type === ACTIVE_FOLDER);
+
+  if (statusEl) {
+    statusEl.textContent = shown.length === 1 ? "1 item" : shown.length + " items";
+  }
+
+  if (!shown.length) {
+    listEl.innerHTML = `<li class="empty-state">nothing in this folder.</li>`;
+    return;
+  }
+
+  listEl.innerHTML = shown.map((e, i) => {
+    const num = String(i + 1).padStart(2, "0");
+    const d = e.date ? new Date(e.date) : null;
+    const valid = d && !isNaN(d.getTime());
+    const date = valid
+      ? String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0")
+      : "";
+    return `
+    <li>
+      <a href="post.html?slug=${encodeURIComponent(e.slug)}">
+        <span class="trk-num">${num}</span>
+        <span class="trk-title">${e.title}</span>
+        <span class="trk-date">${date}</span>
+      </a>
+    </li>`;
+  }).join("");
 }
 
 async function renderIndex() {
-  const listEl = document.getElementById("entry-list-items");
   const wrapEl = document.getElementById("entry-list");
-
-  // Reveal first so a thrown error can never leave a blank page.
   if (wrapEl) wrapEl.classList.add("fade-in");
-  if (!listEl) return;
+  if (!document.getElementById("entry-list-items")) return;
 
   try {
-    const entries = await loadAllEntries();
-    if (!entries.length) {
-      listEl.innerHTML = `<li class="empty-state">nothing here yet.</li>`;
-      return;
-    }
-    // Track numbers run newest = 01, matching the display order.
-    listEl.innerHTML = entries.map((e, i) => {
-      const num = String(i + 1).padStart(2, "0");
-      const d = e.date ? new Date(e.date) : null;
-      const valid = d && !isNaN(d.getTime());
-      const date = valid
-        ? String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0")
-        : "";
-      return `
-      <li>
-        <a href="post.html?slug=${encodeURIComponent(e.slug)}">
-          <span class="trk-num">${num}</span>
-          <span class="trk-title">${e.title}</span>
-          <span class="trk-tag">${tagFor(e.type)}</span>
-          <span class="trk-date">${date}</span>
-        </a>
-      </li>`;
-    }).join("");
+    ALL_ENTRIES = await loadAllEntries();
+    renderFolders();
+    renderEntryList();
   } catch (e) {
     showError("renderIndex", e);
-    listEl.innerHTML = `<li class="empty-state">something went wrong loading entries.</li>`;
+    document.getElementById("entry-list-items").innerHTML =
+      `<li class="empty-state">something went wrong loading entries.</li>`;
   }
 }
 
@@ -248,8 +290,7 @@ async function renderPost() {
     const numEl = document.getElementById("post-num");
     if (numEl) {
       const idx = entries.findIndex(x => x.slug === entry.slug);
-      const label = TYPE_TAG[entry.type] ? " · " + TYPE_TAG[entry.type] : "";
-      numEl.textContent = String(idx + 1).padStart(2, "0") + label;
+      numEl.textContent = String(idx + 1).padStart(2, "0");
     }
     if (titleEl) titleEl.textContent = entry.title;
     const d = entry.date ? new Date(entry.date) : null;
@@ -257,6 +298,9 @@ async function renderPost() {
       dateEl.textContent = d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
     }
     document.title = `${entry.title} — secret garden`;
+
+    const barEl = document.getElementById("bar-folder");
+    if (barEl) barEl.textContent = folderLabel(entry.type);
 
     let html = "";
     if (entry.image) html += `<div class="image-container"><img src="${entry.image}" alt=""/></div>`;

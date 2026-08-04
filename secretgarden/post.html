@@ -10,27 +10,36 @@
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<div class="viewport-container">
 
-  <div class="gs-topbar">
-    <span><a href="index.html">back to the garden</a></span>
+<div class="win">
+
+  <div class="win-bar">
+    <span><a href="index.html">&larr; the secret garden</a></span>
+    <span class="path" id="bar-folder"></span>
   </div>
 
-  <div class="post-head">
-    <div class="post-num" id="post-num"></div>
-    <h1 id="title">loading…</h1>
-    <div class="date-subtitle" id="date-subtitle"></div>
+  <div class="win-body" style="grid-template-columns:1fr;">
+    <div class="pane">
+
+      <div class="post-head">
+        <div class="post-num" id="post-num"></div>
+        <h1 id="title">loading&hellip;</h1>
+        <div class="date-subtitle" id="date-subtitle"></div>
+      </div>
+
+      <div id="post-body"></div>
+
+      <hr class="separator"/>
+      <div id="comments-wrap"></div>
+
+    </div>
   </div>
 
-  <div id="post-body"></div>
-
-  <hr class="separator"/>
-  <div id="comments-wrap"></div>
-
-  <div class="bottom-fields">
-    <span class="credit">all writings by marie</span>
+  <div class="win-status">
+    <span><a href="index.html">back to folders</a></span>
     <span><a href="/">study site</a></span>
   </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

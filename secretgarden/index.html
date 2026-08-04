@@ -10,47 +10,36 @@
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<div class="viewport-container">
 
-  <div class="gs-topbar">
-    <span>rosearcanum.moe / secret garden</span>
+<div class="win">
+
+  <div class="win-bar">
+    <span>the secret garden</span>
+    <span class="path">rosearcanum.moe</span>
   </div>
 
-  <!-- ── album header ── -->
-  <div class="album-head">
-    <div class="album-cover" id="album-cover"></div>
-    <div>
-      <div class="album-title">the secret garden</div>
-      <div class="album-by">MARIE · 2026 —</div>
+  <div class="win-body">
+
+    <div class="side">
+      <div class="side-label">FOLDERS</div>
+      <div class="side-list" id="folders"></div>
     </div>
-  </div>
 
-  <!-- ── player — hidden until the music section is built.
-       Remove the `hidden` attribute to reveal it; styles are ready. ── -->
-  <div class="player" id="player" hidden>
-    <div class="player-row">
-      <button class="player-btn" aria-label="Play">play</button>
-      <div>
-        <div class="player-track" id="player-track">—</div>
-        <div class="player-sub">now playing</div>
+    <div class="pane">
+      <div id="entry-list">
+        <ul id="entry-list-items">
+          <li class="empty-state">loading&hellip;</li>
+        </ul>
       </div>
-      <span class="player-time" id="player-time">0:00</span>
     </div>
-    <div class="player-bar"><div class="player-fill" id="player-fill"></div></div>
+
   </div>
 
-  <!-- ── tracklist ── -->
-  <div class="sec-label">WRITINGS</div>
-  <div id="entry-list">
-    <ul id="entry-list-items">
-      <li class="empty-state">loading…</li>
-    </ul>
-  </div>
-
-  <div class="bottom-fields">
-    <span class="credit">Thus Kindly</span>
+  <div class="win-status">
+    <span id="status-count">&mdash;</span>
     <span><a href="/">study site</a></span>
   </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
