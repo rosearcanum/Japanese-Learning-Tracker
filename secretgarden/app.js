@@ -1,14 +1,3 @@
-/* ══════════════════════════════════════════════════════════════════
-   secretgarden/app.js  — diagnostic build
-   Same behaviour as before, but it can no longer fail silently:
-   - the entry list is made visible IMMEDIATELY, before any fetching,
-     so a thrown error can never leave a blank page again
-   - every failure is caught and printed on the page
-   - a status line reports which data source was used and what it found
-   Once things are working, the status line can be turned off by
-   setting DEBUG = false just below.
-══════════════════════════════════════════════════════════════════ */
-
 const DEBUG = false;
 
 const GH_OWNER = "rosearcanum";
@@ -18,9 +7,6 @@ const GH_BRANCH = "main";
 const CUSDIS_APP_ID = "ae9780db-0b37-43cc-adf3-cd34a9c41020";
 const CUSDIS_HOST = "https://cusdis.com";
 
-// Sidebar folders. `key` must match the hidden `type` field in the CMS
-// collections (or be null for the catch-all). `label` is cosmetic —
-// rename freely. Reorder this array to reorder the sidebar.
 const FOLDERS = [
   { key: null,      label: "all" },
   { key: "diary",   label: "posts" },
@@ -28,7 +14,6 @@ const FOLDERS = [
   { key: "story",   label: "stories" },
 ];
 
-// ── on-page diagnostics ───────────────────────────────────────────
 function debugLog(msg) {
   if (!DEBUG) return;
   let box = document.getElementById("debug-box");
@@ -50,7 +35,6 @@ function showError(where, err) {
   console.error(where, err);
 }
 
-// ── frontmatter parsing ───────────────────────────────────────────
 function stripQuotes(s) { return String(s).replace(/^["']|["']$/g, ""); }
 
 function parseFrontmatter(text) {
@@ -78,7 +62,6 @@ function parseFrontmatter(text) {
   return { data, body };
 }
 
-// ── locating the markdown files ───────────────────────────────────
 async function listGardenFiles() {
   const api = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/content/garden?ref=${GH_BRANCH}`;
   try {
@@ -166,10 +149,6 @@ function applyPostBackground(entry) {
     document.body.style.backgroundImage = `url('${entry.backgroundImage}')`;
     document.body.classList.add("custom-bg");
 
-    // Scrim strength. Defaults to 0.82 — enough to keep light text
-    // readable over most images. Set background_dim in the post's
-    // frontmatter to override (0 = image at full strength, but expect
-    // the text to be hard to read).
     let dim = parseFloat(entry.backgroundDim);
     if (isNaN(dim) || dim < 0 || dim > 1) dim = 0.82;
     document.body.style.setProperty("--scrim-opacity", String(dim));
@@ -178,7 +157,35 @@ function applyPostBackground(entry) {
   }
 }
 
-// ── index page ────────────────────────────────────────────────────
+const REDUCED_MOTION =
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const TYPE_SPEED = 18;
+const ROW_STAGGER = 90;
+
+function typeInto(el, text, speed) {
+  return new Promise(resolve => {
+    if (!el) return resolve();
+    if (REDUCED_MOTION) { el.textContent = text; return resolve(); }
+    el.textContent = "";
+    el.classList.add("typing");
+    let i = 0;
+    const step = () => {
+      if (i >= text.length) {
+        el.classList.remove("typing");
+        return resolve();
+      }
+      el.textContent += text.charAt(i++);
+      setTimeout(step, speed || TYPE_SPEED);
+    };
+    step();
+  });
+}
+
+function delay(ms) {
+  return new Promise(r => setTimeout(r, REDUCED_MOTION ? 0 : ms));
+}
+
 let ALL_ENTRIES = [];
 let ACTIVE_FOLDER = null;
 
@@ -191,9 +198,6 @@ function renderFolders() {
   const box = document.getElementById("folders");
   if (!box) return;
 
-  // Only show folders that actually hold something. "all" is always
-  // shown; the rest appear the moment their first post is published,
-  // so the sidebar grows with the site instead of listing empties.
   const visible = FOLDERS.filter(f =>
     f.key === null || ALL_ENTRIES.some(e => e.type === f.key)
   );
@@ -239,18 +243,33 @@ function renderEntryList() {
     const num = String(i + 1).padStart(2, "0");
     const d = e.date ? new Date(e.date) : null;
     const valid = d && !isNaN(d.getTime());
+
     const date = valid
-      ? String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0")
+      ? d.toLocaleDateString("en-US", { month: "short" }) + " " +
+        String(d.getDate()).padStart(2, "0") + " " + d.getFullYear()
       : "";
+
     return `
-    <li>
+    <li class="row-pending">
       <a href="post.html?slug=${encodeURIComponent(e.slug)}">
         <span class="trk-num">${num}</span>
-        <span class="trk-title">${e.title}</span>
+        <span class="trk-title" data-title="${String(e.title).replace(/"/g, "&quot;")}"></span>
         <span class="trk-date">${date}</span>
       </a>
     </li>`;
   }).join("");
+
+  typeRows(listEl);
+}
+
+async function typeRows(listEl) {
+  const rows = Array.from(listEl.querySelectorAll(".row-pending"));
+  for (const row of rows) {
+    row.classList.remove("row-pending");
+    const span = row.querySelector(".trk-title");
+    if (span) typeInto(span, span.dataset.title || "");
+    await delay(ROW_STAGGER);
+  }
 }
 
 async function renderIndex() {
@@ -269,7 +288,6 @@ async function renderIndex() {
   }
 }
 
-// ── single post ───────────────────────────────────────────────────
 async function renderPost() {
   const params = new URLSearchParams(location.search);
   const slug = params.get("slug");
@@ -300,7 +318,7 @@ async function renderPost() {
       const idx = entries.findIndex(x => x.slug === entry.slug);
       numEl.textContent = String(idx + 1).padStart(2, "0");
     }
-    if (titleEl) titleEl.textContent = entry.title;
+    if (titleEl) titleEl.textContent = "";
     const d = entry.date ? new Date(entry.date) : null;
     if (dateEl && d && !isNaN(d.getTime())) {
       dateEl.textContent = d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -313,7 +331,13 @@ async function renderPost() {
     let html = "";
     if (entry.image) html += `<div class="image-container"><img src="${entry.image}" alt=""/></div>`;
     html += entry.bodyHtml;
+
     bodyEl.innerHTML = html;
+    bodyEl.classList.add("body-pending");
+    if (titleEl) {
+      await typeInto(titleEl, entry.title, 22);
+    }
+    bodyEl.classList.remove("body-pending");
 
     mountCusdis(entry);
   } catch (e) {
@@ -321,15 +345,6 @@ async function renderPost() {
   }
 }
 
-// ── CSS injected INTO the Cusdis widget ───────────────────────────
-// Cusdis builds its iframe with srcdoc, which inherits this page's
-// origin — so unlike a normal third-party embed, we can reach inside
-// it. We watch for the iframe appearing and rewrite its srcdoc to
-// append our own styles before it renders.
-// These rules target plain elements (body/textarea/input/button)
-// rather than Cusdis's internal class names, so they keep working if
-// the widget's markup changes. To refine further: inspect the iframe
-// in devtools and add rules for whatever classes you find.
 const CUSDIS_INJECTED_CSS = `
   * { border-radius: 0 !important; }
   body, html {
@@ -364,7 +379,7 @@ const CUSDIS_INJECTED_CSS = `
     text-transform: lowercase !important;
   }
   button:hover { background: #1d1826 !important; color: #f0ebf5 !important; }
-  /* comment rows */
+
   .dark, .dark * { background-color: transparent !important; }
   hr { border-color: #2a2435 !important; }
 `;
@@ -387,8 +402,6 @@ function mountCusdis(entry) {
     data-theme="dark"
   ></div>`;
 
-  // Observer must be watching BEFORE the Cusdis script builds the
-  // iframe, otherwise we miss our chance to rewrite srcdoc.
   const thread = document.getElementById("cusdis_thread");
   const observer = new MutationObserver(mutations => {
     mutations.forEach(m => {
@@ -411,7 +424,6 @@ function mountCusdis(entry) {
   document.body.appendChild(s);
 }
 
-// ── boot ──────────────────────────────────────────────────────────
 function boot() {
   debugLog(`page: ${location.pathname}`);
   debugLog(`marked.js loaded: ${!!(window.marked && marked.parse)}`);
@@ -422,5 +434,5 @@ function boot() {
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", boot);
 } else {
-  boot(); // script loaded after DOM was already parsed
+  boot();
 }
